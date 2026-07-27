@@ -1,0 +1,531 @@
+aid: ontario-energy-board
+name: Ontario Energy Board
+review:
+  question: Does the Ontario Energy Board expose a real, public, self-serve data or
+    API surface, and — as the regulator behind the only compulsory energy-data rule
+    in Canada — can the Green Button mandate it supervises be verified as implemented
+    rather than merely claimed?
+  answer: true
+  date: '2026-07-27'
+  reviewer: API Evangelist
+  summary: |
+    The OEB has NO developer portal, NO API key, NO OpenAPI or any machine-readable
+    contract, and NO signup of any kind. What it has instead is a real, anonymous,
+    key-free Open Data programme — 18 datasets published as stable XML, XLSX and GIS
+    files under the Open Government Licence – Ontario, including a register of every
+    open application before the Board refreshed daily, thirteen RRR filings series,
+    twelve years of distributor performance scorecards, and current electricity and
+    gas rates. Every file probed returned HTTP 200 to an anonymous GET.
+
+    On consumer data the OEB publishes nothing, because it holds nothing. It is not
+    a data holder under Ontario's Green Button regulation — it is the supervisor of
+    the utilities that are. And here it does the one thing this series has repeatedly
+    found missing elsewhere: it publishes an actual implementation register naming
+    54 confirmed distributors and 6 extensions. That register is a PDF, not a feed,
+    which is the whole story of this organization in one artifact.
+
+    A regulator publishing more open, more anonymous, more machine-readable data than
+    the utilities it supervises is a pattern this series has now seen repeatedly. In
+    Ontario it is stark: Toronto Hydro publishes zero open data and gates its mandated
+    Green Button behind application approval; the OEB publishes ~60 XML files to anyone
+    with curl.
+
+mandate:
+  regime: green-button-ontario
+  status: live-implemented
+  status_qualifier: >-
+    "live-implemented" here describes the REGIME, verified through the register this
+    organization itself publishes — NOT an implementation by the OEB. The OEB is not
+    an obligated party under O. Reg. 633/21; it holds no customer meter, usage or
+    billing data and therefore implements no Green Button endpoint of its own. As a
+    data holder the mandate is not-applicable to it. As a supervisor, it is the single
+    best evidence source in the jurisdiction that the mandate produced real
+    implementations.
+  instrument: >-
+    O. Reg. 633/21 (Energy Data) under the Electricity Act, 1998 (Ontario). Requires
+    rate-regulated electricity and natural gas utilities in Ontario to implement Green
+    Button Download My Data (DMD) and Connect My Data (CMD) conforming to NAESB REQ.21
+    Energy Services Provider Interface (ESPI) v3.3, certified by the Green Button
+    Alliance, by 1 November 2023. Small gas distributors selling under 3 million cubic
+    metres annually are exempt.
+  jurisdiction: >-
+    Ontario, Canada. Province-level. There is NO Canadian national equivalent — no
+    federal energy CDR, no federal Green Button rule. Electricity is a provincial
+    head of power in Canada, and Ontario is the only province to have made an energy
+    data standard compulsory. This is the sharpest available contrast with Australia,
+    where the Consumer Data Right was extended to energy nationally by the ACCC and
+    the Data Standards Body.
+  regulator: >-
+    Ontario Energy Board (OEB), under direction from the Ontario Ministry of Energy.
+    The regulation was made by government; the OEB is the body that operationalised
+    and supervises it.
+  applies_to_this_organization: false
+  applies_because: >-
+    The OEB is the regulator, not a rate-regulated utility. It licenses and rate-sets
+    for the distributors bound by O. Reg. 633/21 but is not itself a distributor,
+    retailer or gas utility and holds no consumer energy data.
+  what_the_regulator_actually_did:
+    - >-
+      Ran the Green Button implementation consultation under case number EB-2021-0183.
+      Case documents are retrievable anonymously at
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+      (HTTP 200, 87,523 bytes of HTML; the same query with &format=json returns
+      application/json).
+    - >-
+      Issued the Notice of Amendments to the Retail Settlement Code and an Accounting
+      Order dated 1 November 2021, plus OEB Staff Guidance. Staff Guidance retrieved
+      at https://www.rds.oeb.ca/CMWebDrawer/Record/730381/File/document (HTTP 200,
+      307,797-byte PDF).
+    - >-
+      Published its 1 November 2021 letter on Green Button implementation at
+      https://www.oeb.ca/sites/default/files/OEBltr-Green-Button-Implementation-20211101.pdf
+      (HTTP 200, application/pdf) and the earlier draft-guidance letter at
+      https://www.oeb.ca/sites/default/files/OEB-Ltr-Green-Button-Implementation-20211012.pdf.
+    - >-
+      Imposed quarterly progress reporting on distributors and, from March 2023,
+      began publishing those reports so consumers could see their own utility's
+      progress.
+    - >-
+      Convened and still runs the Green Button Industry-led Working Group (GB IWG) —
+      34+ numbered meetings appear in the OEB sitemap
+      (/calendar/green-button-industry-led-working-group-meeting-24 through -34), with
+      the 2022 IWG report at
+      https://www.oeb.ca/sites/default/files/report-GB-IWG-20220923.pdf (HTTP 200,
+      3.8 MB PDF).
+  public_register_of_compliant_parties:
+    exists: true
+    url: https://www.oeb.ca/sites/default/files/Green-Button-implementation-status-summary.pdf
+    http_status: 200
+    format: PDF (399,394 bytes) — human-readable only, NOT machine-readable, no CSV,
+      XML or JSON equivalent published, and NOT listed among the 18 Open Data datasets
+    contents_verified_by_text_extraction: >-
+      Title "Green Button Implementation Status Summary". Headline "54 Distributors
+      Confirmed Implementation", naming each one — Toronto Hydro-Electric System
+      Limited, Hydro One Networks Inc., London Hydro Inc., Alectra Utilities Corporation
+      (Guelph Rate Zone), Hydro Ottawa Limited Rideau, Elexicon Energy Inc., Enbridge
+      Gas Inc., EPCOR Natural Gas Ltd., EnWin Utilities Ltd., Enova Power, Entegrus
+      Powerlines Inc., Synergy North, Kingston Hydro Corporation and 41 others. A
+      second table "6 Extensions Granted" names Alectra (non-Guelph rate zones,
+      to 29 Feb 2024), Burlington Hydro (to 1 Dec 2023), Enbridge (525 large volume
+      distribution and 5 unbundled customers, to 31 Dec 2026), GrandBridge Energy
+      (Brantford Power rate zone, to 31 Mar 2024), Chapleau PUC (to 30 Sep 2024) and
+      Kitchener Utilities (to 1 May 2024). A footnote records that First Nations
+      distributors, Hydro One Remotes and Cornwall Electric are exempt.
+    a_second_register_variant: https://www.oeb.ca/sites/default/files/Green%20Button%20Status%20October2024.pdf
+      (HTTP 200, 475,099-byte PDF)
+  what_i_verified:
+    - >-
+      The regime is real and in force, and the OEB's own published register is direct
+      evidence that it produced implementations at 54 named distributors rather than
+      compliance claims. This is the strongest mandate evidence captured anywhere in
+      this energy series.
+    - >-
+      The OEB's consumer-facing Green Button page https://www.oeb.ca/green-button
+      (HTTP 200) confirms the obligation and the 1 November 2023 date in plain language
+      — "Rate-regulated electricity and natural gas utilities in Ontario were required
+      to provide customers with access to Green Button by November 1, 2023" — and then
+      tells consumers to "contact your utility directly for more information."
+  what_i_could_NOT_verify:
+    - >-
+      The OEB publishes NO machine-readable register of Green Button-compliant
+      utilities, and NO directory of utility ESPI base URIs or third-party onboarding
+      endpoints. A developer wanting to integrate with Ontario Green Button cannot get
+      a list of endpoints from the regulator; they must approach 54 utilities one at
+      a time. The register is a PDF.
+    - >-
+      The OEB's own /green-button page cites neither O. Reg. 633/21 by number nor
+      NAESB REQ.21 ESPI v3.3 by version. Those come from the regulation, from the
+      Green Button Alliance and from greenbuttonontario.ca (HTTP 200, a site operated
+      by vendor Screaming Power, not by the OEB).
+    - >-
+      No Green Button Alliance certificate list naming Ontario utilities individually
+      was located; the GBA announced 55 certified Ontario utility platforms in
+      November 2023 but its /certified pages 404.
+
+data_standard:
+  supervised: Green Button — NAESB REQ.21 Energy Services Provider Interface (ESPI)
+    v3.3, mandated of Ontario utilities by O. Reg. 633/21
+  implemented_by_this_organization: none — the OEB implements no ESPI surface because
+    it holds no consumer energy data
+  own_data_shapes: >-
+    Bespoke/proprietary XML with no published schema. The applications feed uses
+    ALL_OPEN_APPLICATIONS > LIST_G_APPLICATION1 > G_APPLICATION1 with elements
+    APPLICATION1, DATE_FILED1, ENERGY_TYPE1, CATEGORY1, APPLICANT1, REG_CASE_STATUS,
+    APPLICATION_NAME, PROCESS_TYPE, APPLICATION_STATUS, CASE_AUTHORITY, CASE_STATUS
+    and optional LICENCE_TYPE — an Oracle-Reports-style flat structure, not CIM, not
+    IEC 61968/61970, not DCAT, not Green Button. No XSD, JSON Schema, DCAT catalogue,
+    data dictionary API or OpenAPI is published; the only schema aid is an XLSX
+    "data keys" workbook per rates dataset, e.g.
+    https://www.oeb.ca/sites/default/files/data-keys-electricity-rates.xlsx (HTTP 200).
+  standards_actually_referenced_by_the_oeb_for_its_own_data:
+    - Open Government Licence – Ontario (https://www.ontario.ca/page/open-government-licence-ontario,
+      HTTP 200)
+    - Ontario's Digital and Data Directive, 2021 (https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021,
+      HTTP 200)
+  summary_phrase: Green Button / NAESB REQ.21 ESPI v3.3 supervised but not implemented;
+    OEB's own data is proprietary XML under the Open Government Licence – Ontario
+
+consumer_vs_market_data:
+  consumer_data_api: false
+  consumer_data_detail: >-
+    The OEB offers NO consumer data API and no path for a third party to obtain an
+    individual customer's usage or billing data. It is a regulator; customer meter
+    data sits with the 54 distributors and with Enbridge Gas. Its role in the consumer
+    data chain is entirely upstream — it wrote the code amendments, collects the
+    quarterly reports and publishes the status register. The consumer-data API in
+    Ontario exists, is mandated, and is real, but it belongs to the utilities, and at
+    every utility examined in this series it is gated behind application approval or a
+    customer login.
+  market_data_open: true
+  market_data_detail: >-
+    Genuinely open, on a definition that survives scrutiny — anonymous, no key, no
+    registration, no click-through, an explicit open licence, and stable direct file
+    URLs. 18 datasets. Verified live 2026-07-27, all HTTP 200. Highlights: every open
+    application before the Board, refreshed daily, at
+    https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml (text/xml,
+    36,579 bytes, 65 open applications on the day of fetch, each with case number,
+    filing date, energy type, applicant, status and licence type). Current residential
+    electricity rates at
+    https://www.oeb.ca/_html/calculator/data/BillData.xml (77,694 bytes, monthly),
+    general service <50 kW at .../BillData_GS.xml (72,312 bytes) and residential gas
+    at .../GasBillData.xml (5,364 bytes, quarterly). Distributor performance scorecards
+    2013-2024 as twelve annual XML files under
+    https://www.oeb.ca/_html/performance/data/scorecard_data_YYYY.xml (2024 file
+    44,231 bytes). Consumer complaints 2013-2022 as ten annual XML files under the
+    same path prefix. Thirteen RRR series under https://www.oeb.ca/documents/opendata/rrr/,
+    each in current / 2015-2021 / 2023 / 2024-2 variants — the System Reliability
+    Indicators file alone is 6,892,228 bytes of XML. Service-territory boundaries as
+    GIS ZIPs: electricity 2,029,792 bytes (open-data-electricity-map-20260429.zip) and
+    natural gas 13,210,803 bytes (open-data-naturalgas-map-20260225.zip).
+  caveat_on_market_data: >-
+    "Market data" here means REGULATORY and RATES data, not real-time grid or wholesale
+    market data. The OEB publishes no dispatch, price, demand or emissions feed —
+    Ontario's wholesale market data belongs to IESO (https://www.ieso.ca/ and
+    https://reports.ieso.ca/, both HTTP 200), a separate organization. Nothing the OEB
+    publishes is real-time; the fastest cadence is daily, then monthly, then quarterly,
+    then annual.
+  the_split: >-
+    Total. Wide open on regulatory/market data with zero friction, and completely
+    absent on consumer data because it holds none — while being the very body that
+    forced consumer data open at 54 other organizations. The regulator that made the
+    utilities publish consumer data publishes the most open data in the province and
+    none of the data it mandated.
+
+access:
+  gate: self-serve
+  gate_qualifier: >-
+    self-serve in the strongest possible sense — there is nothing to serve yourself
+    to. No account, no key, no application, no licence signature, no terms acceptance,
+    no rate limit published. Anonymous HTTP GET on a stable URL.
+  what_a_developer_must_actually_do:
+    - >-
+      For open data — nothing. Browse https://www.oeb.ca/open-data, pick a dataset
+      page, and GET the linked .xml, .xlsx or .zip. Use is governed by the Open
+      Government Licence – Ontario, which grants a worldwide, royalty-free, perpetual,
+      non-exclusive licence subject to attribution; there is no click-through or
+      registration to accept it.
+    - >-
+      For regulatory documents — nothing. GET
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=<query>&pageSize=<n>, optionally with
+      &format=json, or fetch a PDF at /CMWebDrawer/Record/{uri}/File/document. But
+      expect to reverse-engineer the query syntax from the URLs the OEB links on its
+      own pages, because none of it is documented.
+    - >-
+      For consumer energy data — approach the utility, not the OEB. There is no OEB
+      route to a customer's data at any price.
+  self_serve_signup: not applicable (no signup mechanism exists at all)
+  sandbox_published: false
+  pricing_published: false — everything probed was free of charge
+  time_to_first_call: seconds; a single anonymous curl returns parseable XML
+  developer_portal: https://www.oeb.ca/open-data
+  developer_portal_confirmed: >-
+    true — HTTP 200, a real, public, anonymous open-data hub listing 18 datasets with
+    direct file links, update frequencies and a licence. It is an open-data hub, not a
+    developer portal in the API sense: no keys, no reference, no SDKs, no sandbox, no
+    changelog feed. developer./developers./api./docs./data.oeb.ca all fail DNS.
+
+auth:
+  model: none — anonymous public access to every surface captured
+  api_keys: none issued; no key mechanism exists
+  oauth: not offered
+  oidc_discovery: not served — https://www.oeb.ca/.well-known/openid-configuration
+    returned HTTP 404 on an anonymous fetch
+  mtls: not offered
+  cdr_accreditation: not applicable — Canada has no energy Consumer Data Right and no
+    accreditation register for energy data recipients
+  note: >-
+    The OEB does operate authenticated systems for regulated entities — licence
+    applications and RRR filings are submitted through OEB portals — but those are
+    filing systems for licensees, not developer APIs, and no public documentation,
+    endpoint or auth contract for them was found.
+
+home_market: Canada (Ontario)
+tier: regulator
+organization_type: >-
+  Independent, self-funded regulatory agency of the Province of Ontario, established
+  under the Ontario Energy Board Act, 1998, reporting to the Ministry of Energy. Not a
+  Crown corporation, not investor-owned, not a market operator.
+scope_of_supervision: >-
+  Roughly 60 rate-regulated electricity distributors, electricity transmitters,
+  generation, storage and wholesaler licensees, unit sub-meter providers, licensed
+  electricity retailers and gas marketers, and Enbridge Gas. It sets rates, issues
+  licences, hears applications and enforces the Distribution System Code, Retail
+  Settlement Code and Reporting and Record-keeping Requirements.
+adjacent_organizations_not_this_one:
+  - IESO — Ontario's Independent Electricity System Operator, runs the wholesale market
+    and publishes market data at https://reports.ieso.ca/ (HTTP 200). Separate entity.
+  - AESO — Alberta Electric System Operator, the other competitive Canadian market.
+  - Ontario Ministry of Energy — made O. Reg. 633/21.
+  - Green Button Alliance — certifies ESPI conformance; not an Ontario body.
+
+probes:
+  - url: https://www.oeb.ca/
+    status: 200
+  - url: https://oeb.ca/
+    status: 200
+  - url: https://www.oeb.ca/robots.txt
+    status: 200
+    note: standard Drupal 10 robots.txt; nothing relevant disallowed
+  - url: https://www.oeb.ca/sitemap.xml
+    status: 200
+    note: Drupal simple_sitemap index, 3 pages, 4,244 URLs harvested and searched
+  - url: https://developer.oeb.ca/
+    status: 000
+    note: DNS does not resolve
+  - url: https://developers.oeb.ca/
+    status: 000
+    note: DNS does not resolve
+  - url: https://api.oeb.ca/
+    status: 000
+    note: DNS does not resolve
+  - url: https://docs.oeb.ca/
+    status: 000
+    note: DNS does not resolve
+  - url: https://data.oeb.ca/
+    status: 000
+    note: DNS does not resolve
+  - url: https://www.oeb.ca/developers
+    status: 404
+  - url: https://www.oeb.ca/api
+    status: 404
+  - url: https://www.oeb.ca/docs
+    status: 404
+  - url: https://www.oeb.ca/data
+    status: 404
+  - url: https://www.oeb.ca/openapi.json
+    status: 404
+  - url: https://www.oeb.ca/swagger.json
+    status: 404
+  - url: https://www.oeb.ca/api-docs
+    status: 404
+  - url: https://www.oeb.ca/.well-known/openid-configuration
+    status: 404
+  - url: https://www.oeb.ca/open-data
+    status: 200
+    note: THE open data hub — 18 datasets
+  - url: https://www.oeb.ca/ontarios-energy-sector/open-data
+    status: 200
+  - url: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+    status: 200
+    note: text/xml, 36,579 bytes, parsed with ElementTree — 65 G_APPLICATION1 records
+  - url: https://www.oeb.ca/_html/calculator/data/BillData.xml
+    status: 200
+    note: text/xml, 77,694 bytes
+  - url: https://www.oeb.ca/_html/calculator/data/BillData_GS.xml
+    status: 200
+    note: text/xml, 72,312 bytes
+  - url: https://www.oeb.ca/_html/calculator/data/GasBillData.xml
+    status: 200
+    note: text/xml, 5,364 bytes
+  - url: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+    status: 200
+    note: text/xml, 44,231 bytes; 2013-2024 series all linked
+  - url: https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+    status: 200
+    note: text/xml, 6,892,228 bytes
+  - url: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+    status: 200
+    note: application/zip, 2,029,792 bytes, GIS
+  - url: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+    status: 200
+    note: application/zip, 13,210,803 bytes, GIS
+  - url: https://www.oeb.ca/sites/default/files/data-keys-electricity-rates.xlsx
+    status: 200
+    note: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, 11,022 bytes
+  - url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+    status: 200
+  - url: https://www.oeb.ca/sites/default/files/OEBltr-Transition-to-Open-Data-20220929.pdf
+    status: 200
+  - url: https://www.oeb.ca/sites/default/files/OEB-Letter-Open-Data-2.0-20231006.pdf
+    status: 200
+  - url: https://www.oeb.ca/sites/default/files/OEB-letter-open-data-20240827.pdf
+    status: 200
+  - url: https://www.oeb.ca/green-button
+    status: 200
+  - url: https://www.oeb.ca/consumer-information-and-protection/green-button
+    status: 200
+  - url: https://www.oeb.ca/consultations-and-projects/policy-initiatives-and-consultations/green-button-implementation
+    status: 200
+  - url: https://www.oeb.ca/consultations-and-projects/policy-initiatives-and-consultations/green-button-industry-led-working
+    status: 200
+  - url: https://www.oeb.ca/industry/policy-initiatives-and-consultations/green-button
+    status: 404
+  - url: https://www.oeb.ca/sites/default/files/Green-Button-implementation-status-summary.pdf
+    status: 200
+    note: application/pdf, 399,394 bytes — THE public register; text extracted with
+      pdftotext
+  - url: https://www.oeb.ca/sites/default/files/Green%20Button%20Status%20October2024.pdf
+    status: 200
+    note: application/pdf, 475,099 bytes
+  - url: https://www.oeb.ca/sites/default/files/OEBltr-Green-Button-Implementation-20211101.pdf
+    status: 200
+    note: application/pdf
+  - url: https://www.oeb.ca/sites/default/files/report-GB-IWG-20220923.pdf
+    status: 200
+    note: application/pdf, 3,811,031 bytes
+  - url: https://www.oeb.ca/rds
+    status: 200
+  - url: https://www.rds.oeb.ca/
+    status: 200
+    note: 424-byte stub redirecting humans to https://www.oeb.ca/rds
+  - url: https://www.rds.oeb.ca/CMWebDrawer/Record
+    status: 200
+    note: text/html, 5,594 bytes
+  - url: https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+    status: 200
+    note: text/html, 87,523 bytes
+  - url: https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=5&format=json
+    status: 200
+    note: >-
+      application/json; charset=utf-8, 6,483 bytes, parsed with json.load. Keys —
+      Results, PropertiesAndFields, TotalResults, CountStringEx, MinimumCount, Count,
+      HasMoreItems, SearchTitle, HitHighlightString, TrimType, ResponseStatus. Field
+      types carry "HP.HPTRIM.ServiceModel.*, TRIMServiceAPIModel" discriminators,
+      confirming Micro Focus / OpenText Content Manager WebDrawer. UNDOCUMENTED by the
+      OEB.
+  - url: https://www.rds.oeb.ca/CMWebDrawer/Record/730381/File/document
+    status: 200
+    note: application/pdf, 307,797 bytes — OEB Staff Guidance on Green Button
+  - url: https://www.rds.oeb.ca/CMWebDrawer/RecordHTML/730381
+    status: 200
+    note: text/html, 5,687 bytes
+  - url: https://www.rds.oeb.ca/CMWebDrawer/
+    status: 404
+  - url: https://www.rds.oeb.ca/openapi.json
+    status: 404
+  - url: https://www.rds.oeb.ca/swagger.json
+    status: 404
+  - url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
+    status: 200
+    note: HTML register of licensed companies; each licence links to an rds.oeb.ca
+      CMWebDrawer query. No CSV/XML/JSON export offered.
+  - url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies/trade-names-licensed-companies
+    status: 200
+  - url: https://www.oeb.ca/ontarios-energy-sector/performance-assessment/interactive-dashboards
+    status: 200
+    note: four Power BI embeds (app.powerbi.com/view?r=...) — System Reliability,
+      Service Quality Requirement, Net Metered and Embedded Generation, and Customer,
+      Consumption and Revenue. Rendered visuals, no data feed of their own; the
+      underlying data is the RRR open data.
+  - url: https://www.oeb.ca/applications/adjudicative-reporting-dashboard
+    status: 200
+  - url: https://www.oeb.ca/privacy-statement
+    status: 404
+  - url: https://www.oeb.ca/terms-use
+    status: 404
+  - url: https://www.oeb.ca/contact-ontario-energy-board
+    status: 200
+  - url: https://www.oeb.ca/newsroom
+    status: 200
+  - url: https://www.oeb.ca/themes/de_theme/logo.svg
+    status: 200
+    note: image/svg+xml, 10,245 bytes — used as the provider image
+  - url: https://www.oeb.ca/favicon.ico
+    status: 404
+  - url: https://github.com/OntarioEnergyBoard
+    status: 404
+  - url: https://github.com/ontario-energy-board
+    status: 404
+    note: no GitHub organization found for the OEB
+  - url: https://www.linkedin.com/company/ontario-energy-board
+    status: 999
+    note: LinkedIn anti-bot response; not treated as confirmation either way
+  - url: https://greenbuttonontario.ca/
+    status: 200
+    note: NOT an OEB property — operated by vendor Screaming Power. Cites O. Reg
+      633/21 and "50+ Utilities" but publishes no register, no base URI and no ESPI
+      version.
+  - url: https://data.ontario.ca/api/3/action/package_search?q=%22Ontario%20Energy%20Board%22
+    status: 200
+    note: >-
+      Ontario's central CKAN catalogue does expose a real open API, but the OEB is not
+      an organization on it (organization_show?id=ontario-energy-board returns Not
+      Found; fq=organization:ontario-energy-board returns 0). Exactly 2 matching
+      datasets exist — "Ontario's Local Distribution Companies (LDCs) Boundaries Map"
+      and "service-territory-boundaries-of-ontario-natural-gas-distributors" — and
+      both are published by the Ministry of Energy, Northern Development and Mines,
+      not by the OEB. The OEB serves its own GIS ZIPs from oeb.ca.
+  - url: https://www.ieso.ca/
+    status: 200
+    note: separate organization — Ontario's system/market operator
+  - url: https://reports.ieso.ca/
+    status: 200
+    note: separate organization
+
+artifacts_harvested:
+  openapi: 0
+  asyncapi: 0
+  postman: 0
+  graphql: 0
+  json_schema: 0
+  note: >-
+    No machine-readable API contract of any kind is published by the OEB. No OpenAPI,
+    no XSD for the open data XML, no JSON Schema, no DCAT catalogue, no data dictionary
+    endpoint. The nearest thing to a schema artifact is an XLSX "data keys" workbook
+    per rates dataset. Nothing was saved to openapi/ because nothing real exists to
+    save; fabricating one would be worse than the gap.
+
+findings:
+  headline: >-
+    The regulator out-publishes the regulated. The OEB gives away ~60 machine-readable
+    files with no key and no signup, while every Ontario utility bound by the mandate
+    it enforces keeps its consumer data behind application approval or a login.
+  second_finding: >-
+    A mandate is not an implementation — but Ontario is the case where the two can be
+    told apart, because the regulator publishes the register. 54 distributors confirmed,
+    6 extensions, 3 classes exempt. That register is the single most useful artifact
+    in this entire jurisdiction, and it is a PDF that is not in the open data programme.
+  third_finding: >-
+    Open data without a contract is still a manual integration. Every OEB dataset is
+    a hand-fetched file with an undocumented, bespoke XML shape and no versioning
+    scheme beyond the filename. The one surface that behaves like an API — RDS with
+    format=json — works only because the vendor product does it by default, not
+    because the OEB offers it.
+
+sources:
+  - url: https://www.oeb.ca/open-data
+    type: Documentation
+  - url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+    type: GettingStarted
+  - url: https://www.ontario.ca/page/open-government-licence-ontario
+    type: ContentLicense
+  - url: https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021
+    type: Reference
+  - url: https://www.oeb.ca/green-button
+    type: Documentation
+  - url: https://www.oeb.ca/consultations-and-projects/policy-initiatives-and-consultations/green-button-implementation
+    type: Reference
+  - url: https://www.oeb.ca/sites/default/files/Green-Button-implementation-status-summary.pdf
+    type: Reference
+  - url: https://www.oeb.ca/sites/default/files/OEBltr-Green-Button-Implementation-20211101.pdf
+    type: Reference
+  - url: https://www.oeb.ca/sites/default/files/report-GB-IWG-20220923.pdf
+    type: Reference
+  - url: https://www.oeb.ca/rds
+    type: Documentation
+  - url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
+    type: Reference
+  - url: https://www.oeb.ca/ontarios-energy-sector/performance-assessment/interactive-dashboards
+    type: Reference
+  - url: https://greenbuttonontario.ca/
+    type: Reference
