@@ -1,0 +1,196 @@
+generated: '2026-07-27'
+method: derived
+source: >-
+  Live anonymous probes of https://www.oeb.ca and https://www.rds.oeb.ca on 2026-07-27, the RDS search
+  form and its clause-definition endpoint, and the OEB's Open Data XML-to-Excel guide
+  (https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf)
+note: >-
+  Cross-cutting request/response semantics for the Ontario Energy Board's two public surfaces. The OEB
+  documents none of this - it publishes an Excel import guide and nothing else - so every convention
+  below is either observed live or read off the machine-readable search-clause definitions the RDS
+  search form itself loads. Conventions that are neither published nor observable are recorded as
+  unknown rather than guessed. Two surfaces with genuinely different conventions are covered here and
+  are kept separate throughout.
+surfaces:
+- id: open-data
+  name: OEB Open Data
+  style: static file downloads over HTTPS
+  spec: openapi/ontario-energy-board-open-data-openapi.yml
+- id: rds
+  name: OEB Regulatory Document Search
+  style: parameterised query endpoint (Micro Focus / OpenText Content Manager WebDrawer)
+  spec: openapi/ontario-energy-board-rds-openapi.yml
+authentication:
+  style: none - fully anonymous on both surfaces
+  detail: authentication/ontario-energy-board-authentication.yml
+  transport: HTTPS only; TLSv1.3 observed; HSTS max-age 31536000 with includeSubDomains and preload on both hosts
+content_negotiation:
+  open_data:
+    supported: false
+    note: >-
+      Format is a property of the file, not of the request. Accept headers are ignored. XML files are
+      served as text/xml, spreadsheets as
+      application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, GIS bundles as application/zip.
+  rds:
+    supported: partial
+    mechanism: '`format` query parameter, not the Accept header'
+    values:
+      json: application/json (the Content Manager TRIMServiceAPIModel payload)
+      omitted: text/html (the WebDrawer results page)
+      xml: refused - HTTP 403 with a zero-byte application/xml body
+query_language:
+  surface: rds
+  parameter: q
+  comparison: q=<clause>=<value>
+  contains: q=<clause>:<value>
+  clause_count: 303
+  clause_source: https://www.rds.oeb.ca/CMWebDrawer/Help/WDSearchClauseDefJS?trimType=Record
+  clause_catalog: vocabulary/ontario-energy-board-rds-search-clauses.yml
+  oeb_specific_fields: 62
+  key_fields:
+  - CaseNumber
+  - EnergyType
+  - PrimaryApplicationType
+  - Applicant
+  - SIDocumentType
+  - OEBDocumentType
+  - DateIssued
+  - fDateReceived
+  combination: >-
+    The search form exposes three clause slots joined with And / Or, so boolean combination is
+    supported in the underlying syntax; the exact encoding is not documented and was not verified.
+  case_sensitivity: unknown
+pagination:
+  open_data:
+    supported: false
+    note: Whole-file downloads only. The largest verified file is 13.2 MB (natural gas GIS bundle); one RRR XML file is 6.9 MB.
+  rds:
+    style: offset
+    params:
+      page_size: pageSize
+      offset: start
+    offset_base: 1
+    max_page_size: >-
+      Not published. The OEB's own site links use pageSize=400, which is the highest value observed in
+      provider-authored URLs.
+    response_fields:
+    - TotalResults
+    - Count
+    - MinimumCount
+    - HasMoreItems
+    - CountStringEx
+    note: >-
+      TotalResults is the full match count irrespective of pageSize (131,171 for EnergyType=Electricity),
+      so it can be used to plan paging up front. HasMoreItems flags a further page.
+sorting:
+  surface: rds
+  param: sortBy
+  descending: trailing '-' on the clause name, e.g. sortBy=recRegisteredOn-
+  sortable_clauses: 87
+  note: The clause definitions carry CanSort per clause; only those 87 may be used in sortBy.
+filtering:
+  open_data: none
+  rds: via the q clause language only
+field_selection:
+  supported: false
+  note: >-
+    The RDS response returns a fixed field set (CaseNumber, SIDocumentType, Applicant, EnergyType,
+    PrimaryApplicationType, DateIssued, fDateReceived) plus record metadata. No sparse-fieldset or
+    expansion parameter is documented or observed.
+idempotency:
+  supported: not-applicable
+  reason: >-
+    Both surfaces are strictly read-only. There is no POST, PUT, PATCH or DELETE anywhere - no way to
+    file, amend or submit anything through either interface, and therefore nothing an idempotency key
+    could protect. No Idempotency-Key header, no retry contract and no replay semantics are documented
+    or needed. No `Idempotency` pointer is emitted for this provider.
+  safe_retry: >-
+    Every operation is a plain GET and is naturally safe to retry - but see rate_limiting: retry
+    serially, not in parallel.
+rate_limiting:
+  documented: false
+  headers: none observed (no RateLimit-*, no X-RateLimit-*, no Retry-After)
+  status_code: none - a throttled client gets no HTTP response at all
+  observed_behaviour: >-
+    Sustained parallel fetching of Open Data files (roughly 200 requests in 20 minutes from one
+    client, up to 20 concurrent) caused www.oeb.ca to stop answering: connections timed out with no
+    status line. www.rds.oeb.ca continued to answer normally throughout.
+  guidance: >-
+    Treat Open Data as a batch source. Fetch serially, cache against Last-Modified, schedule daily at
+    most (the applications register is the only file that changes daily), and back off completely on
+    a timeout.
+caching:
+  open_data:
+    last_modified: true
+    etag: unknown
+    note: >-
+      Every verified file returned a Last-Modified date, ranging from 2016 (historical scorecards) to
+      2026 (the daily applications register). Conditional GET is the right way to poll.
+  rds:
+    cache_control: private
+    note: 'WebDrawer marks responses Cache-Control: private; do not cache search results in shared caches.'
+  website_pages:
+    cache_control: 'max-age=300, public (Drupal), with ETag and X-Drupal-Cache HIT/MISS'
+errors:
+  envelope: Content Manager ResponseStatus (ErrorCode / Message / Errors / Meta.TrimErrorCode)
+  problem_details_rfc9457: false
+  critical_gotcha: >-
+    A rejected query returns HTTP 200 with an empty Results array and the reason in SearchTitle. Status
+    codes alone are not enough - read SearchTitle on every response.
+  detail: errors/ontario-energy-board-problem-types.yml
+request_tracing:
+  rds:
+    request_id_header: none
+    session_cookies: 'ss-pid, ss-id (ServiceStack), Secure HttpOnly SameSite=Lax - set but not required'
+  website:
+    request_id_header: X-Request-Id
+    note: Drupal sets X-Request-Id on www.oeb.ca page responses; the Open Data files themselves are served without it.
+versioning:
+  open_data:
+    scheme: filename
+    detail: >-
+      Version lives in the filename: a reporting year (scorecard_data_2024.xml, complaints_data_2022.xml),
+      a release date (open-data-electricity-map-20260429.zip), or a series folder
+      (/documents/opendata/rrr/2024-2/, /rrr/2023/, /rrr/gas/). A refresh produces a new filename; URLs
+      are not rewritten in place.
+    consequence: Resolve the current filename from the dataset landing page before each scheduled fetch.
+  rds:
+    scheme: none
+    detail: >-
+      No version segment, no version header, no version parameter. The base path /CMWebDrawer is the
+      product's default mount point.
+  detail_file: lifecycle/ontario-energy-board-lifecycle.yml
+media_types:
+  text/xml: >-
+    The dominant Open Data format. The OEB publishes a guide for importing it into Excel
+    (Open-Data-Guide-XML-Excel-20221215.pdf) - that guide is the entire published developer
+    documentation for the programme.
+  application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: Rate data keys, historical RPP prices, RRR all-accounts analyses.
+  application/zip: GIS service-territory boundary bundles (electricity and natural gas).
+  application/json: RDS search results when format=json.
+  application/pdf: RDS filed documents (also MSG, DOC, XLS - see RecordExtension on each hit).
+webhooks:
+  supported: false
+  note: >-
+    No webhook, callback, event, streaming or subscription surface of any kind. Changes are discovered
+    by polling. No AsyncAPI artifact is emitted and no `Webhooks` pointer is wired.
+bulk_and_streaming:
+  bulk: >-
+    Open Data is bulk by construction - whole-file downloads of complete series. The licensed market
+    participants register (605 KB XML) and the daily applications register (36 KB XML) are the two
+    files most worth polling.
+  streaming: none
+licensing:
+  data_license: Open Government Licence - Ontario
+  url: https://www.ontario.ca/page/open-government-licence-ontario
+  attribution_required: true
+  api_terms: >-
+    None. Neither surface presents terms of use, an acceptable-use policy or a click-through of any
+    kind before data is served.
+related:
+- authentication/ontario-energy-board-authentication.yml
+- errors/ontario-energy-board-problem-types.yml
+- lifecycle/ontario-energy-board-lifecycle.yml
+- conformance/ontario-energy-board-conformance.yml
+- vocabulary/ontario-energy-board-rds-search-clauses.yml
+- data-model/ontario-energy-board-data-model.yml

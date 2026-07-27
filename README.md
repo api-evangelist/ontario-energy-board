@@ -28,7 +28,7 @@ The Ontario Energy Board (OEB) is the independent regulator of Ontario's electri
 
 ### OEB Open Data
 
-The Ontario Energy Board's Open Data programme, launched September 2022 under Ontario's Digital and Data Directive (2021) and expanded in October 2023 ("Open Data 2.0") and August 2024. It publishes 18 datasets as directly downloadable, anonymous, key-free files — no registration, no application, no rate limit and no terms click-through — under the Open Government Licence – Ontario. This is not a query API: there is no base path, no parameters, no pagination and no machine-readable contract of any kind. It is a set of stable, anonymously fetchable files with a published guide for importing the XML into Excel.
+The Ontario Energy Board's Open Data programme, launched September 2022 under Ontario's Digital and Data Directive (2021) and expanded in October 2023 ("Open Data 2.0") and August 2024. It publishes 40 datasets linking 198 individual files (crawled and counted 2026-07-27; the earlier figure of 18 undercounted the natural gas RRR, yearbook and register series) as directly downloadable, anonymous, key-free files — no registration, no application, no rate limit and no terms click-through — under the Open Government Licence – Ontario. This is not a query API: there is no base path, no parameters, no pagination and no machine-readable contract of any kind. It is a set of stable, anonymously fetchable files with a published guide for importing the XML into Excel.
 
 - **Human URL:** [https://www.oeb.ca/open-data](https://www.oeb.ca/open-data)
 
@@ -93,7 +93,7 @@ The OEB's public regulatory document search, serving every filing, decision, ord
 | **Applies to the OEB itself** | No — the OEB is the supervisor, not a data holder |
 | **Status** | `live-implemented` — verified through the OEB's own published register: [54 distributors confirmed, 6 extensions granted](https://www.oeb.ca/sites/default/files/Green-Button-implementation-status-summary.pdf) |
 | **Consumer data API** | No — the OEB holds no customer energy data |
-| **Market data open** | Yes — 18 datasets, anonymous, key-free, Open Government Licence – Ontario |
+| **Market data open** | Yes — 40 datasets / 198 files, anonymous, key-free, Open Government Licence – Ontario |
 | **Access gate** | `self-serve` — no account, no key, no application, no terms click-through |
 | **Auth model** | None; anonymous HTTP GET |
 | **Home market** | Canada (Ontario) |

@@ -1,0 +1,23 @@
+generated: '2026-07-27'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.oeb.ca
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec 27 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: www.rds.oeb.ca
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Feb  9 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: oeb.ca
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

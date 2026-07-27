@@ -1,0 +1,142 @@
+generated: '2026-07-27'
+method: derived
+source: >-
+  Live anonymous probes of https://www.rds.oeb.ca/CMWebDrawer and https://www.oeb.ca on 2026-07-27;
+  openapi/ontario-energy-board-rds-openapi.yml
+note: >-
+  The Ontario Energy Board publishes no error reference, no status-code table and no error contract of
+  any kind. Every entry below was produced by deliberately provoking the failure and recording what
+  came back. The single most important thing an integrator needs to know is here: the RDS search
+  surface returns HTTP 200 for a rejected query. A bad clause is not a 400 — it is a 200 with an
+  empty Results array and an English sentence in SearchTitle. Any client that checks only the status
+  code will silently treat "you used an unknown search method" as "no records matched".
+format: proprietary
+format_detail: >-
+  Content Manager ServiceStack ResponseStatus envelope ({ErrorCode, Message, Errors[], Meta}) carried
+  inside an otherwise normal search payload. NOT RFC 9457 application/problem+json - no type, title,
+  status, detail or instance members, and the media type is application/json.
+rfc9457: false
+envelope:
+  container: ResponseStatus
+  fields:
+  - name: ErrorCode
+    description: Exception class name, e.g. TrimException.
+  - name: Message
+    description: Human-readable failure text.
+  - name: Errors
+    description: Array; empty in every observed response.
+  - name: Meta.TrimErrorCode
+    description: Numeric Content Manager error code, e.g. "22760".
+  empty_on_success: true
+  soft_error_field: SearchTitle
+problem_types:
+- id: unknown-search-method
+  http_status: 200
+  severity: silent
+  surface: GET /Record
+  envelope_field: SearchTitle
+  message: >-
+    You have specified an unknown search method '<term>'. Refer to Content Manager documentation for
+    a list of valid search methods.
+  meaning: The clause name in `q` is not one of the 303 published search clauses.
+  remediation: >-
+    Validate the clause name against vocabulary/ontario-energy-board-rds-search-clauses.yml before
+    querying, and always inspect SearchTitle - not just the status code - after every search.
+  evidence:
+    url: https://www.rds.oeb.ca/CMWebDrawer/Record?q=NotAField=zzz&format=json&pageSize=1
+    status: 200
+    observed: 'TotalResults 0, Results [], ResponseStatus {}'
+    example_file: examples/ontario-energy-board-rds-error-unknown-search-method.json
+- id: comparison-operator-with-list-or-wildcard
+  http_status: 200
+  severity: silent
+  surface: GET /Record
+  envelope_field: SearchTitle
+  message: When using a comparison operator (=) you cannot specify a list of values.
+  meaning: >-
+    `=` demands a single exact value. Wildcards and value lists are rejected - q=CaseNumber=EB-2024-*
+    matches nothing and reports the reason only in SearchTitle.
+  remediation: Use the contains form (`q=<term>:<value>`) for partial matching, or enumerate exact values in separate requests.
+  evidence:
+    url: https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2024-*&format=json&pageSize=1
+    status: 200
+    observed: TotalResults 0
+- id: trim-access-denied
+  http_status: 500
+  severity: hard
+  surface: GET /Record/{uri}
+  error_code: TrimException
+  trim_error_code: '22760'
+  message: Error retrieving data for property RecordContainer. Access denied.
+  meaning: >-
+    The record-detail projection tries to resolve the record's container, which the anonymous
+    WebDrawer identity may not read. Applies to record detail only.
+  remediation: >-
+    Do not call /Record/{uri}. Take the metadata you need from the search hit (which already carries
+    Uri, RecordTitle, RecordExtension, RecordDateModified and Fields) and fetch the bytes from
+    /Record/{uri}/File/document, which is served anonymously with HTTP 200.
+  evidence:
+    url: https://www.rds.oeb.ca/CMWebDrawer/Record/891285?format=json
+    status: 500
+    content_type: application/json; charset=utf-8
+    example_file: examples/ontario-energy-board-rds-error-500-access-denied.json
+- id: unsupported-projection
+  http_status: 403
+  severity: hard
+  surface: GET /Record?format=xml
+  message: '(empty body, Content-Type application/xml, zero bytes)'
+  meaning: Only the JSON and HTML projections of the search results are open to anonymous callers; the XML projection is refused.
+  remediation: Use format=json.
+  evidence:
+    url: https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&format=xml&pageSize=1
+    status: 403
+    content_type: application/xml
+    bytes: 0
+- id: document-not-found
+  http_status: 404
+  severity: hard
+  surface: GET /Record/{uri}/File/document
+  content_type: text/html
+  meaning: No such record URI, or the record carries no electronic document.
+  remediation: >-
+    Handle 404 as a content-type switch, not just a status - the body is the WebDrawer HTML error
+    page. Never parse a 404 body as JSON.
+  evidence:
+    url: https://www.rds.oeb.ca/CMWebDrawer/Record/999999999/File/document
+    status: 404
+    content_type: text/html
+- id: undocumented-throttle
+  http_status: null
+  severity: hard
+  surface: https://www.oeb.ca (Open Data files)
+  meaning: >-
+    Sustained parallel fetching of dataset files caused www.oeb.ca to stop answering altogether -
+    connections time out with no HTTP status, no Retry-After and no 429. There is no published rate
+    limit, no documented quota and no signalling of any kind.
+  remediation: >-
+    Fetch Open Data files serially with generous timeouts, cache aggressively against Last-Modified,
+    and back off completely on a timeout rather than retrying in parallel.
+  evidence:
+    observed: '2026-07-27, after roughly 200 requests in a 20-minute window from one client'
+    status: connection timeout (curl exit 28), no HTTP response
+- id: open-data-file-missing
+  http_status: 404
+  severity: hard
+  surface: https://www.oeb.ca/documents/opendata/... and /sites/default/files/...
+  meaning: >-
+    Open Data files are versioned by filename, including dates (open-data-electricity-map-20260429.zip)
+    and reporting years (scorecard_data_2024.xml). A refreshed file gets a NEW name; the old URL is
+    the only stable thing about it and it can disappear.
+  remediation: >-
+    Never hard-code a dated filename permanently. Re-read the dataset landing page (see the tag
+    externalDocs in openapi/ontario-energy-board-open-data-openapi.yml) to resolve the current file
+    before each scheduled fetch.
+not_observed:
+- '401 (no authentication exists on either surface)'
+- '429 (no rate-limit status is ever returned; the host simply stops answering)'
+- '503 / maintenance window signalling'
+related:
+- openapi/ontario-energy-board-rds-openapi.yml
+- openapi/ontario-energy-board-open-data-openapi.yml
+- conventions/ontario-energy-board-conventions.yml
+- vocabulary/ontario-energy-board-rds-search-clauses.yml

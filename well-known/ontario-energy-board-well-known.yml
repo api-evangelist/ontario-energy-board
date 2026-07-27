@@ -1,0 +1,95 @@
+generated: '2026-07-27'
+method: probed
+source: live HTTP probes, 2026-07-27
+found: false
+note: >-
+  No /.well-known/ discovery surface exists on any Ontario Energy Board host. Every candidate returned
+  a clean HTTP 404 (a real 404, not a catch-all 200), so no raw documents were saved and no
+  `WellKnown` or `SecurityTxt` pointer is wired. Recorded because the absence is itself the finding:
+  an organisation publishing ~200 open data files and a live JSON query surface advertises none of it
+  through any standard discovery mechanism.
+hosts_probed:
+- https://www.oeb.ca
+- https://www.rds.oeb.ca
+hosts_not_resolving:
+- api.oeb.ca
+- data.oeb.ca
+- developer.oeb.ca
+- docs.oeb.ca
+- opendata.oeb.ca
+- status.oeb.ca
+- trust.oeb.ca
+documents:
+- path: /.well-known/security.txt
+  status: 404
+  hosts: [www.oeb.ca, www.rds.oeb.ca]
+  file: null
+- path: /.well-known/openid-configuration
+  status: 404
+  hosts: [www.oeb.ca, www.rds.oeb.ca]
+  file: null
+- path: /.well-known/oauth-authorization-server
+  status: 404
+  hosts: [www.oeb.ca, www.rds.oeb.ca]
+  file: null
+- path: /.well-known/api-catalog
+  status: 404
+  hosts: [www.oeb.ca, www.rds.oeb.ca]
+  file: null
+- path: /.well-known/ai-plugin.json
+  status: 404
+  hosts: [www.oeb.ca, www.rds.oeb.ca]
+  file: null
+- path: /llms.txt
+  status: 404
+  hosts: [www.oeb.ca, www.rds.oeb.ca]
+  file: null
+- path: /robots.txt
+  status: 200
+  hosts: [www.oeb.ca]
+  file: null
+  note: Standard Drupal robots.txt; not a discovery document, so not saved.
+spec_probes:
+  note: Contract-discovery probes run against every host before concluding no machine-readable contract is published.
+  results:
+  - url: https://www.oeb.ca/openapi.json
+    status: 404
+    content_type: text/html
+  - url: https://www.oeb.ca/api
+    status: 404
+    content_type: text/html
+  - url: https://www.rds.oeb.ca/openapi.json
+    status: 404
+    content_type: text/html
+  - url: https://www.rds.oeb.ca/CMWebDrawer/openapi.json
+    status: 404
+    content_type: text/html
+  - url: https://apim-rds-dev-001.azure-api.net/
+    status: 404
+    content_type: application/json
+    note: >-
+      Azure API Management gateway referenced in the www.oeb.ca Content-Security-Policy connect-src
+      directive - evidence that RDS traffic is being fronted by or migrated toward APIM. It answers
+      with the Azure APIM error envelope ({"statusCode":404,"message":"Resource not found"}) but
+      exposes no anonymous product, no /openapi.json, no /swagger.json and no developer portal. Worth
+      re-probing on a later round.
+  - url: https://apim-rds-dev-001.azure-api.net/openapi.json
+    status: 404
+    content_type: application/json
+  - url: https://apim-rds-dev-001.azure-api.net/swagger.json
+    status: 404
+    content_type: application/json
+machine_readable_contract_found:
+  path: /CMWebDrawer/Help/WDSearchClauseDefJS?trimType=Record
+  host: https://www.rds.oeb.ca
+  status: 200
+  content_type: text/javascript
+  bytes: 72885
+  note: >-
+    Not a /.well-known/ document, but the one genuinely machine-readable contract the OEB serves: the
+    303-clause query vocabulary for RDS, loaded by the search form itself. Captured in
+    vocabulary/ontario-energy-board-rds-search-clauses.yml.
+related:
+- conformance/ontario-energy-board-conformance.yml
+- security/ontario-energy-board-domain-security.yml
+- vocabulary/ontario-energy-board-rds-search-clauses.yml

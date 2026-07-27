@@ -1,0 +1,101 @@
+generated: '2026-07-27'
+method: searched
+source: https://www.oeb.ca/ontarios-energy-sector/open-data
+note: >-
+  The Ontario Energy Board publishes no API changelog, no release notes and no RSS feed of data
+  changes - there is no API to version. What it does publish, and what is captured here, is a dated
+  change record for the Open Data programme itself: three signed letters from the OEB to the sector
+  announcing each expansion of the programme, each verified live as a PDF on 2026-07-27. Alongside
+  them this file records the Last-Modified dates observed on the data files themselves, which is the
+  only per-dataset change signal that exists. Everything below is dated and provider-published;
+  nothing is inferred.
+scheme: dated-letters + file Last-Modified
+scope: open-data-programme
+current_version: 'Open Data 2.0 (expanded 2024-08-27)'
+api_changelog_published: false
+api_changelog_note: >-
+  There is no versioned API and therefore no API changelog. The RDS query surface carries no version
+  segment, no version header and no announcements of any kind - it is an undocumented projection of a
+  vendor product and could change without notice.
+feed: null
+entries:
+- version: Open Data expansion 2024
+  date: '2024-08-27'
+  type: additions
+  breaking: false
+  title: OEB letter - Open Data expansion
+  url: https://www.oeb.ca/sites/default/files/OEB-letter-open-data-20240827.pdf
+  verified:
+    status: 200
+    content_type: application/pdf
+    bytes: 168257
+    probed: '2026-07-27'
+  highlights:
+  - Third published expansion of the Open Data programme, continuing the move of Reporting and Record-keeping Requirements (RRR) filings series into open, downloadable files.
+- version: Open Data 2.0
+  date: '2023-10-06'
+  type: additions
+  breaking: false
+  title: OEB letter - Open Data 2.0
+  url: https://www.oeb.ca/sites/default/files/OEB-Letter-Open-Data-2.0-20231006.pdf
+  verified:
+    status: 200
+    content_type: application/pdf
+    bytes: 206835
+    probed: '2026-07-27'
+  highlights:
+  - Second phase of the programme, adding further datasets to the initial September 2022 release.
+- version: Transition to Open Data
+  date: '2022-09-29'
+  type: launch
+  breaking: false
+  title: OEB letter - Transition to Open Data
+  url: https://www.oeb.ca/sites/default/files/OEBltr-Transition-to-Open-Data-20220929.pdf
+  verified:
+    status: 200
+    content_type: application/pdf
+    bytes: 253503
+    probed: '2026-07-27'
+  highlights:
+  - Launch of the Open Data programme under Ontario's Digital and Data Directive (2021).
+  - Datasets published under the Open Government Licence - Ontario, anonymously downloadable with no registration.
+- version: Open Data XML-to-Excel guide
+  date: '2022-12-15'
+  type: documentation
+  breaking: false
+  title: Guide to importing OEB Open Data XML into Excel
+  url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+  verified:
+    status: 200
+    content_type: application/pdf
+    bytes: 1479775
+    probed: '2026-07-27'
+  highlights:
+  - The only developer-facing documentation the programme has ever published, and it targets Excel rather than code.
+dataset_freshness_observed:
+  note: >-
+    Last-Modified dates returned by the files themselves on 2026-07-27 - the per-dataset change signal
+    in the absence of a changelog. Full per-file evidence lives on every operation in
+    openapi/ontario-energy-board-open-data-openapi.yml.
+  samples:
+  - dataset: Applications before the OEB (daily register)
+    file: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+    last_modified: 'Fri, 10 Jul 2026 13:39:23 GMT'
+  - dataset: Licensed Market Participants
+    file: https://www.oeb.ca/_html/xml/all_Licences_report_File.xml
+    last_modified: 'Fri, 10 Jul 2026 13:39:20 GMT'
+  - dataset: Current Electricity Rates (Residential)
+    file: https://www.oeb.ca/_html/calculator/data/BillData.xml
+    last_modified: 'Tue, 30 Jun 2026 20:58:39 GMT'
+  - dataset: Electricity distributor service areas (GIS)
+    file: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+    last_modified: 'Mon, 01 Jun 2026 13:23:39 GMT'
+  - dataset: Natural gas distributor service areas (GIS)
+    file: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+    last_modified: 'Wed, 11 Mar 2026 15:45:05 GMT'
+  - dataset: Electricity Distributor Performance Scorecard 2024
+    file: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+    last_modified: 'Thu, 25 Sep 2025 20:03:01 GMT'
+related:
+- lifecycle/ontario-energy-board-lifecycle.yml
+- openapi/ontario-energy-board-open-data-openapi.yml

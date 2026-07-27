@@ -1,0 +1,2344 @@
+generated: '2026-07-27'
+method: searched
+source: https://www.rds.oeb.ca/CMWebDrawer/Help/WDSearchClauseDefJS?trimType=Record
+name: OEB Regulatory Document Search (RDS) query vocabulary
+note: The complete, machine-readable set of search clauses the OEB's Regulatory Document Search accepts
+  in the `q` parameter, fetched anonymously (HTTP 200, text/javascript, 72,885 bytes) on 2026-07-27 from
+  the live WebDrawer help endpoint that the RDS search form itself loads. Each clause is usable as `q=<term>=<value>`
+  (comparison) or `q=<term>:<value>` (contains/word), verified live for CaseNumber, EnergyType, PrimaryApplicationType
+  and anyWord. The 62 `Additional Fields` clauses are the OEB's own user-defined regulatory fields (Case
+  Number, Energy Type, Applicant, Primary Application Type, OEB/SI/CI/COM/CER/MPE Document Type, Date
+  Issued, Date Received by OEB); the remainder are Micro Focus / OpenText Content Manager record-management
+  clauses inherited from the product. The OEB publishes no prose documentation for any of this — the vocabulary
+  is real and live, but undocumented and unsupported.
+raw_files:
+- file: vocabulary/ontario-energy-board-rds-search-clauses.js
+  source: https://www.rds.oeb.ca/CMWebDrawer/Help/WDSearchClauseDefJS?trimType=Record
+  status: 200
+- file: vocabulary/ontario-energy-board-rds-search-clause-groups.js
+  source: https://www.rds.oeb.ca/CMWebDrawer/EnumItemJS?Enums=SearchClauseGroup,SpecialDates
+  status: 200
+query_syntax:
+  parameter: q
+  comparison: 'q=<term>=<value>   # e.g. q=CaseNumber=EB-2021-0183'
+  contains: 'q=<term>:<value>     # e.g. q=anyWord:rate'
+  combination: clauses may be combined with and / or (the search form exposes three clause slots joined
+    by And/Or)
+  wildcards_note: 'A comparison operator with a list or wildcard is rejected: q=CaseNumber=EB-2024-* returns
+    TotalResults 0 with SearchTitle ''When using a comparison operator (=) you cannot specify a list of
+    values''.'
+  verified:
+  - q: CaseNumber=EB-2021-0183
+    total_results: 40
+    status: 200
+  - q: EnergyType=Electricity
+    total_results: 131171
+    status: 200
+  - q: PrimaryApplicationType=Initiatives
+    total_results: 22160
+    status: 200
+  - q: anyWord:rate
+    total_results: 4276
+    status: 200
+counts:
+  terms: 303
+  groups: 16
+  sortable: 87
+  additional_fields: 62
+groups:
+- id: Additional Fields
+  label: Additional Fields
+  terms: 62
+- id: ClientMatter
+  label: ClientMatter
+  terms: 7
+- id: Date
+  label: Date
+  terms: 11
+- id: Document
+  label: Document
+  terms: 28
+- id: Linked
+  label: Linked
+  terms: 42
+- id: Location
+  label: Location
+  terms: 25
+- id: Other
+  label: Other
+  terms: 15
+- id: Process
+  label: Process
+  terms: 10
+- id: Reference
+  label: Reference
+  terms: 9
+- id: Retention
+  label: Retention
+  terms: 18
+- id: Rm
+  label: Rm
+  terms: 13
+- id: Security
+  label: Security
+  terms: 30
+- id: SharePoint
+  label: SharePoint
+  terms: 12
+- id: Text
+  label: Text
+  terms: 7
+- id: Tray
+  label: Tray
+  terms: 11
+- id: Type
+  label: Type
+  terms: 3
+terms:
+- term: aclContainer
+  internal_name: recAclContainer
+  caption: Access From Container
+  group: Security
+  group_label: Security
+  parameter_format: Enum
+  sortable: false
+- term: accession
+  internal_name: recAccession
+  caption: Accession Number
+  group: Reference
+  group_label: Reference
+  parameter_format: Number
+  sortable: true
+- term: audit
+  internal_name: unkAudit
+  caption: Active Audit Event
+  group: Security
+  group_label: Security
+  parameter_format: Object
+  sortable: false
+  object_type: History
+- term: activity
+  internal_name: recActivity
+  caption: Activity
+  group: Process
+  group_label: Process
+  parameter_format: Object
+  sortable: false
+  object_type: Activity
+- term: addressee
+  internal_name: recAddressee
+  caption: Addressee
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: all
+  internal_name: unkAll
+  caption: All
+  group: Other
+  group_label: Other
+  parameter_format: Boolean
+  sortable: false
+- term: allContainersOf
+  internal_name: recAllContainersOf
+  caption: All Containers Of
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: allParts
+  internal_name: recAllParts
+  caption: All parts Of
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: allRelated
+  internal_name: recAllRelated
+  caption: All records With Relationship To
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: allVersions
+  internal_name: recAllVersions
+  caption: All Versions
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: altContains
+  internal_name: recAltContains
+  caption: Alternatively Contains
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: annotationsOf
+  internal_name: recAnnotationsOf
+  caption: Annotation Of
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: anyWord
+  internal_name: recAnyWord
+  caption: Any Word
+  group: Text
+  group_label: Text
+  parameter_format: Word
+  sortable: false
+- term: assignee
+  internal_name: recAssignee
+  caption: Assignee
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: assigneex
+  internal_name: recAssigneex
+  caption: Assignee Details
+  group: Location
+  group_label: Location
+  parameter_format: ChildList
+  sortable: false
+  object_type: RecordLocation
+- term: atHome
+  internal_name: recAtHome
+  caption: At Home
+  group: Location
+  group_label: Location
+  parameter_format: Boolean
+  sortable: false
+- term: keyword
+  internal_name: recKeyword
+  caption: Attached thesaurus term
+  group: Text
+  group_label: Text
+  parameter_format: Object
+  sortable: false
+  object_type: Keyword
+- term: index
+  internal_name: recIndex
+  caption: Attached thesaurus term Details
+  group: Rm
+  group_label: Rm
+  parameter_format: ChildList
+  sortable: false
+  object_type: RecordKeyword
+- term: attachedTo
+  internal_name: recAttachedTo
+  caption: Attached To
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: author
+  internal_name: recAuthor
+  caption: Author
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: authorizer
+  internal_name: recAuthorizer
+  caption: Authorizer
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: partRule
+  internal_name: recPartRule
+  caption: Automated Part Rule
+  group: Rm
+  group_label: Rm
+  parameter_format: Object
+  sortable: true
+  object_type: AutoPartRule
+- term: barcode
+  internal_name: unkBarcode
+  caption: Barcode
+  group: Reference
+  group_label: Reference
+  parameter_format: String
+  sortable: false
+- term: basic
+  internal_name: recBasic
+  caption: Basic Metadata Only
+  group: Type
+  group_label: Type
+  parameter_format: Boolean
+  sortable: false
+- term: batch
+  internal_name: unkBatch
+  caption: Batch Number
+  group: Other
+  group_label: Other
+  parameter_format: Batch
+  sortable: false
+- term: bcc
+  internal_name: recBcc
+  caption: Blind Copied
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: canUseClass
+  internal_name: recCanUseClass
+  caption: Can Use Classification
+  group: Security
+  group_label: Security
+  parameter_format: Boolean
+  sortable: false
+- term: checkedInBy
+  internal_name: recCheckedInBy
+  caption: Checked In By
+  group: Document
+  group_label: Document
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: checkedInOn
+  internal_name: recCheckedInOn
+  caption: Checked In On
+  group: Document
+  group_label: Document
+  parameter_format: DateRange
+  sortable: true
+- term: checkedOutTray
+  internal_name: recCheckedOutTray
+  caption: Checked Out Documents
+  group: Tray
+  group_label: Tray
+  parameter_format: Boolean
+  sortable: false
+- term: lockedOn
+  internal_name: recLockedOn
+  caption: Checked Out On
+  group: Document
+  group_label: Document
+  parameter_format: DateRange
+  sortable: true
+- term: checkedOutBy
+  internal_name: recCheckedOutBy
+  caption: Checked Out To
+  group: Document
+  group_label: Document
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: classification
+  internal_name: recClassification
+  caption: Classification
+  group: Reference
+  group_label: Reference
+  parameter_format: Object
+  sortable: true
+  object_type: Classification
+- term: CS_classifiedBy
+  internal_name: recCS_classifiedBy
+  caption: Classified By
+  group: Security
+  group_label: Security
+  parameter_format: String
+  sortable: false
+- term: CS_classifiedByAgency
+  internal_name: recCS_classifiedByAgency
+  caption: Classifying Agency
+  group: Security
+  group_label: Security
+  parameter_format: String
+  sortable: false
+- term: client
+  internal_name: recClient
+  caption: Client
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: clientOf
+  internal_name: recClientOf
+  caption: Client Of
+  group: ClientMatter
+  group_label: ClientMatter
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: clientRecord
+  internal_name: recClientRecord
+  caption: Client record
+  group: ClientMatter
+  group_label: ClientMatter
+  parameter_format: Object
+  sortable: true
+  object_type: Record
+- term: party
+  internal_name: recParty
+  caption: Client/Matter Party
+  group: ClientMatter
+  group_label: ClientMatter
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: partyEx
+  internal_name: recPartyEx
+  caption: Client/Matter Party Details
+  group: ClientMatter
+  group_label: ClientMatter
+  parameter_format: ChildList
+  sortable: false
+  object_type: RecordClientMatterParty
+- term: role
+  internal_name: recRole
+  caption: Client/Matter Role
+  group: ClientMatter
+  group_label: ClientMatter
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: roleEx
+  internal_name: recRoleEx
+  caption: Client/Matter Role Details
+  group: ClientMatter
+  group_label: ClientMatter
+  parameter_format: ChildList
+  sortable: false
+  object_type: RecordClientMatterRole
+- term: communication
+  internal_name: recCommunication
+  caption: Communication
+  group: Rm
+  group_label: Rm
+  parameter_format: Object
+  sortable: false
+  object_type: Communication
+- term: consignmentNumber
+  internal_name: recConsignmentNumber
+  caption: Consignment Number
+  group: Retention
+  group_label: Retention
+  parameter_format: String
+  sortable: true
+- term: contactx
+  internal_name: recContactx
+  caption: Contact Details
+  group: Location
+  group_label: Location
+  parameter_format: ChildList
+  sortable: false
+  object_type: RecordLocation
+- term: contact
+  internal_name: recContact
+  caption: Contact location
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: container
+  internal_name: recContainer
+  caption: Container
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: true
+  object_type: Record
+- term: containerEx
+  internal_name: recContainerEx
+  caption: Container (Including Alternate)
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: contains
+  internal_name: recContains
+  caption: Contains
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: containsEx
+  internal_name: recContainsEx
+  caption: Contains (Including Alternate)
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: contentBlockIn
+  internal_name: recContentBlockIn
+  caption: Content Block In
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: myContent
+  internal_name: recMyContent
+  caption: Content Blocks
+  group: Tray
+  group_label: Tray
+  parameter_format: Boolean
+  sortable: false
+- term: cc
+  internal_name: recCc
+  caption: Copied
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: copyOf
+  internal_name: recCopyOf
+  caption: Copy Of
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: creator
+  internal_name: recCreator
+  caption: Creator
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: CS_declassifiedBy
+  internal_name: recCS_declassifiedBy
+  caption: CS Declassified By
+  group: Security
+  group_label: Security
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: CS_declassifiedOn
+  internal_name: recCS_declassifiedOn
+  caption: CS Declassified On
+  group: Security
+  group_label: Security
+  parameter_format: DateRange
+  sortable: false
+- term: CS_declassifyEvent
+  internal_name: recCS_declassifyEvent
+  caption: CS Declassify Event
+  group: Security
+  group_label: Security
+  parameter_format: String
+  sortable: false
+- term: CS_downgradeEvent
+  internal_name: recCS_downgradeEvent
+  caption: CS Downgrade Event
+  group: Security
+  group_label: Security
+  parameter_format: String
+  sortable: false
+- term: CS_downgradedBy
+  internal_name: recCS_downgradedBy
+  caption: CS Downgraded By
+  group: Security
+  group_label: Security
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: CS_downgradedOn
+  internal_name: recCS_downgradedOn
+  caption: CS Downgraded On
+  group: Security
+  group_label: Security
+  parameter_format: DateRange
+  sortable: false
+- term: CS_changeType
+  internal_name: recCS_changeType
+  caption: CS Latest Security Change Type
+  group: Security
+  group_label: Security
+  parameter_format: Enum
+  sortable: true
+- term: CS_upgradedBy
+  internal_name: recCS_upgradedBy
+  caption: CS Upgraded By
+  group: Security
+  group_label: Security
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: CS_upgradedOn
+  internal_name: recCS_upgradedOn
+  caption: CS Upgraded On
+  group: Security
+  group_label: Security
+  parameter_format: DateRange
+  sortable: false
+- term: CS_declassify
+  internal_name: recCS_declassify
+  caption: 'CS: Declassify On'
+  group: Security
+  group_label: Security
+  parameter_format: DateRange
+  sortable: false
+- term: CS_downgrade
+  internal_name: recCS_downgrade
+  caption: 'CS: Downgrade On'
+  group: Security
+  group_label: Security
+  parameter_format: DateRange
+  sortable: false
+- term: CS_initial
+  internal_name: recCS_initial
+  caption: 'CS: Security At Registration'
+  group: Security
+  group_label: Security
+  parameter_format: String
+  sortable: false
+- term: currentVersion
+  internal_name: recCurrentVersion
+  caption: Current Version of
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: transferredOn
+  internal_name: recTransferredOn
+  caption: Date archived (custody transferred)
+  group: Retention
+  group_label: Retention
+  parameter_format: DateRange
+  sortable: true
+- term: archivedOn
+  internal_name: recArchivedOn
+  caption: Date archives of ontario
+  group: Retention
+  group_label: Retention
+  parameter_format: DateRange
+  sortable: true
+- term: closedOn
+  internal_name: recClosedOn
+  caption: Date Closed
+  group: Date
+  group_label: Date
+  parameter_format: DateRange
+  sortable: true
+- term: createdOn
+  internal_name: recCreatedOn
+  caption: Date Created
+  group: Date
+  group_label: Date
+  parameter_format: DateRange
+  sortable: true
+- term: finalisedOn
+  internal_name: recFinalisedOn
+  caption: Date Declared As Final
+  group: Date
+  group_label: Date
+  parameter_format: DateRange
+  sortable: true
+- term: destroyedOn
+  internal_name: recDestroyedOn
+  caption: Date destroyed
+  group: Retention
+  group_label: Retention
+  parameter_format: DateRange
+  sortable: true
+- term: dueOn
+  internal_name: recDueOn
+  caption: Date Due
+  group: Process
+  group_label: Process
+  parameter_format: DateRange
+  sortable: true
+- term: imported
+  internal_name: recImported
+  caption: Date Imported
+  group: Date
+  group_label: Date
+  parameter_format: DateRange
+  sortable: true
+- term: inactiveOn
+  internal_name: recInactiveOn
+  caption: Date Inactive
+  group: Retention
+  group_label: Retention
+  parameter_format: DateRange
+  sortable: true
+- term: updated
+  internal_name: unkUpdated
+  caption: Date Last Updated
+  group: Date
+  group_label: Date
+  parameter_format: DateRange
+  sortable: true
+- term: editedOn
+  internal_name: recEditedOn
+  caption: Date Modified
+  group: Document
+  group_label: Document
+  parameter_format: DateRange
+  sortable: true
+- term: publishedOn
+  internal_name: recPublishedOn
+  caption: Date Published
+  group: Date
+  group_label: Date
+  parameter_format: DateRange
+  sortable: true
+- term: receivedOn
+  internal_name: recReceivedOn
+  caption: Date Received
+  group: Date
+  group_label: Date
+  parameter_format: DateRange
+  sortable: true
+- term: registeredOn
+  internal_name: recRegisteredOn
+  caption: Date Registered
+  group: Date
+  group_label: Date
+  parameter_format: DateRange
+  sortable: true
+- term: supersededOn
+  internal_name: recSupersededOn
+  caption: Date Superseded
+  group: Date
+  group_label: Date
+  parameter_format: DateRange
+  sortable: true
+- term: archiveOn
+  internal_name: recArchiveOn
+  caption: Date To archive (keep forever)
+  group: Retention
+  group_label: Retention
+  parameter_format: DateRange
+  sortable: true
+- term: transferOn
+  internal_name: recTransferOn
+  caption: Date To archive (transfer custody)
+  group: Retention
+  group_label: Retention
+  parameter_format: DateRange
+  sortable: true
+- term: destroyOn
+  internal_name: recDestroyOn
+  caption: Date To destroy
+  group: Retention
+  group_label: Retention
+  parameter_format: DateRange
+  sortable: true
+- term: destroyOnNoHold
+  internal_name: recDestroyOnNoHold
+  caption: Date To destroy (no holds)
+  group: Retention
+  group_label: Retention
+  parameter_format: DateRange
+  sortable: true
+- term: makeInactiveOn
+  internal_name: recMakeInactiveOn
+  caption: Date To make inactive
+  group: Retention
+  group_label: Retention
+  parameter_format: DateRange
+  sortable: true
+- term: default
+  internal_name: unkDefault
+  caption: Default
+  group: Reference
+  group_label: Reference
+  parameter_format: String
+  sortable: false
+- term: CS_derivedFrom
+  internal_name: recCS_derivedFrom
+  caption: Derived From
+  group: Security
+  group_label: Security
+  parameter_format: String
+  sortable: false
+- term: derivedFrom
+  internal_name: recDerivedFrom
+  caption: Derived From
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: disposition
+  internal_name: recDisposition
+  caption: Disposition
+  group: Retention
+  group_label: Retention
+  parameter_format: Enum
+  sortable: true
+- term: content
+  internal_name: recContent
+  caption: Document Content
+  group: Text
+  group_label: Text
+  parameter_format: Freetext
+  sortable: false
+- term: documenthash
+  internal_name: recDocumenthash
+  caption: Document Hash
+  group: Document
+  group_label: Document
+  parameter_format: String
+  sortable: true
+- term: docMissing
+  internal_name: recDocMissing
+  caption: Document Is Missing
+  group: Document
+  group_label: Document
+  parameter_format: Boolean
+  sortable: false
+- term: accessedOn
+  internal_name: recAccessedOn
+  caption: Document Last Accessed Date
+  group: Document
+  group_label: Document
+  parameter_format: DateRange
+  sortable: false
+- term: reviewState
+  internal_name: recReviewState
+  caption: Document Review State
+  group: Process
+  group_label: Process
+  parameter_format: Enum
+  sortable: true
+- term: store
+  internal_name: recStore
+  caption: Document Store
+  group: Document
+  group_label: Document
+  parameter_format: Object
+  sortable: true
+  object_type: ElectronicStore
+- term: myTemplates
+  internal_name: recMyTemplates
+  caption: Document Templates
+  group: Tray
+  group_label: Tray
+  parameter_format: Boolean
+  sortable: false
+- term: CS_downgradeInstructions
+  internal_name: recCS_downgradeInstructions
+  caption: Downgrade Instructions
+  group: Security
+  group_label: Security
+  parameter_format: String
+  sortable: false
+- term: returnOn
+  internal_name: recReturnOn
+  caption: Due for Return On
+  group: Rm
+  group_label: Rm
+  parameter_format: DateRange
+  sortable: true
+- term: editState
+  internal_name: recEditState
+  caption: Edit Status
+  group: Document
+  group_label: Document
+  parameter_format: Enum
+  sortable: false
+- term: editor
+  internal_name: recEditor
+  caption: Editor
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: conversationId
+  internal_name: recConversationId
+  caption: Email Conversation ID
+  group: Document
+  group_label: Document
+  parameter_format: String
+  sortable: true
+- term: messageId
+  internal_name: recMessageId
+  caption: Email Message ID
+  group: Document
+  group_label: Document
+  parameter_format: String
+  sortable: true
+- term: enclosed
+  internal_name: recEnclosed
+  caption: Enclosed
+  group: Rm
+  group_label: Rm
+  parameter_format: Boolean
+  sortable: false
+- term: numberx
+  internal_name: recNumberx
+  caption: Expanded Number
+  group: Reference
+  group_label: Reference
+  parameter_format: String
+  sortable: true
+- term: extension
+  internal_name: recExtension
+  caption: Extension
+  group: Document
+  group_label: Document
+  parameter_format: String
+  sortable: true
+- term: editingDone
+  internal_name: recEditingDone
+  caption: External Editing Complete
+  group: Document
+  group_label: Document
+  parameter_format: Boolean
+  sortable: false
+- term: editingDoneBy
+  internal_name: recEditingDoneBy
+  caption: External Editing Completed By
+  group: Document
+  group_label: Document
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: editorId
+  internal_name: recEditorId
+  caption: External Editor Id
+  group: Document
+  group_label: Document
+  parameter_format: String
+  sortable: false
+- term: external
+  internal_name: recExternal
+  caption: External ID
+  group: Reference
+  group_label: Reference
+  parameter_format: String
+  sortable: true
+- term: excase
+  internal_name: recExcase
+  caption: External Workflow Case
+  group: Process
+  group_label: Process
+  parameter_format: Object
+  sortable: false
+  object_type: ExternalWorkflow
+- term: exinit
+  internal_name: recExinit
+  caption: External Workflow Initiated
+  group: Process
+  group_label: Process
+  parameter_format: Object
+  sortable: false
+  object_type: ExternalWorkflow
+- term: favorite
+  internal_name: unkFavorite
+  caption: Favourite
+  group: Tray
+  group_label: Tray
+  parameter_format: Boolean
+  sortable: false
+- term: final
+  internal_name: recFinal
+  caption: Final
+  group: Other
+  group_label: Other
+  parameter_format: Boolean
+  sortable: false
+- term: firstPart
+  internal_name: recFirstPart
+  caption: First part Of
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: firstVersionOf
+  internal_name: recFirstVersionOf
+  caption: First Version Of
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: folderOrigin
+  internal_name: recFolderOrigin
+  caption: Folder Origin
+  group: Rm
+  group_label: Rm
+  parameter_format: Object
+  sortable: true
+  object_type: Origin
+- term: fbarcode
+  internal_name: unkFbarcode
+  caption: Foreign Barcode
+  group: Reference
+  group_label: Reference
+  parameter_format: String
+  sortable: false
+- term: checkinStyle
+  internal_name: recCheckinStyle
+  caption: From check in style
+  group: Document
+  group_label: Document
+  parameter_format: Object
+  sortable: false
+  object_type: CheckinStyle
+- term: combinedTitle
+  internal_name: recCombinedTitle
+  caption: Full Title
+  group: Other
+  group_label: Other
+  parameter_format: String
+  sortable: true
+- term: gps
+  internal_name: recGps
+  caption: GPS Location
+  group: Location
+  group_label: Location
+  parameter_format: Geography
+  sortable: true
+- term: altContainer
+  internal_name: recAltContainer
+  caption: Has Alternative Container
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: hasAnnotation
+  internal_name: recHasAnnotation
+  caption: Has Annotation
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: hasAttachment
+  internal_name: recHasAttachment
+  caption: Has Attachment
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: hasContentBlock
+  internal_name: recHasContentBlock
+  caption: Has Content Block
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: hasContents
+  internal_name: recHasContents
+  caption: Has Contents
+  group: Rm
+  group_label: Rm
+  parameter_format: Boolean
+  sortable: true
+- term: hasContentsEx
+  internal_name: recHasContentsEx
+  caption: Has Contents (Including Alternate)
+  group: Rm
+  group_label: Rm
+  parameter_format: Boolean
+  sortable: false
+- term: hasDerivation
+  internal_name: recHasDerivation
+  caption: Has Derivation
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: attachments
+  internal_name: recAttachments
+  caption: Has Email Attachments
+  group: Document
+  group_label: Document
+  parameter_format: Boolean
+  sortable: false
+- term: hasFirstPart
+  internal_name: recHasFirstPart
+  caption: Has First part
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: hasFirstVersion
+  internal_name: recHasFirstVersion
+  caption: Has First Version
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: hasHold
+  internal_name: recHasHold
+  caption: Has Hold Attached
+  group: Retention
+  group_label: Retention
+  parameter_format: Boolean
+  sortable: true
+- term: hasRedaction
+  internal_name: recHasRedaction
+  caption: Has Redaction
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: hasReply
+  internal_name: recHasReply
+  caption: Has Reply Of
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: sameClient
+  internal_name: recSameClient
+  caption: Has Same Client As
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: sameContact
+  internal_name: recSameContact
+  caption: Has Same Contact As
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: hasSite
+  internal_name: recHasSite
+  caption: Has SharePoint Site
+  group: SharePoint
+  group_label: SharePoint
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: hold
+  internal_name: recHold
+  caption: Hold
+  group: Retention
+  group_label: Retention
+  parameter_format: Object
+  sortable: false
+  object_type: Hold
+- term: idol
+  internal_name: recIdol
+  caption: IDOL Query
+  group: Text
+  group_label: Text
+  parameter_format: Freetext
+  sortable: false
+- term: holdingBay
+  internal_name: recHoldingBay
+  caption: In Holding Bay
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: false
+  object_type: Space
+- term: replyTo
+  internal_name: recReplyTo
+  caption: In Reply To
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: inSpList
+  internal_name: recInSpList
+  caption: In SharePoint List
+  group: SharePoint
+  group_label: SharePoint
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: space
+  internal_name: recSpace
+  caption: In space
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Space
+- term: spaceOrBay
+  internal_name: recSpaceOrBay
+  caption: In space Or Holding Bay
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: false
+  object_type: Space
+- term: mime
+  internal_name: recMime
+  caption: Internet Media Type
+  group: Document
+  group_label: Document
+  parameter_format: String
+  sortable: true
+- term: electronic
+  internal_name: recElectronic
+  caption: Is Electronic
+  group: Document
+  group_label: Document
+  parameter_format: Boolean
+  sortable: false
+- term: supersededBy
+  internal_name: recSupersededBy
+  caption: Is superseded by
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: jurisdiction
+  internal_name: recJurisdiction
+  caption: Jurisdiction
+  group: Retention
+  group_label: Retention
+  parameter_format: Object
+  sortable: false
+  object_type: Jurisdiction
+- term: actionedOn
+  internal_name: recActionedOn
+  caption: Last Action Date
+  group: Date
+  group_label: Date
+  parameter_format: DateRange
+  sortable: true
+- term: checkedOutPath
+  internal_name: recCheckedOutPath
+  caption: Last Checked Out Path
+  group: Document
+  group_label: Document
+  parameter_format: String
+  sortable: true
+- term: updatedBy
+  internal_name: unkUpdatedBy
+  caption: Last Updated By
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: latestPart
+  internal_name: recLatestPart
+  caption: Latest part Of
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: latestTrans
+  internal_name: unkLatestTrans
+  caption: Latest Transaction Date
+  group: Date
+  group_label: Date
+  parameter_format: DateRange
+  sortable: true
+- term: latestVersion
+  internal_name: recLatestVersion
+  caption: Latest Version Of
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: home
+  internal_name: recHome
+  caption: Location
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: homex
+  internal_name: recHomex
+  caption: Location Details
+  group: Location
+  group_label: Location
+  parameter_format: ChildList
+  sortable: false
+  object_type: RecordLocation
+- term: excludes
+  internal_name: unkExcludes
+  caption: Locations Excluded
+  group: Security
+  group_label: Security
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: m365Site
+  internal_name: recM365Site
+  caption: M365 Site Location
+  group: Document
+  group_label: Document
+  parameter_format: Object
+  sortable: true
+  object_type: M365Site
+- term: matterOf
+  internal_name: recMatterOf
+  caption: Matter Of
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: matterRecord
+  internal_name: recMatterRecord
+  caption: Matter record
+  group: ClientMatter
+  group_label: ClientMatter
+  parameter_format: Object
+  sortable: true
+  object_type: Record
+- term: media
+  internal_name: recMedia
+  caption: Media Type
+  group: Rm
+  group_label: Rm
+  parameter_format: Enum
+  sortable: true
+- term: meeting
+  internal_name: recMeeting
+  caption: Meeting
+  group: Other
+  group_label: Other
+  parameter_format: Object
+  sortable: false
+  object_type: Meeting
+- term: missing
+  internal_name: recMissing
+  caption: Missing
+  group: Rm
+  group_label: Rm
+  parameter_format: Boolean
+  sortable: false
+- term: none
+  internal_name: unkNone
+  caption: None
+  group: Other
+  group_label: Other
+  parameter_format: Boolean
+  sortable: false
+- term: notes
+  internal_name: recNotes
+  caption: Notes Word
+  group: Text
+  group_label: Text
+  parameter_format: Word
+  sortable: false
+- term: offline
+  internal_name: recOffline
+  caption: Offline Record
+  group: Document
+  group_label: Document
+  parameter_format: Object
+  sortable: false
+  object_type: OfflineRecord
+- term: originalOf
+  internal_name: recOriginalOf
+  caption: Original Of
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: origin
+  internal_name: recOrigin
+  caption: Originated From
+  group: Other
+  group_label: Other
+  parameter_format: Object
+  sortable: false
+  object_type: Origin
+- term: originRun
+  internal_name: recOriginRun
+  caption: Originated From Run
+  group: Other
+  group_label: Other
+  parameter_format: Object
+  sortable: true
+  object_type: OriginHistory
+- term: otherContact
+  internal_name: recOtherContact
+  caption: Other contact
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: owner
+  internal_name: recOwner
+  caption: Owner
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: priority
+  internal_name: recPriority
+  caption: Priority
+  group: Process
+  group_label: Process
+  parameter_format: String
+  sortable: true
+- term: CS_reason
+  internal_name: recCS_reason
+  caption: Reason(s) for Classification
+  group: Security
+  group_label: Security
+  parameter_format: String
+  sortable: false
+- term: CS_updatedReason
+  internal_name: recCS_updatedReason
+  caption: Reason(s) for Update
+  group: Security
+  group_label: Security
+  parameter_format: String
+  sortable: false
+- term: myContainers
+  internal_name: recMyContainers
+  caption: Recent Containers
+  group: Tray
+  group_label: Tray
+  parameter_format: Boolean
+  sortable: false
+- term: myDocuments
+  internal_name: recMyDocuments
+  caption: Recent Documents
+  group: Tray
+  group_label: Tray
+  parameter_format: Boolean
+  sortable: false
+- term: action
+  internal_name: recAction
+  caption: Record Action
+  group: Process
+  group_label: Process
+  parameter_format: Object
+  sortable: false
+  object_type: RecordAction
+- term: class
+  internal_name: recClass
+  caption: Record Class
+  group: Type
+  group_label: Type
+  parameter_format: Enum
+  sortable: true
+- term: reclocationx
+  internal_name: recReclocationx
+  caption: Record Location Details
+  group: Location
+  group_label: Location
+  parameter_format: ChildList
+  sortable: false
+  object_type: RecordLocation
+- term: number
+  internal_name: recNumber
+  caption: Record Number
+  group: Reference
+  group_label: Reference
+  parameter_format: String
+  sortable: true
+- term: type
+  internal_name: recType
+  caption: Record Type
+  group: Type
+  group_label: Type
+  parameter_format: Object
+  sortable: true
+  object_type: RecordType
+- term: dueTray
+  internal_name: recDueTray
+  caption: Records Due
+  group: Tray
+  group_label: Tray
+  parameter_format: Boolean
+  sortable: false
+- term: inTray
+  internal_name: recInTray
+  caption: Records In
+  group: Tray
+  group_label: Tray
+  parameter_format: Boolean
+  sortable: false
+- term: dueOrInTray
+  internal_name: recDueOrInTray
+  caption: Records In or Due
+  group: Tray
+  group_label: Tray
+  parameter_format: Boolean
+  sortable: false
+- term: workTray
+  internal_name: recWorkTray
+  caption: Records Work Tray
+  group: Tray
+  group_label: Tray
+  parameter_format: Boolean
+  sortable: false
+- term: redactionOf
+  internal_name: recRedactionOf
+  caption: Redaction Of
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: related
+  internal_name: recRelated
+  caption: Related To
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: renditionEx
+  internal_name: recRenditionEx
+  caption: Rendition Details
+  group: Document
+  group_label: Document
+  parameter_format: ChildList
+  sortable: false
+  object_type: RecordRendition
+- term: representative
+  internal_name: recRepresentative
+  caption: Representative
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: request
+  internal_name: recRequest
+  caption: Request
+  group: Rm
+  group_label: Rm
+  parameter_format: Object
+  sortable: false
+  object_type: Request
+- term: requestor
+  internal_name: recRequestor
+  caption: Requested By
+  group: Rm
+  group_label: Rm
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: requestedOn
+  internal_name: recRequestedOn
+  caption: Requested On
+  group: Rm
+  group_label: Rm
+  parameter_format: DateRange
+  sortable: false
+- term: review
+  internal_name: recReview
+  caption: Retention Review Date
+  group: Retention
+  group_label: Retention
+  parameter_format: DateRange
+  sortable: true
+- term: schedule
+  internal_name: recSchedule
+  caption: Retention Schedule
+  group: Retention
+  group_label: Retention
+  parameter_format: Object
+  sortable: true
+  object_type: Schedule
+- term: reviewStatus
+  internal_name: recReviewStatus
+  caption: Review Status
+  group: Retention
+  group_label: Retention
+  parameter_format: Enum
+  sortable: false
+- term: reviewer
+  internal_name: recReviewer
+  caption: Reviewer
+  group: Location
+  group_label: Location
+  parameter_format: Object
+  sortable: true
+  object_type: Location
+- term: revisionEx
+  internal_name: recRevisionEx
+  caption: Revision
+  group: Document
+  group_label: Document
+  parameter_format: Object
+  sortable: false
+  object_type: Revision
+- term: revision
+  internal_name: recRevision
+  caption: Revision Number
+  group: Document
+  group_label: Document
+  parameter_format: Number
+  sortable: true
+- term: conversation
+  internal_name: recConversation
+  caption: Same Message Conversation As
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: saved
+  internal_name: unkSaved
+  caption: Saved Search
+  group: Other
+  group_label: Other
+  parameter_format: Object
+  sortable: false
+  object_type: SavedSearch
+- term: scheduleStatus
+  internal_name: recScheduleStatus
+  caption: Scheduled Disposal Status
+  group: Retention
+  group_label: Retention
+  parameter_format: Enum
+  sortable: true
+- term: task
+  internal_name: recTask
+  caption: Scheduled Task
+  group: Process
+  group_label: Process
+  parameter_format: Object
+  sortable: false
+  object_type: ScheduledTask
+- term: sdmenv
+  internal_name: recSdmenv
+  caption: SDM Environment ID
+  group: Other
+  group_label: Other
+  parameter_format: String
+  sortable: false
+- term: sdmfile
+  internal_name: recSdmfile
+  caption: SDM File Name
+  group: Other
+  group_label: Other
+  parameter_format: String
+  sortable: false
+- term: sdmfolder
+  internal_name: recSdmfolder
+  caption: SDM Folder Name
+  group: Other
+  group_label: Other
+  parameter_format: String
+  sortable: false
+- term: sdmrun
+  internal_name: recSdmrun
+  caption: SDM Run ID
+  group: Other
+  group_label: Other
+  parameter_format: String
+  sortable: false
+- term: securityCaveat
+  internal_name: recSecurityCaveat
+  caption: Security Caveat
+  group: Security
+  group_label: Security
+  parameter_format: Object
+  sortable: false
+  object_type: SecurityCaveat
+- term: CS_guide
+  internal_name: recCS_guide
+  caption: Security Guide Entry
+  group: Security
+  group_label: Security
+  parameter_format: Object
+  sortable: false
+  object_type: SecurityGuide
+- term: CS_updatedBy
+  internal_name: recCS_updatedBy
+  caption: Security Last Updated By
+  group: Security
+  group_label: Security
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: CS_updatedOn
+  internal_name: recCS_updatedOn
+  caption: Security Last Updated Date
+  group: Security
+  group_label: Security
+  parameter_format: DateRange
+  sortable: false
+- term: securityLevel
+  internal_name: recSecurityLevel
+  caption: Security Level
+  group: Security
+  group_label: Security
+  parameter_format: Object
+  sortable: false
+  object_type: SecurityLevel
+- term: CS_atRegistration
+  internal_name: recCS_atRegistration
+  caption: Security Level At Registration
+  group: Security
+  group_label: Security
+  parameter_format: Object
+  sortable: false
+  object_type: SecurityLevel
+- term: CS_reviewedBy
+  internal_name: recCS_reviewedBy
+  caption: Security Reviewed By
+  group: Security
+  group_label: Security
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: CS_reviewedOn
+  internal_name: recCS_reviewedOn
+  caption: Security Reviewed Date
+  group: Security
+  group_label: Security
+  parameter_format: DateRange
+  sortable: false
+- term: isSeriesOf
+  internal_name: recIsSeriesOf
+  caption: Series record For
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: spGUID
+  internal_name: recSpGUID
+  caption: SharePoint GUID
+  group: SharePoint
+  group_label: SharePoint
+  parameter_format: String
+  sortable: true
+- term: spList
+  internal_name: recSpList
+  caption: SharePoint List
+  group: SharePoint
+  group_label: SharePoint
+  parameter_format: Object
+  sortable: false
+  object_type: SharePointItem
+- term: spLirId
+  internal_name: recSpLirId
+  caption: SharePoint List Item ID
+  group: SharePoint
+  group_label: SharePoint
+  parameter_format: BigNumber
+  sortable: false
+- term: spLirURL
+  internal_name: recSpLirURL
+  caption: SharePoint List URL
+  group: SharePoint
+  group_label: SharePoint
+  parameter_format: String
+  sortable: false
+- term: spType
+  internal_name: recSpType
+  caption: SharePoint Object Type
+  group: SharePoint
+  group_label: SharePoint
+  parameter_format: Enum
+  sortable: false
+- term: spRecord
+  internal_name: recSpRecord
+  caption: SharePoint Record
+  group: SharePoint
+  group_label: SharePoint
+  parameter_format: Object
+  sortable: false
+  object_type: SharePointItem
+- term: spFarmGUID
+  internal_name: recSpFarmGUID
+  caption: SharePoint Server Farm ID
+  group: SharePoint
+  group_label: SharePoint
+  parameter_format: String
+  sortable: true
+- term: spSiteCollectionGUID
+  internal_name: recSpSiteCollectionGUID
+  caption: SharePoint Site Collection ID
+  group: SharePoint
+  group_label: SharePoint
+  parameter_format: String
+  sortable: true
+- term: spURL
+  internal_name: recSpURL
+  caption: SharePoint URL
+  group: SharePoint
+  group_label: SharePoint
+  parameter_format: String
+  sortable: true
+- term: documentSize
+  internal_name: recDocumentSize
+  caption: Size
+  group: Document
+  group_label: Document
+  parameter_format: BigNumber
+  sortable: true
+- term: supersedes
+  internal_name: recSupersedes
+  caption: Supersedes
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: typedTitle
+  internal_name: recTypedTitle
+  caption: Title (Free Text Part)
+  group: Other
+  group_label: Other
+  parameter_format: String
+  sortable: true
+- term: generatedTitle
+  internal_name: recGeneratedTitle
+  caption: Title (Structured Part)
+  group: Other
+  group_label: Other
+  parameter_format: String
+  sortable: true
+- term: title
+  internal_name: recTitle
+  caption: Title Word
+  group: Text
+  group_label: Text
+  parameter_format: Word
+  sortable: false
+- term: titleAdv
+  internal_name: recTitleAdv
+  caption: Title Word(Advanced)
+  group: Text
+  group_label: Text
+  parameter_format: Word
+  sortable: false
+- term: todo
+  internal_name: recTodo
+  caption: To Do Item
+  group: Process
+  group_label: Process
+  parameter_format: Object
+  sortable: false
+  object_type: TodoItem
+- term: uri
+  internal_name: unkUri
+  caption: Unique Identifier
+  group: Reference
+  group_label: Reference
+  parameter_format: Uri
+  sortable: true
+  object_type: Record
+- term: views
+  internal_name: recViews
+  caption: View Counter
+  group: Document
+  group_label: Document
+  parameter_format: BigNumber
+  sortable: true
+- term: label
+  internal_name: unkLabel
+  caption: With Label
+  group: Tray
+  group_label: Tray
+  parameter_format: Object
+  sortable: false
+  object_type: UserLabel
+- term: relatedEx
+  internal_name: recRelatedEx
+  caption: With Relationship To
+  group: Linked
+  group_label: Linked
+  parameter_format: ObjectAndEnum
+  sortable: false
+  object_type: Record
+- term: relatedReverseEx
+  internal_name: recRelatedReverseEx
+  caption: With Reverse Relationship To
+  group: Linked
+  group_label: Linked
+  parameter_format: ObjectAndEnum
+  sortable: false
+  object_type: Record
+- term: inSeries
+  internal_name: recInSeries
+  caption: Within Series
+  group: Linked
+  group_label: Linked
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: inSite
+  internal_name: recInSite
+  caption: Within SharePoint Site
+  group: SharePoint
+  group_label: SharePoint
+  parameter_format: Object
+  sortable: false
+  object_type: Record
+- term: workflow
+  internal_name: recWorkflow
+  caption: Workflow
+  group: Process
+  group_label: Process
+  parameter_format: Object
+  sortable: false
+  object_type: Workflow
+- term: Actual Disposition Date
+  internal_name: ActualDispositionDate
+  caption: Actual Disposition Date
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Date
+  sortable: false
+- term: Aisle (A)
+  internal_name: AisleA
+  caption: Aisle (A)
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Applicant
+  internal_name: Applicant
+  caption: Applicant
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: Application / Process
+  internal_name: ApplicationProcess
+  caption: Application / Process
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Application Sub Sub Type
+  internal_name: ApplicationSubSubType
+  caption: Application Sub Sub Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Application Sub Type
+  internal_name: ApplicationSubType
+  caption: Application Sub Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Approval Date
+  internal_name: ApprovalDate
+  caption: Approval Date
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Date
+  sortable: false
+- term: Bay (B)
+  internal_name: BayB
+  caption: Bay (B)
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Box Location
+  internal_name: BoxLocation
+  caption: Box Location
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Text
+  sortable: false
+- term: Carton (C)
+  internal_name: CartonC
+  caption: Carton (C)
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Case Description
+  internal_name: CaseDescription
+  caption: Case Description
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Case Number
+  internal_name: CaseNumber
+  caption: Case Number
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: CER Document Type
+  internal_name: CERDocumentType
+  caption: CER Document Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: CI Document Type
+  internal_name: CIDocumentType
+  caption: CI Document Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Client
+  internal_name: Client
+  caption: Client
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: COM Document Type
+  internal_name: COMDocumentType
+  caption: COM Document Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Complainant
+  internal_name: Complainant
+  caption: Complainant
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Contact
+  internal_name: Contact
+  caption: Contact
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Contains Records From (Yr)
+  internal_name: ContainsRecordsFromYr
+  caption: Contains Records From (Yr)
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Number
+  sortable: false
+- term: CORRESPONDENCE TYPE
+  internal_name: CORRESPONDENCETYPE
+  caption: CORRESPONDENCE TYPE
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: CU NUMBER
+  internal_name: CUNUMBER
+  caption: CU NUMBER
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Date Digitized
+  internal_name: DateDigitized
+  caption: Date Digitized
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Date
+  sortable: false
+- term: Date Issued
+  internal_name: DateIssued
+  caption: Date Issued
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Date
+  sortable: false
+- term: Date Received by OEB
+  internal_name: fDateReceived
+  caption: Date Received by OEB
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Date
+  sortable: false
+- term: Decision Desc
+  internal_name: DecisionDesc
+  caption: Decision Desc
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Text
+  sortable: false
+- term: Disposition Status
+  internal_name: DispositionStatus
+  caption: Disposition Status
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Document Status
+  internal_name: DocumentStatus
+  caption: Document Status
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Document Type
+  internal_name: WebDocumentType
+  caption: Document Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Due Disposition Date
+  internal_name: DueDispositionDate
+  caption: Due Disposition Date
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Date
+  sortable: false
+- term: Energy Type
+  internal_name: EnergyType
+  caption: Energy Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Function/Subject
+  internal_name: FunctionSubject
+  caption: Function/Subject
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Text
+  sortable: false
+- term: Interaction Reference Number
+  internal_name: InteractionReferenceNumber
+  caption: Interaction Reference Number
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Interaction Type
+  internal_name: InteractionType
+  caption: Interaction Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Issue Type
+  internal_name: IssueType
+  caption: Issue Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Licence Number
+  internal_name: LicenceNumber
+  caption: Licence Number
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Licence Type
+  internal_name: LicenceType
+  caption: Licence Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Licensee / Non-Licensee
+  internal_name: LicenseeNonLicensee
+  caption: Licensee / Non-Licensee
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: MPE Document Type
+  internal_name: MPEDocumentType
+  caption: MPE Document Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Number of Pages Digitized
+  internal_name: NumberOfPagesDigitized
+  caption: Number of Pages Digitized
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Number
+  sortable: false
+- term: OEB Document Type
+  internal_name: OEBDocumentType
+  caption: OEB Document Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Pivotal ID
+  internal_name: PivotalID
+  caption: Pivotal ID
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Primary Application Type
+  internal_name: PrimaryApplicationType
+  caption: Primary Application Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Privacy Consent
+  internal_name: PrivacyConsent
+  caption: Privacy Consent
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Project Close
+  internal_name: ProjectClose
+  caption: Project Close
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Date
+  sortable: false
+- term: Project Manager
+  internal_name: ProjectManager
+  caption: Project Manager
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Object
+  sortable: false
+  object_type: Location
+- term: Project Start
+  internal_name: ProjectStart
+  caption: Project Start
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Date
+  sortable: false
+- term: Publish to Internet
+  internal_name: PublishToInternet
+  caption: Publish to Internet
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Boolean
+  sortable: false
+- term: Publish to Intranet?
+  internal_name: PublishToIntranet
+  caption: Publish to Intranet?
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Boolean
+  sortable: false
+- term: QA Operator
+  internal_name: QAOperator
+  caption: QA Operator
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Ready to Publish to Internet?
+  internal_name: ReadyToPublishToInternet
+  caption: Ready to Publish to Internet?
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Boolean
+  sortable: false
+- term: Reference Number
+  internal_name: ReferenceNumber
+  caption: Reference Number
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Response Date
+  internal_name: ResponseDate
+  caption: Response Date
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Date
+  sortable: false
+- term: RESS_DateTime
+  internal_name: RESSDateTime
+  caption: RESS_DateTime
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Datetime
+  sortable: false
+- term: Scanner Operator
+  internal_name: ScannerOperator
+  caption: Scanner Operator
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Shelf (S)
+  internal_name: ShelfS
+  caption: Shelf (S)
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: SI Document Type
+  internal_name: SIDocumentType
+  caption: SI Document Type
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Text
+  sortable: false
+- term: Temporary Box Number
+  internal_name: TemporaryBoxNumber
+  caption: Temporary Box Number
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: To (Yr)
+  internal_name: ToYr
+  caption: To (Yr)
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Number
+  sortable: false
+- term: Transfer Date
+  internal_name: TransferDate
+  caption: Transfer Date
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Date
+  sortable: false
+- term: Transfer Date to OEB
+  internal_name: TransferDateToOEB
+  caption: Transfer Date to OEB
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: Date
+  sortable: false
+- term: Transfer Number
+  internal_name: TransferNumber
+  caption: Transfer Number
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false
+- term: Warehouse Code
+  internal_name: WarehouseCode
+  caption: Warehouse Code
+  group: Additional Fields
+  group_label: Additional Fields
+  parameter_format: String
+  sortable: false

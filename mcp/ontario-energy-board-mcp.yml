@@ -1,0 +1,89 @@
+generated: '2026-07-27'
+method: derived
+status: candidate
+source: openapi/ontario-energy-board-rds-openapi.yml, openapi/ontario-energy-board-open-data-openapi.yml
+note: >-
+  The Ontario Energy Board publishes NO Model Context Protocol server. No hosted or remote MCP
+  endpoint exists, nothing is registered in any MCP registry, and no OEB npm or PyPI package exists to
+  run one locally. The tool list below is a CANDIDATE design derived from the operations this repo
+  verified live - it describes what an MCP server over OEB data would expose, not something the OEB
+  offers. Because no server exists, NO `MCPServer` and NO `ToolCrosswalk` pointer is wired into
+  apis.yml; wiring one would claim a surface that is not there.
+server:
+  name: ontario-energy-board
+  published: false
+  url: null
+  transport: null
+mcp_registry_probes:
+- registry: modelcontextprotocol servers list
+  found: false
+- registry: npm (@modelcontextprotocol/*, oeb, ontario-energy-board)
+  found: false
+- registry: PyPI
+  found: false
+agent_suitability:
+  read_only: true
+  write_operations: 0
+  authentication_required: false
+  consequence_class: none
+  note: >-
+    Every operation on both surfaces is an anonymous GET with no side effects, which makes this an
+    unusually safe corpus for an agent - the risks are staleness and volume, not consequence. The two
+    real hazards are documented in errors/ontario-energy-board-problem-types.yml: a rejected RDS query
+    returns HTTP 200 with the reason buried in SearchTitle, and www.oeb.ca silently stops answering
+    under parallel fetching.
+tools:
+- name: search_regulatory_filings
+  description: >-
+    Search the OEB regulatory document record by case number, energy type, applicant, document type or
+    free text. Returns record metadata including the Uri needed to download the filed document.
+  source_operation: openapi/ontario-energy-board-rds-openapi.yml#searchRecords
+  input_schema_source: paths./Record.get.parameters (q, format, sortBy, pageSize, start)
+  vocabulary: vocabulary/ontario-energy-board-rds-search-clauses.yml
+- name: download_filing_document
+  description: Download the filed document (usually PDF) behind a record Uri returned by search_regulatory_filings.
+  source_operation: openapi/ontario-energy-board-rds-openapi.yml#downloadRecordDocument
+  input_schema_source: paths./Record/{uri}/File/document.get.parameters (uri)
+- name: list_search_clauses
+  description: Return the 303 valid search clauses accepted by search_regulatory_filings, with their captions, groups, parameter formats and sortability.
+  source_operation: openapi/ontario-energy-board-rds-openapi.yml#getSearchClauseDefinitions
+- name: get_open_applications
+  description: Fetch the daily-refreshed register of every open application before the Board.
+  source_operation: openapi/ontario-energy-board-open-data-openapi.yml#getAllOpenApplCasesV2ReportFile
+- name: get_licensed_market_participants
+  description: Fetch the register of licensed electricity and natural gas market participants.
+  source_operation: openapi/ontario-energy-board-open-data-openapi.yml#getAllLicencesReportFile
+- name: get_current_electricity_rates
+  description: Fetch current regulated electricity rates for the residential and general service under 50 kW rate classes.
+  source_operation: openapi/ontario-energy-board-open-data-openapi.yml#getBillData
+  also: openapi/ontario-energy-board-open-data-openapi.yml#getBillDataGS
+- name: get_current_natural_gas_rates
+  description: Fetch current regulated natural gas rates for residential rate classes.
+  source_operation: openapi/ontario-energy-board-open-data-openapi.yml#getGasBillData
+- name: get_distributor_scorecard
+  description: Fetch the electricity distributor performance scorecard for a given reporting year (2013-2024).
+  source_operations:
+  - openapi/ontario-energy-board-open-data-openapi.yml#getScorecardData2024
+  - openapi/ontario-energy-board-open-data-openapi.yml#getScorecardData2023
+  note: One operation per year; a server would expose a single tool with a year parameter and map it to the matching operation.
+- name: get_distributor_complaints
+  description: Fetch complaints received by the OEB about electricity distributors for a given year (2013-2022).
+  source_operations:
+  - openapi/ontario-energy-board-open-data-openapi.yml#getComplaintsData2022
+  - openapi/ontario-energy-board-open-data-openapi.yml#getComplaintsData2013
+- name: get_service_area_boundaries
+  description: Fetch the GIS service-territory boundary bundles for electricity or natural gas distributors.
+  source_operations:
+  - openapi/ontario-energy-board-open-data-openapi.yml#getOpenDataElectricityMap20260429
+  - openapi/ontario-energy-board-open-data-openapi.yml#getOpenDataNaturalgasMap20260225
+  note: Filenames are date-versioned; a server must re-resolve them from the dataset page rather than pinning.
+coverage:
+  tools_designed: 10
+  rest_operations_total: 38
+  rest_operations_bound: 38
+  mcp_only: 0
+related:
+- openapi/ontario-energy-board-rds-openapi.yml
+- openapi/ontario-energy-board-open-data-openapi.yml
+- skills/_index.yml
+- errors/ontario-energy-board-problem-types.yml

@@ -1,0 +1,41 @@
+generated: '2026-07-27'
+method: searched
+source: npm, PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist, crates.io, GitHub
+found: false
+note: >-
+  No first-party Ontario Energy Board client library exists in any public package registry, and no
+  OEB GitHub organisation exists. The npm registry search for "ontario energy board" returns only
+  unrelated projects (bull-board, vaadin board, and the Government of Ontario design system
+  @ongov/ontario-design-system-global-styles - the province's front-end styles, not an OEB SDK).
+  pypi.org/pypi/ontario-energy-board, /oeb-api and /ontario-energy all return HTTP 404. The GitHub
+  organisations github.com/ontarioenergyboard, /oeb-ca and /ontario-energy-board all return HTTP 404.
+  The OEB publishes no SDK page, no code samples and no reference implementation - the only
+  integration guidance it has ever published is a PDF explaining how to import its XML into Excel. No
+  `Packages` and no `SDKs` pointer is wired.
+packages: []
+registries_searched:
+- npm
+- pypi
+- maven-central
+- nuget
+- pkg.go.dev
+- rubygems
+- packagist
+- crates.io
+github_org: null
+github_org_probes:
+- url: https://api.github.com/orgs/ontarioenergyboard
+  status: 404
+- url: https://api.github.com/orgs/oeb-ca
+  status: 404
+- url: https://api.github.com/orgs/ontario-energy-board
+  status: 404
+integration_guidance: >-
+  With no SDK, the practical client for OEB data is an HTTP fetch plus an XML parser. The two OpenAPI
+  documents in this repo (openapi/ontario-energy-board-open-data-openapi.yml and
+  openapi/ontario-energy-board-rds-openapi.yml) are the machine-readable substitute, and
+  skills/ carries packaged operating instructions for the two flows worth automating.
+related:
+- openapi/ontario-energy-board-open-data-openapi.yml
+- openapi/ontario-energy-board-rds-openapi.yml
+- skills/_index.yml

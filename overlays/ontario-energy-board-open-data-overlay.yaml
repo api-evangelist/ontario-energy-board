@@ -1,0 +1,59 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for OEB Open Data
+  version: 1.0.0
+extends: openapi/ontario-energy-board-open-data-openapi.yml
+x-generated: '2026-07-27'
+x-method: generated
+x-source: >-
+  Crawl of the 40 OEB Open Data dataset pages plus anonymous file probes, 2026-07-27
+x-note: >-
+  Editorial layer over the generated Open Data specification: provenance, licence and attribution
+  facts, the polite-fetching contract the OEB does not publish but does enforce, and the filename
+  versioning warning that determines whether a scheduled integration stays current.
+actions:
+  - target: $.info
+    update:
+      x-api-evangelist-provenance:
+        generated_by: API Evangelist enrichment pipeline
+        method: generated-from-live-probes
+        probed: '2026-07-27'
+        published_by_provider: false
+        operations_verified: 33
+        files_published_total: 198
+        datasets_total: 40
+        inventory: data-model/ontario-energy-board-data-model.yml
+  - target: $.info
+    update:
+      x-licence:
+        name: Open Government Licence - Ontario
+        url: https://www.ontario.ca/page/open-government-licence-ontario
+        attribution_required: true
+        attribution_statement: 'Contains information licensed under the Open Government Licence - Ontario.'
+      x-conventions: conventions/ontario-energy-board-conventions.yml
+      x-lifecycle: lifecycle/ontario-energy-board-lifecycle.yml
+      x-changelog: changelog/ontario-energy-board-changelog.yml
+  - target: $.info
+    update:
+      x-fetch-contract:
+        concurrency: 1
+        strategy: serial with conditional GET against Last-Modified
+        published_rate_limit: false
+        observed_throttle: >-
+          www.oeb.ca stopped answering entirely (connection timeouts, no HTTP status, no Retry-After)
+          after roughly 200 requests in 20 minutes with up to 20 concurrent connections on 2026-07-27,
+          then recovered after a pause.
+        recommended_poll:
+          applications_register: daily
+          rates: monthly
+          scorecards_and_rrr: annually, after the reporting-year file appears
+  - target: $.paths.*.get
+    update:
+      x-read-only: true
+      x-authentication: none
+      x-consequence: none
+      x-agent-safe: true
+      x-filename-versioning-warning: >-
+        Open Data files are versioned by filename (reporting year or release date). A refresh appears
+        under a NEW name while the old URL often keeps serving stale bytes. Re-resolve the current
+        filename from the dataset landing page in externalDocs before each scheduled fetch.

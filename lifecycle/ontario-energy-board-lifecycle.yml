@@ -1,0 +1,109 @@
+generated: '2026-07-27'
+method: searched
+source: https://www.oeb.ca/ontarios-energy-sector/open-data
+note: >-
+  The Ontario Energy Board publishes no API versioning policy, no deprecation policy, no sunset
+  contract, no SLA and no status page. What it has instead is a filename-based dataset versioning
+  convention that is real, observable and load-bearing for anyone integrating - a refreshed dataset
+  arrives under a NEW filename rather than replacing the bytes behind an old URL. That convention,
+  the programme's dated expansion letters, and the absence of every other lifecycle commitment are
+  recorded here.
+versioning:
+  scheme: filename-and-folder
+  current: 'Open Data 2.0 (last expanded 2024-08-27)'
+  published_by_provider: false
+  docs: null
+  patterns:
+  - pattern: reporting year in the filename
+    examples:
+    - scorecard_data_2024.xml
+    - complaints_data_2022.xml
+  - pattern: release date in the filename (YYYYMMDD)
+    examples:
+    - open-data-electricity-map-20260429.zip
+    - open-data-naturalgas-map-20260225.zip
+  - pattern: series folder
+    examples:
+    - /documents/opendata/rrr/2024-2/
+    - /documents/opendata/rrr/2023/
+    - /documents/opendata/rrr/gas/
+  consequence: >-
+    A client that hard-codes a dated filename will silently keep reading a stale file after a refresh,
+    because the old URL usually keeps working. Resolve the current filename from the dataset landing
+    page before each scheduled fetch.
+  rds_versioning:
+    scheme: none
+    note: >-
+      The RDS query surface at https://www.rds.oeb.ca/CMWebDrawer carries no version segment, header
+      or parameter. It is the default mount point of a vendor product (Micro Focus / OpenText Content
+      Manager WebDrawer). Its behaviour tracks whatever version of that product the OEB is running,
+      with no announcement channel.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  note: >-
+    No deprecation policy, no notice period, no Sunset or Deprecation headers on any response. The
+    only observed retirement mechanism is a URL quietly ceasing to be linked from its dataset page.
+    Historical files (RRR 2015-2021 series, scorecards back to 2013) have so far been retained rather
+    than removed, which is the practice - not a commitment. No `Deprecation` pointer is emitted.
+sla:
+  url: null
+  uptime_target: null
+  support_commitment: null
+  note: >-
+    No SLA, no uptime target and no support commitment for either surface. The RDS JSON projection in
+    particular is undocumented and unsupported: the OEB has never described it, so nothing about it is
+    promised. General enquiries go to https://www.oeb.ca/contact-ontario-energy-board.
+status_page: null
+status_page_note: >-
+  No status page, no status feed and no incident history exists for either surface. status.oeb.ca does
+  not resolve. Availability is discoverable only by fetching. No `StatusPage` pointer is emitted.
+availability_observed:
+  probed: '2026-07-27'
+  rds: >-
+    Stable throughout the run - search, document download and the clause-definition endpoint all
+    answered consistently under repeated querying.
+  open_data: >-
+    Stable for serial fetches; stopped answering entirely (connection timeouts, no HTTP status, no
+    Retry-After) after roughly 200 requests in 20 minutes with up to 20 concurrent connections, then
+    recovered after a pause. There is no published rate limit and no throttling signal - see
+    errors/ontario-energy-board-problem-types.yml#undocumented-throttle.
+roadmap:
+  url: null
+  note: >-
+    No published roadmap for the Open Data programme or for any API. The three expansion letters
+    (2022, 2023, 2024) are announcements of work already done, not forward commitments. No `Roadmap`
+    pointer is emitted.
+programme_history:
+  detail: changelog/ontario-energy-board-changelog.yml
+  milestones:
+  - date: '2021'
+    event: Ontario's Digital and Data Directive (2021) takes effect, obliging provincial entities to publish data openly.
+    url: https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021
+  - date: '2022-09-29'
+    event: OEB announces the transition to Open Data.
+  - date: '2022-12-15'
+    event: OEB publishes the XML-to-Excel import guide - still the only developer documentation.
+  - date: '2023-10-06'
+    event: Open Data 2.0 expansion.
+  - date: '2023-11-01'
+    event: >-
+      Statutory deadline under O. Reg. 633/21 for Ontario's rate-regulated utilities to implement
+      Green Button DMD and CMD. The OEB is the supervisor, not an obligated party.
+  - date: '2024-08-27'
+    event: Third Open Data expansion.
+regulatory_lifecycle:
+  note: >-
+    The OEB's own "lifecycle" as an API-adjacent institution runs on regulatory instruments, not
+    release trains: codes and rules are amended through numbered proceedings (for example EB-2021-0183,
+    the Green Button consultation), and every filing in that lifecycle is retrievable through RDS. The
+    daily-refreshed applications register is the closest thing the OEB has to a change feed.
+  applications_register: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+  refresh: daily
+related:
+- changelog/ontario-energy-board-changelog.yml
+- conventions/ontario-energy-board-conventions.yml
+- errors/ontario-energy-board-problem-types.yml
+- openapi/ontario-energy-board-open-data-openapi.yml

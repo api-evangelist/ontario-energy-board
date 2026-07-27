@@ -1,0 +1,1034 @@
+generated: '2026-07-27'
+method: derived
+source: openapi/ontario-energy-board-rds-openapi.yml, openapi/ontario-energy-board-open-data-openapi.yml, and a
+  crawl of the 40 OEB Open Data dataset pages on 2026-07-27
+note: 'Two data models sit behind the Ontario Energy Board''s public surfaces and they do not connect to each other.
+
+  (1) The REGULATORY RECORD, exposed through RDS: one entity - Record - carrying the OEB''s own regulatory fields,
+  with Case Number as the de facto join key across everything the Board does. There is no case entity, no applicant
+  entity and no relationship endpoint; the graph below is reconstructed from the fields the search response returns.
+
+  (2) The OPEN DATA CORPUS: 40 datasets, 198 published files, no identifiers, no cross-file keys published, no schema
+  and no dictionary beyond an Excel import guide. The distributor name is the only practical join key across the
+  RRR, scorecard and complaints series, and it is free text.
+
+  The full published inventory is recorded below, including the files this run could not verify - the OEB host stopped
+  answering under sustained probing, so ''verified_200: false'' means unverified in this run, NOT missing.'
+entities:
+- name: Record
+  surface: rds
+  description: A filing, decision, order, licence, code amendment or piece of correspondence in the OEB case record.
+  identifier:
+    field: Uri
+    type: integer
+    opaque: true
+    note: Content Manager record URI; the key for /Record/{uri}/File/document.
+  fields:
+  - RecordTitle
+  - RecordExtension
+  - RecordDateModified
+  - Fields.CaseNumber
+  - Fields.SIDocumentType
+  - Fields.Applicant
+  - Fields.EnergyType
+  - Fields.PrimaryApplicationType
+  - Fields.DateIssued
+  - Fields.fDateReceived
+  operations:
+  - searchRecords
+  - getRecord
+  - downloadRecordDocument
+- name: Case
+  surface: rds
+  description: An OEB proceeding, identified by case number (EB-YYYY-NNNN). Not an addressable entity - it exists
+    only as a value on Record.
+  identifier:
+    field: Fields.CaseNumber
+    type: string
+    example: EB-2021-0183
+    addressable: false
+  note: There is no /Case endpoint. A case is retrieved as "every Record whose CaseNumber equals it" - q=CaseNumber=EB-2021-0183.
+- name: Location
+  surface: rds
+  description: A party - applicant, intervenor, or the OEB itself. Returned as a LocationRef with its own Content
+    Manager Uri.
+  identifier:
+    field: Applicant.Uri
+    type: integer
+    addressable: false
+  note: The LocationRef carries a Uri (e.g. 1087 for the Ontario Energy Board) but no Location endpoint is exposed
+    to anonymous callers.
+- name: Document
+  surface: rds
+  description: The filed bytes behind a Record. Format is on the Record as RecordExtension (PDF, MSG, DOC, XLS).
+  identifier:
+    field: Uri (of the parent Record)
+    addressable: true
+  operations:
+  - downloadRecordDocument
+- name: Dataset
+  surface: open-data
+  description: A named Open Data publication with a landing page and one or more files.
+  identifier:
+    field: landing page URL
+    addressable: true
+  note: No dataset identifier, no metadata record, no DCAT/CKAN representation. The page is the identifier.
+- name: Distributor
+  surface: open-data
+  description: An Ontario electricity or natural gas distributor - the subject of the scorecard, complaints, RRR
+    and service-area datasets.
+  identifier:
+    field: distributor name (free text inside each XML file)
+    addressable: false
+  note: 'This is the corpus-wide join key and it is unstable by construction: no licence number, no code, no GUID
+    is published as a cross-file identifier. Anyone joining the scorecard to an RRR series must match on name.'
+- name: Licence
+  surface: open-data
+  description: An OEB licence held by a market participant, published in the licensed market participants register
+    (605 KB XML, refreshed alongside the applications register).
+  identifier:
+    field: licence number (inside the XML)
+    addressable: false
+- name: Application
+  surface: open-data
+  description: An open application before the Board, published in the daily-refreshed applications register.
+  identifier:
+    field: case number (inside the XML)
+    addressable: false
+  note: 'This is the one real bridge between the two models: the case number in the applications register is the
+    same case number RDS searches on.'
+relationships:
+- from: Record
+  to: Case
+  type: belongs_to
+  via: Fields.CaseNumber
+  confidence: high
+  evidence: Every observed search hit carries CaseNumber; q=CaseNumber=EB-2021-0183 returns 40 records.
+- from: Record
+  to: Location
+  type: belongs_to
+  via: Fields.Applicant (LocationRef.Uri)
+  confidence: high
+  evidence: Observed LocationRef with LocationFormattedName "Ontario Energy Board", Uri 1087.
+- from: Record
+  to: Document
+  type: has_one
+  via: /Record/{uri}/File/document
+  confidence: high
+  evidence: HTTP 200 application/pdf, 339,517 bytes for Uri 891285.
+- from: Case
+  to: Record
+  type: has_many
+  via: CaseNumber search clause
+  confidence: high
+- from: Dataset
+  to: File
+  type: has_many
+  via: links on the dataset landing page
+  confidence: high
+  evidence: 40 pages crawled, 198 file links extracted.
+- from: Application
+  to: Case
+  type: same_as
+  via: case number
+  confidence: medium
+  evidence: The applications register keys on OEB case numbers of the same EB-YYYY-NNNN shape RDS indexes; the linkage
+    is by convention, not by any published identifier scheme.
+- from: Distributor
+  to: Scorecard
+  type: has_many
+  via: distributor name
+  confidence: medium
+  evidence: Twelve annual scorecard files (2013-2024), each keyed on distributor name.
+- from: Distributor
+  to: RRRFiling
+  type: has_many
+  via: distributor name
+  confidence: medium
+- from: Distributor
+  to: ServiceArea
+  type: has_one
+  via: distributor name in the GIS attribute table
+  confidence: medium
+  evidence: Electricity and natural gas boundary ZIP bundles.
+identifier_schemes:
+- id: oeb-case-number
+  pattern: EB-YYYY-NNNN
+  example: EB-2021-0183
+  scope: OEB proceedings
+  published_registry: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+- id: content-manager-uri
+  pattern: integer
+  example: 891285
+  scope: RDS records and locations
+  stability: unknown - the OEB makes no commitment about URI stability, and these are vendor-internal identifiers
+gaps:
+- No published data dictionary for any dataset. The XML element names are the only documentation.
+- No stable machine identifier for a distributor across the RRR, scorecard, complaints and GIS series.
+- No JSON representation of any Open Data dataset - XML, XLSX and ZIP only.
+- No relationship between the Open Data corpus and RDS beyond the shared case-number convention.
+- No schema, XSD or JSON Schema published for any XML file.
+open_data_inventory:
+  crawled: '2026-07-27'
+  source_pages:
+  - https://www.oeb.ca/ontarios-energy-sector/open-data
+  - https://www.oeb.ca/ontarios-energy-sector/open-data?page=1
+  dataset_count: 40
+  file_count: 198
+  verified_file_count: 33
+  verification_note: verified_200 true means the file returned HTTP 200 to an anonymous request in this run. False
+    means unverified in this run - the host stopped answering under sustained probing - not absent.
+  datasets:
+  - dataset: applications-oeb
+    title: Applications before the OEB
+    page: https://www.oeb.ca/open-data/applications-oeb
+    file_count: 1
+    verified_files: 1
+    files:
+    - url: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+      format: xml
+      verified_200: true
+  - dataset: current-electricity-rates-general-service-50-kw-rate-class
+    title: Current Electricity Rates (General Service < 50 kW Rate Class)
+    page: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
+    file_count: 1
+    verified_files: 1
+    files:
+    - url: https://www.oeb.ca/_html/calculator/data/BillData_GS.xml
+      format: xml
+      verified_200: true
+  - dataset: current-electricity-rates-residential-rate-class
+    title: Current Electricity Rates (Residential Rate Class)
+    page: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
+    file_count: 2
+    verified_files: 2
+    files:
+    - url: https://www.oeb.ca/_html/calculator/data/BillData.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/sites/default/files/data-keys-electricity-rates.xlsx
+      format: xlsx
+      verified_200: true
+  - dataset: current-natural-gas-rates-residential-rate-classes
+    title: Current Natural Gas Rates (Residential Rate Classes)
+    page: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
+    file_count: 2
+    verified_files: 2
+    files:
+    - url: https://www.oeb.ca/_html/calculator/data/GasBillData.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/sites/default/files/data-keys-naturalgas-rates.xlsx
+      format: xlsx
+      verified_200: true
+  - dataset: electricity-and-natural-gas-distributors-service-areas
+    title: Electricity and Natural Gas Distributors - Service Areas
+    page: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
+    file_count: 2
+    verified_files: 2
+    files:
+    - url: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+      format: zip
+      verified_200: true
+    - url: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+      format: zip
+      verified_200: true
+  - dataset: electricity-distribution-rates-databases
+    title: Electricity Distribution Rates Databases
+    page: https://www.oeb.ca/open-data/electricity-distribution-rates-databases
+    file_count: 0
+    verified_files: 0
+    files: []
+  - dataset: electricity-distributor-complaints-received-oeb
+    title: Electricity Distributor Complaints Received by the OEB
+    page: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
+    file_count: 10
+    verified_files: 10
+    files:
+    - url: https://www.oeb.ca/_html/performance/data/complaints_data_2022.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/complaints_data_2021.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/complaints_data_2020.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/complaints_data_2019.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/complaints_data_2018.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/complaints_data_2017.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/complaints_data_2016.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/complaints_data_2015.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/complaints_data_2014.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/complaints_data_2013.xml
+      format: xml
+      verified_200: true
+  - dataset: electricity-distributor-performance-scorecard
+    title: Electricity Distributor Performance – Scorecard
+    page: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
+    file_count: 12
+    verified_files: 12
+    files:
+    - url: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/scorecard_data_2023.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/scorecard_data_2022.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/scorecard_data_2021.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/scorecard_data_2020.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/scorecard_data_2019.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/scorecard_data_2018.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/scorecard_data_2017.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/scorecard_data_2016.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/scorecard_data_2015.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/scorecard_data_2014.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/_html/performance/data/scorecard_data_2013.xml
+      format: xml
+      verified_200: true
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.16 Low-Income Energy Assistance
+      Program (LEAP)'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+    file_count: 4
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.16%20LEAP%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.16%20LEAP%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.16%20Low-Income%20Energy%20Assistance%20Program%20%28LEAP%29.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.16%20Low-Income%20Energy%20Assistance%20Program%20%28LEAP%29%20Analysis.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.19 Billing Accuracy, Public Safety
+      and Non-Prescriptive Scorecard Measures'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+    file_count: 4
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.19%20Billing%20Accuracy%2C%20Public%20Safety%20and%20Non-Prescriptive%20Scorecard%20Measures.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.19%20Billing%20Accuracy%2C%20Public%20Safety%20and%20Non-Prescriptive%20Scorecard%20Measures.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.19%20Billing%20Accuracy%2C%20Public%20Safety%20and%20Non-Prescriptive%20Scorecard%20Measures.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.19%20Billing%20Accuracy%2C%20Public%20Safety%20and%20Non-Prescriptive%20Scorecard%20Measures.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.2 Market Monitoring Information'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+    file_count: 4
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.2%20Customers%20%26%20Connections.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.2%20Customers%20and%20Connections.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.2%20Market%20Monitoring%20Information.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.2%20Market%20Monitoring%20Information.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.4.1 Reporting on Service Quality
+      Requirements'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+    file_count: 4
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.4.1%20Service%20Quality%20Requirements.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.4.1%20Service%20Quality%20Requirements.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.4.1%20Reporting%20on%20Service%20Quality%20Requirements.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.4.1%20Reporting%20on%20Service%20Quality%20Requirements.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.4.2 System Reliability Indicators'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+    file_count: 4
+    verified_files: 1
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.4.2%20System%20Reliability%20Indicators.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.4.2%20System%20Reliability%20Indicators.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+      format: xml
+      verified_200: true
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.4.2%20System%20Reliability%20Indicators.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.4.2.10 Major Event Response Reporting'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+    file_count: 3
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.4.2.10%20Major%20Event%20Response%20Reporting.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.4.2.10%20Major%20Response%20Reporting.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.4.2.10%20Major%20Response%20Reporting.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.5.1 Labour'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+    file_count: 4
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.5.1%20Labour%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.5.1%20Labour%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.5.1%20Labour%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.5.1%20Labour%20Analysis.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.5.2 Capital'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+    file_count: 4
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.5.2%20Capital%20and%20Labour%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.5.2%20Capital%20and%20Labour%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.5.2%20Capital%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.5.2%20Capital%20Analysis.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.5.3 Supply and Delivery'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+    file_count: 4
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.5.3%20Supply%20and%20Delivery%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.5.3%20Supply%20and%20Delivery%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.5.3%20Supply%20and%20Delivery%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.5.3%20Supply%20and%20Delivery%20Analysis.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.5.4 Demand and Revenue'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+    file_count: 4
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.5.4%20Demand%20and%20Revenue.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.5.4%20Demand%20and%20Revenue.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.5.4%20Demand%20and%20Revenue%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.5.4%20Demand%20and%20Revenue%20Analysis.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.5.5 Utility Characteristics'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+    file_count: 4
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.5.5%20Utility%20Characteristics.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.5.5%20Utility%20Characteristics_Utility%20Characteristics.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.5.5%20Utility%20Characteristics%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.5.5%20Utility%20Characteristics%20Analysis.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.5.6 Regulated Return on Equity
+      (ROE)'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
+    file_count: 4
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.5.6%20ROE%20Calculation%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.5.6%20ROE%20Calculation%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.5.6%20Regulated%20Return%20on%20Equity%20%28ROE%29%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.5.6%20Regulated%20Return%20on%20Equity%20%28ROE%29%20Analysis.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-217-trial-balance
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.7 Trial Balance'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-217-trial-balance
+    file_count: 30
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.7%20Table%201%20Balance%20Sheet%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.7%20Table%202%20Income%20Statement%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.7%20Table%203%20All%20Accounts%20Analysis-2020-2024.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.7%20Table%203%20All%20Accounts%20Analysis-2015-2019.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.7%20All%20Accounts%20Analysis%202015.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.7%20All%20Accounts%20Analysis%202016.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.7%20All%20Accounts%20Analysis%202017.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.7%20All%20Accounts%20Analysis%202018.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.7%20All%20Accounts%20Analysis%202019.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.7%20All%20Accounts%20Analysis%202020.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.7%20All%20Accounts%20Analysis%202021.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.7%20All%20Accounts%20Analysis%202022.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.7%20Table%203%20All%20Accounts%202023.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.7%20Table%203%20All%20Accounts%20Analysis%202024.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.7%20Table%201%20Balance%20Sheet%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.7%20Table%202%20Income%20Statement%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.7%20Table%203%20All%20Accounts%20Analysis%20%28all%20year%29.xlsx
+      format: xlsx
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.7%20Balance%20Sheet.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.7%20Income%20Statement.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.7%20All%20Accounts%20Analysis%20%28all%20years%29.xlsx
+      format: xlsx
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.7%20Balance%20Sheet.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.7%20Income%20Statement%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.7%20All%20Accounts%20Analysis%20%28all%20years%29.xlsx
+      format: xlsx
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.7%20All%20Accounts%20Analysis%202015.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.7%20All%20Accounts%20Analysis%202016.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.7%20All%20Accounts%20Analysis%202017.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.7%20All%20Accounts%20Analysis%202018.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.7%20All%20Accounts%20Analysis%202019.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.7%20All%20Accounts%20Analysis%202020.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.7%20All%20Accounts%20Analysis%202021.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-218-residential-and-low
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.8 Residential and Low-Income
+      Customer Billing and Payment'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-218-residential-and-low
+    file_count: 4
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.8%20Disconnections%2C%20Arrears%2C%20Write-offs%2C%20Equal%20Billing%2C%20Security%20Deposits%20and%20Load%20Control%20Devices%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.8%20Disconnections%2C%20Arrears%2C%20Write-offs%2C%20Equal%20Billing%2C%20Security%20Deposits%20and%20Load%20Control%20Devices%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.8%20Residential%20and%20Low-Income%20Customer%20Billing%20and%20Payment.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.8%20Residential%20and%20Low-Income%20Customer%20Billing%20and%20Payment.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-219-ontario-electricity
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.9 Ontario Electricity Support
+      Program (OESP)'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-219-ontario-electricity
+    file_count: 4
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.9%20OESP%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.9%20OESP%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.9%20Ontario%20Electricity%20Support%20Program%20%28OESP%29.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.9%20Ontario%20Electricity%20Support%20Program%20%28OESP%29.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-311-deferral-accounts
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 3.1.1 Deferral Accounts'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-311-deferral-accounts
+    file_count: 1
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ET/ET%203.1.1%20Deferral%20Accounts.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-section-312-affiliate-arrangements
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Section 3.1.2 Affiliate Arrangements and
+      Transactions'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-312-affiliate-arrangements
+    file_count: 2
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ET/ET%203.1.2%20Table%201%20Transmitter%20to%20Affiliate.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ET/ET%203.1.2%20Table%202%20Affiliate%20to%20Transmitter.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-sections-2114-and-21141-net
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Sections 2.1.14 and 2.1.14.1 Net Metering
+      and Embedded Generation Information'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-sections-2114-and-21141-net
+    file_count: 15
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.14%20Table%201%20Net%20Metering.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.14%20Table%202%20Third%20Party%20Net%20Metering.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.14%20Table%203%20Embedded%20Generation.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.14%20Table%204%20Embedded%20Generation%20by%20Type.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.14%20Table%205%20Net%20Metering%20Totals%20%28max.%20cumulative%20capacity%29.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.14%20Table%201%20Net%20Metering.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.14%20Table%202%20Third%20Party%20Net%20Metering.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.14%20Table%203%20Embedded%20Generation.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.14%20Table%204%20Embedded%20Generation%20by%20Type.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.14%20Table%205%20Net%20Metering%20Totals%20%28max.%20cumulative%20capacity%29.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.14%20Embedded%20Generation%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2.1.14%20Net%20Metering%20Totals%20%28max.%20cumulative%20capacity%29%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.14%20Net%20Metering%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.14%20Embedded%20Generation%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2015-2021-2.1.14%20Net%20Metering%20Totals%20%28max.%20cumulative%20capacity%29%20Analysis.xml
+      format: xml
+      verified_200: false
+  - dataset: electricity-reporting-record-keeping-requirements-rrr-sections-2158-activity-and-program
+    title: 'Electricity Reporting & Record Keeping Requirements (RRR): Sections 2.1.5.8 Activity and Program-based
+      Benchmarking (APB)'
+    page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-sections-2158-activity-and-program
+    file_count: 6
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.5.8%20Table%201%20FACS.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.5.8%20Table%202%20APB1.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/ED%202.1.5.8%20Table%203%20APB2.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.5.8%20Table%201%20FACS.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.5.8%20Table%202%20APB1.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2023/2.1.5.8%20Table%203%20APB2.xml
+      format: xml
+      verified_200: false
+  - dataset: historical-regulated-price-plan-electricity-rates
+    title: Historical Regulated Price Plan Electricity Rates
+    page: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
+    file_count: 1
+    verified_files: 1
+    files:
+    - url: https://www.oeb.ca/sites/default/files/historical-rpp-prices.xlsx
+      format: xlsx
+      verified_200: true
+  - dataset: intervenor-cost-awards
+    title: Intervenor Cost Awards
+    page: https://www.oeb.ca/open-data/intervenor-cost-awards
+    file_count: 0
+    verified_files: 0
+    files: []
+  - dataset: licensed-market-participants
+    title: Licensed Market Participants
+    page: https://www.oeb.ca/open-data/licensed-market-participants
+    file_count: 1
+    verified_files: 1
+    files:
+    - url: https://www.oeb.ca/_html/xml/all_Licences_report_File.xml
+      format: xml
+      verified_200: true
+  - dataset: natural-gas-reporting-record-keeping-requirements-rrr-section-211-detailed-economic
+    title: 'Natural Gas Reporting & Record Keeping Requirements (RRR): Section 2.1.1 - Detailed Economic Evaluation'
+    page: https://www.oeb.ca/open-data/natural-gas-reporting-record-keeping-requirements-rrr-section-211-detailed-economic
+    file_count: 3
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.1%20Detailed%20Economic%20Evaluation.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.1%20Detailed%20Economic%20Evaluation.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.1%20Detailed%20Economic%20Evaluation.xml
+      format: xml
+      verified_200: false
+  - dataset: natural-gas-reporting-record-keeping-requirements-rrr-section-2110-exceptions-amendments
+    title: 'Natural Gas Reporting & Record Keeping Requirements (RRR): Section 2.1.10 Exceptions & Amendments'
+    page: https://www.oeb.ca/open-data/natural-gas-reporting-record-keeping-requirements-rrr-section-2110-exceptions-amendments
+    file_count: 3
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.10%20Exceptions%20%26%20Amendments.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.10%20Exceptions%20%26%20Amendments.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.10%20Exceptions%20%26%20Amendments.xml
+      format: xml
+      verified_200: false
+  - dataset: natural-gas-reporting-record-keeping-requirements-rrr-section-2111-actual-vs-forecasted
+    title: 'Natural Gas Reporting & Record Keeping Requirements (RRR): Section 2.1.11 Actual vs Forecasted Customer
+      Additions and Cumulative Financials'
+    page: https://www.oeb.ca/open-data/natural-gas-reporting-record-keeping-requirements-rrr-section-2111-actual-vs-forecasted
+    file_count: 5
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.11%20Actual%20vs%20Forecasted%20Customer%20Additions%20and%20Cumulative%20Financials%20Project%201.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.11%20Actual%20vs%20Forecasted%20Customer%20Additions%20and%20Cumulative%20Financials%20Project%202.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.11%20Actual%20vs%20Forecasted%20Customer%20Additions%20and%20Cumulative%20Financials%20Project%203.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.11%20Distribution%20System%20Expansion%20_%20Actual%20vs%20Forecasted%20Customer%20Additions%20and%20Cumulative%20Financials.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.11%20Distribution%20System%20Expansion%20_%20Actual%20vs%20Forecasted%20Customer%20Additions%20and%20Cumulative%20Financials.xml
+      format: xml
+      verified_200: false
+  - dataset: natural-gas-reporting-record-keeping-requirements-rrr-section-2113-environmental
+    title: 'Natural Gas Reporting & Record Keeping Requirements (RRR): Section 2.1.13 Environmental Monitoring'
+    page: https://www.oeb.ca/open-data/natural-gas-reporting-record-keeping-requirements-rrr-section-2113-environmental
+    file_count: 5
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.13%20Environmental%20Monitoring%20Project%201.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.13%20Environmental%20Monitoring%20Project%202.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.13%20Environmental%20Monitoring%20Project%203.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.13%20Environmental%20Monitoring.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.13%20Environmental%20Monitoring.xml
+      format: xml
+      verified_200: false
+  - dataset: natural-gas-reporting-record-keeping-requirements-rrr-section-2114-natural-gas-quantities
+    title: 'Natural Gas Reporting & Record Keeping Requirements (RRR): Section 2.1.14 - Natural Gas Quantities'
+    page: https://www.oeb.ca/open-data/natural-gas-reporting-record-keeping-requirements-rrr-section-2114-natural-gas-quantities
+    file_count: 6
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.14%20Table%201%20Natural%20Gas%20Quantities-%20Monthly%20Breakdown.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.14%20Table%202%20Natural%20Gas%20Quantities%20Aggregated.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.14%20Natural%20Gas%20Quantities-%20Monthly%20Breakdown%20Table%201.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.14%20Natural%20Gas%20Quantities%20Aggregated%20Table%202.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.14%20Natural%20Gas%20Quantities-%20Monthly%20Breakdown%20Table%201.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.14%20Natural%20Gas%20Quantities%20Aggregated%20Table%202.xml
+      format: xml
+      verified_200: false
+  - dataset: natural-gas-reporting-record-keeping-requirements-rrr-section-2118-account-information
+    title: 'Natural Gas Reporting & Record Keeping Requirements (RRR): Section 2.1.18 Account Information for Residential
+      and Eligible Low-Income Customers'
+    page: https://www.oeb.ca/open-data/natural-gas-reporting-record-keeping-requirements-rrr-section-2118-account-information
+    file_count: 8
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.18%20Table%201%20Residential%20and%20Eligible%20Low-Income%20Customers-%20Number%20of%20Accounts%2C%20Disconnections%20for%20Non-Pay.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.18%20Table%202%20Residential%20and%20Eligible%20Low-Income%20Customers-Accounts%20in%20Arrears.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.18%20Table%203%20Residential%20Customers-Aging%20of%20Accounts%20in%20Arrears.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.18%20Table%204%20Eligible%20Low-Income%20Customer-Aging%20of%20Accounts%20in%20Arrears.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.18%20Residential%20and%20Low-Income%20Customer%20Info.%20Table%201.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.18%20Residential%20and%20Low-Income%20Customer%20Billing%20and%20Payment%20Account%20in%20Arrears%20Table%202%20%28Monthly%29.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.18%20Residential%20Customer%20Aging%20of%20Accounts%20in%20Arrears%20Table%203%20%28Monthly%29.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.18%20Low%20Income%20Aging%20of%20Accounts%20in%20Arrears%20Table%204%20%28Monthly%29.xml
+      format: xml
+      verified_200: false
+  - dataset: natural-gas-reporting-record-keeping-requirements-rrr-section-2119-customer-service
+    title: 'Natural Gas Reporting & Record Keeping Requirements (RRR): Section 2.1.19 - Customer Service-Related
+      Complaints from Residential and Eligible Low-Income Customers and Customer Service-Related Enquiries from
+      Residential Customers'
+    page: https://www.oeb.ca/open-data/natural-gas-reporting-record-keeping-requirements-rrr-section-2119-customer-service
+    file_count: 6
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.19%20Table%201%20Detailed%20Customer%20Service-Related%20Complaints%20Data%20from%20Residential%20and%20Eligible%20Low-Income%20Cu.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.19%20Table%202%20Aggregated%20Customer%20Service-Related%20Complaints%20Data%20from%20Residential%20and%20Eligible%20Low-Income.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.19%20Table%201%20Detailed%20Customer%20Service-Related%20Complaints%20Data%20from%20Residential%20and%20Eligible%20Low-Income%20Customers.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.19%20Table%202%20Aggregated%20Customer%20Service-Related%20Complaints%20Data%20from%20Residential%20and%20Eligible%20Low-Income%20Customers.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.19%20Table%201.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.19%20Table%202.xml
+      format: xml
+      verified_200: false
+  - dataset: natural-gas-reporting-record-keeping-requirements-rrr-section-212-non-gas-and-gas-supply
+    title: 'Natural Gas Reporting & Record Keeping Requirements (RRR): Section 2.1.2 Non- Gas and Gas Supply Deferral
+      Accounts'
+    page: https://www.oeb.ca/open-data/natural-gas-reporting-record-keeping-requirements-rrr-section-212-non-gas-and-gas-supply
+    file_count: 6
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.2%20Table%201%20Non-Gas%20and%20Gas%20Supply%20Deferral%20Accounts.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.2%20Table%202%20Deferral%20Account%20Rate%20Application%20Information.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.2%20Non-Gas%20and%20Gas%20Supply%20Deferral%20Accounts%20Table%201.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.2%20Deferral%20Account%20Rate%20Application%20Information%20Table%202.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.2%20Non-Gas%20and%20Gas%20Supply%20Deferral%20Accounts%20Table%201.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.2%20Deferral%20Account%20Rate%20Application%20Information%20Table%202.xml
+      format: xml
+      verified_200: false
+  - dataset: natural-gas-reporting-record-keeping-requirements-rrr-section-213-market-monitoring
+    title: 'Natural Gas Reporting & Record Keeping Requirements (RRR): Section 2.1.3 Market Monitoring Information'
+    page: https://www.oeb.ca/open-data/natural-gas-reporting-record-keeping-requirements-rrr-section-213-market-monitoring
+    file_count: 6
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.3%20Table%201%20Consumers%20on%20System%20Gas%20by%20Rate%20Class.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.3%20Table%202%20Total%20Number%20of%20Consumers%20Who%20Switched.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.3%20Market%20Monitoring%20Information%20Table%201.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.3%20Market%20Monitoring%20Information%20Table%202.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.3%20Market%20Monitoring%20Information%20Table%201.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.3%20Market%20Monitoring%20Information%20Table%202.xml
+      format: xml
+      verified_200: false
+  - dataset: natural-gas-reporting-record-keeping-requirements-rrr-section-217-trial-balance
+    title: 'Natural Gas Reporting & Record Keeping Requirements (RRR): Section 2.1.7 Trial Balance'
+    page: https://www.oeb.ca/open-data/natural-gas-reporting-record-keeping-requirements-rrr-section-217-trial-balance
+    file_count: 9
+    verified_files: 0
+    files:
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.7%20Table%201%20Balance%20Sheet%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.7%20Table%202%20Income%20Statement%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/2024-2/gas/GD%202.1.7%20Table%203%20All%20Account%20Analysis%20%28Final%29.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.7%20Table%201%20Balance%20Sheet%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.7%20Table%202%20Income%20Statement%20Analysis.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2023/2.1.7%20Table%203%20All%20Account%20Analysis%20%28Final%29.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.7%20Balance%20Sheet.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.7%20Income%20Statement.xml
+      format: xml
+      verified_200: false
+    - url: https://www.oeb.ca/documents/opendata/rrr/gas/2.1.7%20All%20Account%20Analysis.xml
+      format: xml
+      verified_200: false
+related:
+- openapi/ontario-energy-board-rds-openapi.yml
+- openapi/ontario-energy-board-open-data-openapi.yml
+- vocabulary/ontario-energy-board-rds-search-clauses.yml
+- conventions/ontario-energy-board-conventions.yml

@@ -1,0 +1,33 @@
+generated: '2026-07-27'
+method: generated
+source: >-
+  openapi/ontario-energy-board-rds-openapi.yml and openapi/ontario-energy-board-open-data-openapi.yml,
+  grounded in operationIds verified live on 2026-07-27
+note: >-
+  The Ontario Energy Board publishes no agent skills, no AGENTS.md and no llms.txt. These three skills
+  are packaged operating instructions written by API Evangelist over the two surfaces this repo
+  verified. Every operationId referenced exists in one of the two OpenAPI documents in this repo -
+  none is invented - and each skill carries the two undocumented hazards an agent must handle: the
+  HTTP 200 that means "your query was rejected", and the host that stops answering under parallel
+  fetching.
+skills:
+- name: ontario-energy-board-track-case-filings
+  file: skills/ontario-energy-board-track-case-filings.md
+  api: ontario-energy-board:oeb-regulatory-document-search
+  summary: Search the OEB regulatory record by case number and download the filed documents.
+  operations: [searchRecords, downloadRecordDocument, getSearchClauseDefinitions]
+- name: ontario-energy-board-pull-open-data
+  file: skills/ontario-energy-board-pull-open-data.md
+  api: ontario-energy-board:oeb-open-data
+  summary: Pull rates, scorecards, complaints, registers and GIS boundaries without reading a stale file or tripping the undocumented throttle.
+  operations: [getAllOpenApplCasesV2ReportFile, getAllLicencesReportFile, getBillData, getBillDataGS, getGasBillData, getScorecardData2024, getComplaintsData2022, getHistoricalRppPrices, getOpenDataElectricityMap20260429, getOpenDataNaturalgasMap20260225]
+- name: ontario-energy-board-verify-green-button-mandate
+  file: skills/ontario-energy-board-verify-green-button-mandate.md
+  api: ontario-energy-board:oeb-regulatory-document-search
+  summary: Verify whether an Ontario utility actually implemented the Green Button mandate, from the OEB's own register, licence register and case record.
+  operations: [searchRecords, downloadRecordDocument, getAllLicencesReportFile]
+related:
+- conventions/ontario-energy-board-conventions.yml
+- errors/ontario-energy-board-problem-types.yml
+- vocabulary/ontario-energy-board-rds-search-clauses.yml
+- data-model/ontario-energy-board-data-model.yml

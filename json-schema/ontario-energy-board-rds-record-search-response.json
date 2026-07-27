@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ontario-energy-board/main/json-schema/ontario-energy-board-rds-record-search-response.json",
+  "title": "OEB RDS record search response",
+  "description": "Content Manager ServiceAPIModel search payload, as observed on 2026-07-27.",
+  "x-generated-by": "API Evangelist enrichment pipeline",
+  "x-generation-method": "derived-from-live-responses",
+  "x-published-by-provider": false,
+  "type": "object",
+  "properties": {
+    "Results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Record"
+      }
+    },
+    "PropertiesAndFields": {
+      "type": "object",
+      "description": "Empty object in every observed response."
+    },
+    "TotalResults": {
+      "type": "integer",
+      "description": "Total records matching the clause, irrespective of pageSize."
+    },
+    "CountStringEx": {
+      "type": "string",
+      "description": "Human-readable count, e.g. \"40 records\"."
+    },
+    "MinimumCount": {
+      "type": "integer"
+    },
+    "Count": {
+      "type": "integer"
+    },
+    "HasMoreItems": {
+      "type": "boolean"
+    },
+    "SearchTitle": {
+      "type": "string",
+      "description": "Human-readable description of the executed search \u2014 and, when the clause is invalid, the plain-English error message. Read this even on HTTP 200."
+    },
+    "HitHighlightString": {
+      "type": "string"
+    },
+    "TrimType": {
+      "type": "string",
+      "example": "Record"
+    },
+    "ResponseStatus": {
+      "$ref": "#/$defs/ResponseStatus"
+    }
+  },
+  "required": [
+    "Results",
+    "TotalResults",
+    "TrimType",
+    "ResponseStatus"
+  ],
+  "$defs": {
+    "Record": {
+      "type": "object",
+      "description": "One record \u2014 a filing, decision, order, licence or piece of correspondence.",
+      "properties": {
+        "Uri": {
+          "type": "integer",
+          "description": "Opaque record identifier; the key for /Record/{uri}/File/document."
+        },
+        "TrimType": {
+          "type": "string",
+          "example": "Record"
+        },
+        "RecordTitle": {
+          "$ref": "#/$defs/TrimStringProperty"
+        },
+        "RecordExtension": {
+          "$ref": "#/$defs/TrimStringProperty"
+        },
+        "RecordDateModified": {
+          "$ref": "#/$defs/TrimDateTime"
+        },
+        "Fields": {
+          "$ref": "#/$defs/RecordFields"
+        }
+      },
+      "required": [
+        "Uri",
+        "TrimType"
+      ]
+    },
+    "RecordFields": {
+      "type": "object",
+      "description": "The OEB's own user-defined regulatory fields. Which fields appear depends on the record; the set below was returned by every observed search hit.",
+      "properties": {
+        "CaseNumber": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/TrimStringProperty"
+            }
+          ],
+          "description": "OEB case number, e.g. EB-2021-0183."
+        },
+        "SIDocumentType": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/TrimStringProperty"
+            }
+          ],
+          "description": "Document type, e.g. \"Decision and Order on Cost Awards\", \"Correspondence\"."
+        },
+        "Applicant": {
+          "$ref": "#/$defs/LocationRef"
+        },
+        "EnergyType": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/TrimStringProperty"
+            }
+          ],
+          "description": "Electricity or Natural Gas."
+        },
+        "PrimaryApplicationType": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/TrimStringProperty"
+            }
+          ],
+          "description": "e.g. Initiatives, Rates, Licensing."
+        },
+        "DateIssued": {
+          "$ref": "#/$defs/TrimDateTime"
+        },
+        "fDateReceived": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/TrimDateTime"
+            }
+          ],
+          "description": "Date received by the OEB."
+        }
+      }
+    },
+    "TrimStringProperty": {
+      "type": "object",
+      "properties": {
+        "__type": {
+          "type": "string",
+          "example": "HP.HPTRIM.ServiceModel.TrimStringProperty, TRIMServiceAPIModel"
+        },
+        "Value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Value"
+      ]
+    },
+    "TrimDateTime": {
+      "type": "object",
+      "description": "Content Manager date. `IsClear: true` with DateTime 0001-01-01T00:00:00.0000000Z means the date is unset \u2014 treat it as null, not as the year 1.",
+      "properties": {
+        "__type": {
+          "type": "string",
+          "example": "HP.HPTRIM.ServiceModel.TrimDateTime, TRIMServiceAPIModel"
+        },
+        "IsClear": {
+          "type": "boolean"
+        },
+        "IsTimeClear": {
+          "type": "boolean"
+        },
+        "DateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "StringValue": {
+          "type": "string",
+          "description": "Localised rendering, e.g. \"2025-03-04 at 5:06 PM\"."
+        }
+      }
+    },
+    "LocationRef": {
+      "type": "object",
+      "description": "Reference to a Content Manager Location (a party \u2014 applicant, intervenor, the OEB itself).",
+      "properties": {
+        "__type": {
+          "type": "string",
+          "example": "HP.HPTRIM.ServiceModel.LocationRef, TRIMServiceAPIModel"
+        },
+        "LocationFormattedName": {
+          "$ref": "#/$defs/TrimStringProperty"
+        },
+        "TrimType": {
+          "type": "string",
+          "example": "Location"
+        },
+        "Uri": {
+          "type": "integer"
+        }
+      }
+    },
+    "ResponseStatus": {
+      "type": "object",
+      "description": "Empty object on success. On failure it carries the Content Manager exception \u2014 this is the error envelope, and it is NOT RFC 9457 problem+json.",
+      "properties": {
+        "ErrorCode": {
+          "type": "string",
+          "example": "TrimException"
+        },
+        "Message": {
+          "type": "string",
+          "example": "Error retrieving data for property RecordContainer. Access denied."
+        },
+        "Errors": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "Meta": {
+          "type": "object",
+          "properties": {
+            "TrimErrorCode": {
+              "type": "string",
+              "example": "22760"
+            }
+          }
+        }
+      }
+    }
+  }
+}

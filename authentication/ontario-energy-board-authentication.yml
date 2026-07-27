@@ -1,0 +1,67 @@
+generated: '2026-07-27'
+method: derived
+source: >-
+  Live anonymous probes of https://www.oeb.ca and https://www.rds.oeb.ca on 2026-07-27, plus
+  openapi/ontario-energy-board-open-data-openapi.yml and openapi/ontario-energy-board-rds-openapi.yml
+note: >-
+  The Ontario Energy Board operates no authentication of any kind on either of its public data
+  surfaces. There is no developer portal, no API key, no OAuth client registration, no signup and no
+  terms click-through. Every one of the 38 operations described in this repo's two OpenAPI documents
+  was executed anonymously — no Authorization header, no cookie, no token — and returned the real
+  payload. This is recorded as a positive, verified finding, not as an absence: for a regulator
+  publishing rate, performance and case-record data under an open licence, unauthenticated is the
+  correct posture, and it is the opposite of what the utilities the OEB supervises do with the
+  consumer data they hold.
+model: anonymous
+authentication_required: false
+schemes: []
+surfaces:
+- api: OEB Open Data
+  host: https://www.oeb.ca
+  authentication: none
+  evidence: >-
+    33 dataset files fetched anonymously with HTTP 200 on 2026-07-27 (see x-evidence on every
+    operation in openapi/ontario-energy-board-open-data-openapi.yml). No 401 or 403 was returned by
+    any of them.
+- api: OEB Regulatory Document Search (RDS)
+  host: https://www.rds.oeb.ca/CMWebDrawer
+  authentication: none
+  evidence: >-
+    Record search (HTTP 200 JSON), document download (HTTP 200 application/pdf, 339,517 bytes) and
+    the search-clause vocabulary (HTTP 200 text/javascript) all served anonymously.
+  caveat: >-
+    The server does set ServiceStack session cookies (ss-pid, ss-id, Secure/HttpOnly/SameSite=Lax) on
+    every response. They are not required — requests made without carrying cookies forward succeed —
+    but they mean the underlying Content Manager instance does maintain an anonymous session.
+  partial_authorization_note: >-
+    One surface behaves as if it were access-controlled: GET /Record/{uri} returns HTTP 500 with
+    "Error retrieving data for property RecordContainer. Access denied." (TrimErrorCode 22760), while
+    the document bytes under the same URI are served without complaint. This is an internal Content
+    Manager ACL leaking through the anonymous WebDrawer projection, not an authentication challenge —
+    no WWW-Authenticate header is returned and no credential would change the result for a public
+    caller.
+not_applicable:
+- api_keys
+- oauth2
+- openid_connect
+- mutual_tls
+- jwt
+- hmac_request_signing
+- basic_auth
+mandate_context: >-
+  The OEB holds no customer meter, usage or billing data, so it operates no Green Button Connect My
+  Data authorization server and issues no OAuth credentials. The consented, OAuth-2.0-protected
+  energy-data surfaces in Ontario belong to the rate-regulated utilities the OEB supervises under
+  O. Reg. 633/21 - see all/hydro-one/ and all/toronto-hydro/ for that side of the mandate.
+transport:
+  https_required: true
+  tls_version_observed: TLSv1.3
+  hsts: true
+  hsts_max_age: 31536000
+  detail: security/ontario-energy-board-domain-security.yml
+related:
+- security/ontario-energy-board-domain-security.yml
+- conventions/ontario-energy-board-conventions.yml
+- conformance/ontario-energy-board-conformance.yml
+- openapi/ontario-energy-board-rds-openapi.yml
+- openapi/ontario-energy-board-open-data-openapi.yml
