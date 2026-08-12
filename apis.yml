@@ -218,6 +218,8 @@ apis:
   - type: AgentSkill
     url: skills/ontario-energy-board-verify-green-button-mandate.md
 common:
+- type: MCPServer
+  url: mcp/ontario-energy-board-mcp.yml
 - type: DomainSecurity
   url: security/ontario-energy-board-domain-security.yml
 - type: Website
