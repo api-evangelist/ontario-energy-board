@@ -1,0 +1,2631 @@
+{
+  "item": [
+    {
+      "id": "07924a39-4236-4c81-971a-b5d6bf5320ae",
+      "name": "Applications before the OEB",
+      "description": {
+        "content": "OEB Open Data dataset landing page: https://www.oeb.ca/open-data/applications-oeb",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d5e127e5-e79f-4736-9693-31de5ab98ce8",
+          "name": "all_open_appl_Cases_v2_reportFile.xml",
+          "request": {
+            "name": "all_open_appl_Cases_v2_reportFile.xml",
+            "description": {
+              "content": "Anonymous download of \"all_open_appl_Cases_v2_reportFile.xml\" from the OEB Open Data dataset \"Applications before the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "xml",
+                "all_open_appl_Cases_v2_reportFile.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d5df574-9772-490b-a305-98f6808969b5",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "xml",
+                    "all_open_appl_Cases_v2_reportFile.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f92443f0-4330-41a2-afc5-cae3aeaddd58",
+      "name": "Current Electricity Rates (General Service < 50 kW Rate Class)",
+      "description": {
+        "content": "OEB Open Data dataset landing page: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ecfff4b0-da2f-439c-a4a3-6ff92b5740d0",
+          "name": "BillData_GS.xml",
+          "request": {
+            "name": "BillData_GS.xml",
+            "description": {
+              "content": "Anonymous download of \"BillData_GS.xml\" from the OEB Open Data dataset \"Current Electricity Rates (General Service < 50 kW Rate Class)\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "calculator",
+                "data",
+                "BillData_GS.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d967854b-514f-40e4-b3ea-b7c0b23df4a1",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "calculator",
+                    "data",
+                    "BillData_GS.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9d0b4dd9-f3fa-467c-afcd-57b84c8afa99",
+      "name": "Current Electricity Rates (Residential Rate Class)",
+      "description": {
+        "content": "OEB Open Data dataset landing page: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "649b9d3c-856b-488d-83fb-40857d4e4083",
+          "name": "BillData.xml",
+          "request": {
+            "name": "BillData.xml",
+            "description": {
+              "content": "Anonymous download of \"BillData.xml\" from the OEB Open Data dataset \"Current Electricity Rates (Residential Rate Class)\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "calculator",
+                "data",
+                "BillData.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6599836d-e5e1-4228-9677-c624414fb7a9",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "calculator",
+                    "data",
+                    "BillData.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "421330c0-38bd-49be-bba9-f2a30682a5cf",
+          "name": "data-keys-electricity-rates.xlsx",
+          "request": {
+            "name": "data-keys-electricity-rates.xlsx",
+            "description": {
+              "content": "Anonymous download of \"data-keys-electricity-rates.xlsx\" from the OEB Open Data dataset \"Current Electricity Rates (Residential Rate Class)\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                "default",
+                "files",
+                "data-keys-electricity-rates.xlsx"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a427942-88de-4405-800a-f5c403d6067e",
+              "name": "The published XLSX file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    "default",
+                    "files",
+                    "data-keys-electricity-rates.xlsx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "23a93cee-529f-4cc5-b368-a51b600f1122",
+      "name": "Current Natural Gas Rates (Residential Rate Classes)",
+      "description": {
+        "content": "OEB Open Data dataset landing page: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d12e62bd-3707-41ba-8b39-4e1ef1225ee9",
+          "name": "GasBillData.xml",
+          "request": {
+            "name": "GasBillData.xml",
+            "description": {
+              "content": "Anonymous download of \"GasBillData.xml\" from the OEB Open Data dataset \"Current Natural Gas Rates (Residential Rate Classes)\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "calculator",
+                "data",
+                "GasBillData.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55ae28ab-7a0b-4733-8efc-759edb0b2b6b",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "calculator",
+                    "data",
+                    "GasBillData.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d92acdde-e849-44f1-a5f0-cbe427dec5b7",
+          "name": "data-keys-naturalgas-rates.xlsx",
+          "request": {
+            "name": "data-keys-naturalgas-rates.xlsx",
+            "description": {
+              "content": "Anonymous download of \"data-keys-naturalgas-rates.xlsx\" from the OEB Open Data dataset \"Current Natural Gas Rates (Residential Rate Classes)\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                "default",
+                "files",
+                "data-keys-naturalgas-rates.xlsx"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5068a3b6-93f2-4be9-8a47-4eb73b6a5e11",
+              "name": "The published XLSX file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    "default",
+                    "files",
+                    "data-keys-naturalgas-rates.xlsx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a2e17db1-dd86-4fd9-9ad8-3c5ecb6e9bf7",
+      "name": "Electricity Distributor Complaints Received by the OEB",
+      "description": {
+        "content": "OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "89390945-cdb9-4905-a2ec-01d989963dfd",
+          "name": "complaints_data_2022.xml",
+          "request": {
+            "name": "complaints_data_2022.xml",
+            "description": {
+              "content": "Anonymous download of \"complaints_data_2022.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "complaints_data_2022.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a81facf-f28e-404f-880d-d725f569c0fd",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "complaints_data_2022.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6cf8e000-a1ac-4c36-b3a6-ba71868f671e",
+          "name": "complaints_data_2021.xml",
+          "request": {
+            "name": "complaints_data_2021.xml",
+            "description": {
+              "content": "Anonymous download of \"complaints_data_2021.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "complaints_data_2021.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d4b8408-2b89-4073-b91c-248d6796732b",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "complaints_data_2021.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e43d4601-7b0a-4377-96b4-2d2680c42b97",
+          "name": "complaints_data_2020.xml",
+          "request": {
+            "name": "complaints_data_2020.xml",
+            "description": {
+              "content": "Anonymous download of \"complaints_data_2020.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "complaints_data_2020.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "924807b4-8fff-4721-9f08-5e23926b17e4",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "complaints_data_2020.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc68ab59-a98f-4fe2-bb5e-3c1f5a4e1452",
+          "name": "complaints_data_2019.xml",
+          "request": {
+            "name": "complaints_data_2019.xml",
+            "description": {
+              "content": "Anonymous download of \"complaints_data_2019.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "complaints_data_2019.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "316647b0-4f98-4b79-a88a-58546c6e4a64",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "complaints_data_2019.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c7a6753-1161-49d0-a672-2f94e50be8c0",
+          "name": "complaints_data_2018.xml",
+          "request": {
+            "name": "complaints_data_2018.xml",
+            "description": {
+              "content": "Anonymous download of \"complaints_data_2018.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "complaints_data_2018.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f3428b2-8383-4f5b-a078-299021eae1ad",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "complaints_data_2018.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d00fd5a-f395-4ce8-9e66-97923cf0148c",
+          "name": "complaints_data_2017.xml",
+          "request": {
+            "name": "complaints_data_2017.xml",
+            "description": {
+              "content": "Anonymous download of \"complaints_data_2017.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "complaints_data_2017.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a7fe1069-1308-4476-9e7e-a82586349dc3",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "complaints_data_2017.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aab896ba-2e11-443d-b875-b7fe9c657f66",
+          "name": "complaints_data_2016.xml",
+          "request": {
+            "name": "complaints_data_2016.xml",
+            "description": {
+              "content": "Anonymous download of \"complaints_data_2016.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "complaints_data_2016.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de0a2e94-00f1-4d1b-9420-40906cf93b7c",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "complaints_data_2016.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38265162-4a36-43b5-92aa-669676da27e8",
+          "name": "complaints_data_2015.xml",
+          "request": {
+            "name": "complaints_data_2015.xml",
+            "description": {
+              "content": "Anonymous download of \"complaints_data_2015.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "complaints_data_2015.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dbca81b7-ce19-4e13-bf6b-7427728a485a",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "complaints_data_2015.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73f03eb7-9a87-4c40-ba00-f5bdb83b253a",
+          "name": "complaints_data_2014.xml",
+          "request": {
+            "name": "complaints_data_2014.xml",
+            "description": {
+              "content": "Anonymous download of \"complaints_data_2014.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "complaints_data_2014.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5efc4d4-bf10-4a59-834e-f55e8bea7572",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "complaints_data_2014.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c034cbf2-1418-4add-b322-e29e54a93237",
+          "name": "complaints_data_2013.xml",
+          "request": {
+            "name": "complaints_data_2013.xml",
+            "description": {
+              "content": "Anonymous download of \"complaints_data_2013.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "complaints_data_2013.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6f21f2f-7818-499a-a829-e6f6a0376d59",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "complaints_data_2013.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "21293e54-17e5-456e-a9c1-50304f635633",
+      "name": "Electricity Distributor Performance – Scorecard",
+      "description": {
+        "content": "OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e0778dfc-a123-4a4a-8fbd-63e00709d5f1",
+          "name": "scorecard_data_2024.xml",
+          "request": {
+            "name": "scorecard_data_2024.xml",
+            "description": {
+              "content": "Anonymous download of \"scorecard_data_2024.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "scorecard_data_2024.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a80bec53-2c9a-432a-acfb-2fd465ac9a05",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "scorecard_data_2024.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5d4021a-8f55-439b-8494-a4d99071faff",
+          "name": "scorecard_data_2023.xml",
+          "request": {
+            "name": "scorecard_data_2023.xml",
+            "description": {
+              "content": "Anonymous download of \"scorecard_data_2023.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "scorecard_data_2023.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0720ea28-5f32-4e82-8d9e-07b2946b139b",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "scorecard_data_2023.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dea7d40d-0dc8-4097-b46b-55b6127bd3ac",
+          "name": "scorecard_data_2022.xml",
+          "request": {
+            "name": "scorecard_data_2022.xml",
+            "description": {
+              "content": "Anonymous download of \"scorecard_data_2022.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "scorecard_data_2022.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ba2718b-4561-444d-9881-0aba2fb16195",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "scorecard_data_2022.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a65539b7-aaed-4609-ab92-d7e65e77710d",
+          "name": "scorecard_data_2021.xml",
+          "request": {
+            "name": "scorecard_data_2021.xml",
+            "description": {
+              "content": "Anonymous download of \"scorecard_data_2021.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "scorecard_data_2021.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce0f6af2-7803-4433-ab16-1b818c3c3725",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "scorecard_data_2021.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82a3b5d7-41b8-4521-b992-84512f84b8be",
+          "name": "scorecard_data_2020.xml",
+          "request": {
+            "name": "scorecard_data_2020.xml",
+            "description": {
+              "content": "Anonymous download of \"scorecard_data_2020.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "scorecard_data_2020.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33edfb2c-c9de-4da0-9d96-15320f9305f0",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "scorecard_data_2020.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04156b60-d99e-4eb2-afae-f5223f283c5c",
+          "name": "scorecard_data_2019.xml",
+          "request": {
+            "name": "scorecard_data_2019.xml",
+            "description": {
+              "content": "Anonymous download of \"scorecard_data_2019.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "scorecard_data_2019.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "108fc3d6-de7c-4b05-b104-fb47a131c2c3",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "scorecard_data_2019.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10f2c486-f43b-445b-8b0a-48e15949adb7",
+          "name": "scorecard_data_2018.xml",
+          "request": {
+            "name": "scorecard_data_2018.xml",
+            "description": {
+              "content": "Anonymous download of \"scorecard_data_2018.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "scorecard_data_2018.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "caa6ffc7-681d-4d89-8194-9cc42ccb8dcb",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "scorecard_data_2018.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "793691d1-38cf-42b1-81fc-c1d778bbe038",
+          "name": "scorecard_data_2017.xml",
+          "request": {
+            "name": "scorecard_data_2017.xml",
+            "description": {
+              "content": "Anonymous download of \"scorecard_data_2017.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "scorecard_data_2017.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56c1297e-8914-4be4-af35-42527c1404fe",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "scorecard_data_2017.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5dfebb6b-30cb-4ecc-9740-949a8831fc80",
+          "name": "scorecard_data_2016.xml",
+          "request": {
+            "name": "scorecard_data_2016.xml",
+            "description": {
+              "content": "Anonymous download of \"scorecard_data_2016.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "scorecard_data_2016.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c68e3558-2030-495e-a33a-c6e2e890413f",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "scorecard_data_2016.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4c3a2d7-1e68-4801-9174-57186b616d9c",
+          "name": "scorecard_data_2015.xml",
+          "request": {
+            "name": "scorecard_data_2015.xml",
+            "description": {
+              "content": "Anonymous download of \"scorecard_data_2015.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "scorecard_data_2015.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71156685-376c-4633-8158-3411aad59812",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "scorecard_data_2015.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd187944-2d43-4fa7-ae23-5cd006c29fce",
+          "name": "scorecard_data_2014.xml",
+          "request": {
+            "name": "scorecard_data_2014.xml",
+            "description": {
+              "content": "Anonymous download of \"scorecard_data_2014.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "scorecard_data_2014.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d4d7fb01-f461-4677-b72a-7638c6bef1de",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "scorecard_data_2014.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45897a96-5db6-4c79-86b7-73627768ea2b",
+          "name": "scorecard_data_2013.xml",
+          "request": {
+            "name": "scorecard_data_2013.xml",
+            "description": {
+              "content": "Anonymous download of \"scorecard_data_2013.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "performance",
+                "data",
+                "scorecard_data_2013.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fefaba35-3e74-4d05-9f41-2401c026a94f",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "performance",
+                    "data",
+                    "scorecard_data_2013.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "03171082-78c4-421b-b239-45c28df2e8ae",
+      "name": "Electricity Reporting & Record Keeping Requirements (RRR): Section ...",
+      "description": {
+        "content": "OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "313bd09c-1271-4eaa-a344-c93406c3a400",
+          "name": "2.1.4.2 System Reliability Indicators.xml",
+          "request": {
+            "name": "2.1.4.2 System Reliability Indicators.xml",
+            "description": {
+              "content": "Anonymous download of \"2.1.4.2 System Reliability Indicators.xml\" from the OEB Open Data dataset \"Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.4.2 System Reliability Indicators\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents",
+                "opendata",
+                "rrr",
+                "2.1.4.2%20System%20Reliability%20Indicators.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3826b7d0-2aa1-4f7f-b846-9fd4147894bf",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    "opendata",
+                    "rrr",
+                    "2.1.4.2%20System%20Reliability%20Indicators.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f94dad33-4a22-482f-92dd-e5af73e802af",
+      "name": "Electricity and Natural Gas Distributors - Service Areas",
+      "description": {
+        "content": "OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3238ab1d-2fe5-46d1-a36b-e95d7ad09bd8",
+          "name": "open-data-electricity-map-20260429.zip",
+          "request": {
+            "name": "open-data-electricity-map-20260429.zip",
+            "description": {
+              "content": "Anonymous download of \"open-data-electricity-map-20260429.zip\" from the OEB Open Data dataset \"Electricity and Natural Gas Distributors - Service Areas\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents",
+                "opendata",
+                "open-data-electricity-map-20260429.zip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/zip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "663545ae-3a1a-4a1f-a48a-b413f170aa08",
+              "name": "The published ZIP file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    "opendata",
+                    "open-data-electricity-map-20260429.zip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/zip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/zip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4a773ca-6ba4-4ae2-9dbe-732d7b0cc7f2",
+          "name": "open-data-naturalgas-map-20260225.zip",
+          "request": {
+            "name": "open-data-naturalgas-map-20260225.zip",
+            "description": {
+              "content": "Anonymous download of \"open-data-naturalgas-map-20260225.zip\" from the OEB Open Data dataset \"Electricity and Natural Gas Distributors - Service Areas\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents",
+                "opendata",
+                "open-data-naturalgas-map-20260225.zip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/zip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d12b4829-7f5a-425b-80c2-cdf26fe5d7f7",
+              "name": "The published ZIP file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    "opendata",
+                    "open-data-naturalgas-map-20260225.zip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/zip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/zip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "06f4fde1-c740-4feb-b7f4-1e44d64cc43c",
+      "name": "Historical Regulated Price Plan Electricity Rates",
+      "description": {
+        "content": "OEB Open Data dataset landing page: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e783bbfe-4489-45af-8e92-f9eb9b5dbfc7",
+          "name": "historical-rpp-prices.xlsx",
+          "request": {
+            "name": "historical-rpp-prices.xlsx",
+            "description": {
+              "content": "Anonymous download of \"historical-rpp-prices.xlsx\" from the OEB Open Data dataset \"Historical Regulated Price Plan Electricity Rates\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                "default",
+                "files",
+                "historical-rpp-prices.xlsx"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a9062afa-31a5-4ae3-898e-af5dec7e1be1",
+              "name": "The published XLSX file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    "default",
+                    "files",
+                    "historical-rpp-prices.xlsx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7c3403b3-202b-43e8-b6ff-1ad25cd7a59e",
+      "name": "Licensed Market Participants",
+      "description": {
+        "content": "OEB Open Data dataset landing page: https://www.oeb.ca/open-data/licensed-market-participants",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fae559a7-35c7-462e-97ed-2e552d7484a5",
+          "name": "all_Licences_report_File.xml",
+          "request": {
+            "name": "all_Licences_report_File.xml",
+            "description": {
+              "content": "Anonymous download of \"all_Licences_report_File.xml\" from the OEB Open Data dataset \"Licensed Market Participants\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "_html",
+                "xml",
+                "all_Licences_report_File.xml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc8bbdb1-4e8d-4863-a5fe-64ceb99f4bf0",
+              "name": "The published XML file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "_html",
+                    "xml",
+                    "all_Licences_report_File.xml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.oeb.ca",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e345f75c-0690-4b6c-be87-527a45e80d55",
+    "name": "OEB Open Data",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A machine-readable description of the Ontario Energy Board's Open Data programme as an HTTP surface.\n\nPROVENANCE. The OEB publishes no OpenAPI, no API reference and no base path. Open Data is a set of stable, versioned files linked from 40 dataset landing pages under https://www.oeb.ca/ontarios-energy-sector/open-data. This document was GENERATED by API Evangelist on 2026-07-27 by crawling those pages and probing the files they link. Only files that returned HTTP 200 to an anonymous request in that run appear as operations, and each carries an x-evidence block with the probed URL, status, content type, byte size and Last-Modified. The OEB's pages link a further ~165 historical and current RRR files (the 2015-2021, 2023 and 2024-2 series, plus the natural gas GD series) that this run could not verify because the host stopped answering under sustained probing; the full published inventory is recorded in data-model/ontario-energy-board-data-model.yml rather than asserted here as live operations.\n\nThere is no query interface: no parameters, no pagination, no filtering, no content negotiation, no conditional request contract beyond the Last-Modified/ETag the web server sets. Every operation is an unconditional GET of a whole file. Authentication: none.\n\nRate limiting: undocumented but real. Sustained parallel requests from one client caused www.oeb.ca to stop answering entirely (connection timeouts, no HTTP status) on 2026-07-27. Fetch serially and cache.\n\nContact Support:\n Name: Ontario Energy Board",
+      "type": "text/plain"
+    }
+  }
+}

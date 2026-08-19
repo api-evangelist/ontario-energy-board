@@ -1,0 +1,453 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OEB Open Data",
+    "version": "2026-07-27"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications before the OEB",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "all_open_appl_Cases_v2_reportFile.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml"
+          },
+          "docs": "Anonymous download of \"all_open_appl_Cases_v2_reportFile.xml\" from the OEB Open Data dataset \"Applications before the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Current Electricity Rates (General Service < 50 kW Rate Class)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "BillData_GS.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/calculator/data/BillData_GS.xml"
+          },
+          "docs": "Anonymous download of \"BillData_GS.xml\" from the OEB Open Data dataset \"Current Electricity Rates (General Service < 50 kW Rate Class)\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Current Electricity Rates (Residential Rate Class)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "BillData.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/calculator/data/BillData.xml"
+          },
+          "docs": "Anonymous download of \"BillData.xml\" from the OEB Open Data dataset \"Current Electricity Rates (Residential Rate Class)\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "data-keys-electricity-rates.xlsx",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/sites/default/files/data-keys-electricity-rates.xlsx"
+          },
+          "docs": "Anonymous download of \"data-keys-electricity-rates.xlsx\" from the OEB Open Data dataset \"Current Electricity Rates (Residential Rate Class)\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Current Natural Gas Rates (Residential Rate Classes)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GasBillData.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/calculator/data/GasBillData.xml"
+          },
+          "docs": "Anonymous download of \"GasBillData.xml\" from the OEB Open Data dataset \"Current Natural Gas Rates (Residential Rate Classes)\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "data-keys-naturalgas-rates.xlsx",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/sites/default/files/data-keys-naturalgas-rates.xlsx"
+          },
+          "docs": "Anonymous download of \"data-keys-naturalgas-rates.xlsx\" from the OEB Open Data dataset \"Current Natural Gas Rates (Residential Rate Classes)\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Electricity and Natural Gas Distributors - Service Areas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "open-data-electricity-map-20260429.zip",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip"
+          },
+          "docs": "Anonymous download of \"open-data-electricity-map-20260429.zip\" from the OEB Open Data dataset \"Electricity and Natural Gas Distributors - Service Areas\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "open-data-naturalgas-map-20260225.zip",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip"
+          },
+          "docs": "Anonymous download of \"open-data-naturalgas-map-20260225.zip\" from the OEB Open Data dataset \"Electricity and Natural Gas Distributors - Service Areas\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Electricity Distributor Complaints Received by the OEB",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "complaints_data_2022.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/complaints_data_2022.xml"
+          },
+          "docs": "Anonymous download of \"complaints_data_2022.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "complaints_data_2021.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/complaints_data_2021.xml"
+          },
+          "docs": "Anonymous download of \"complaints_data_2021.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "complaints_data_2020.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/complaints_data_2020.xml"
+          },
+          "docs": "Anonymous download of \"complaints_data_2020.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "complaints_data_2019.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/complaints_data_2019.xml"
+          },
+          "docs": "Anonymous download of \"complaints_data_2019.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "complaints_data_2018.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/complaints_data_2018.xml"
+          },
+          "docs": "Anonymous download of \"complaints_data_2018.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "complaints_data_2017.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/complaints_data_2017.xml"
+          },
+          "docs": "Anonymous download of \"complaints_data_2017.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "complaints_data_2016.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/complaints_data_2016.xml"
+          },
+          "docs": "Anonymous download of \"complaints_data_2016.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "complaints_data_2015.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/complaints_data_2015.xml"
+          },
+          "docs": "Anonymous download of \"complaints_data_2015.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "complaints_data_2014.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/complaints_data_2014.xml"
+          },
+          "docs": "Anonymous download of \"complaints_data_2014.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "complaints_data_2013.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/complaints_data_2013.xml"
+          },
+          "docs": "Anonymous download of \"complaints_data_2013.xml\" from the OEB Open Data dataset \"Electricity Distributor Complaints Received by the OEB\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Electricity Distributor Performance – Scorecard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "scorecard_data_2024.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml"
+          },
+          "docs": "Anonymous download of \"scorecard_data_2024.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "scorecard_data_2023.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/scorecard_data_2023.xml"
+          },
+          "docs": "Anonymous download of \"scorecard_data_2023.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "scorecard_data_2022.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/scorecard_data_2022.xml"
+          },
+          "docs": "Anonymous download of \"scorecard_data_2022.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "scorecard_data_2021.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/scorecard_data_2021.xml"
+          },
+          "docs": "Anonymous download of \"scorecard_data_2021.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "scorecard_data_2020.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/scorecard_data_2020.xml"
+          },
+          "docs": "Anonymous download of \"scorecard_data_2020.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "scorecard_data_2019.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/scorecard_data_2019.xml"
+          },
+          "docs": "Anonymous download of \"scorecard_data_2019.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "scorecard_data_2018.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/scorecard_data_2018.xml"
+          },
+          "docs": "Anonymous download of \"scorecard_data_2018.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "scorecard_data_2017.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/scorecard_data_2017.xml"
+          },
+          "docs": "Anonymous download of \"scorecard_data_2017.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "scorecard_data_2016.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/scorecard_data_2016.xml"
+          },
+          "docs": "Anonymous download of \"scorecard_data_2016.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "scorecard_data_2015.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/scorecard_data_2015.xml"
+          },
+          "docs": "Anonymous download of \"scorecard_data_2015.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "scorecard_data_2014.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/scorecard_data_2014.xml"
+          },
+          "docs": "Anonymous download of \"scorecard_data_2014.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        },
+        {
+          "info": {
+            "name": "scorecard_data_2013.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/performance/data/scorecard_data_2013.xml"
+          },
+          "docs": "Anonymous download of \"scorecard_data_2013.xml\" from the OEB Open Data dataset \"Electricity Distributor Performance – Scorecard\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Historical Regulated Price Plan Electricity Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "historical-rpp-prices.xlsx",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/sites/default/files/historical-rpp-prices.xlsx"
+          },
+          "docs": "Anonymous download of \"historical-rpp-prices.xlsx\" from the OEB Open Data dataset \"Historical Regulated Price Plan Electricity Rates\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Licensed Market Participants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "all_Licences_report_File.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/_html/xml/all_Licences_report_File.xml"
+          },
+          "docs": "Anonymous download of \"all_Licences_report_File.xml\" from the OEB Open Data dataset \"Licensed Market Participants\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Electricity Reporting & Record Keeping Requirements (RRR): Section ...",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "2.1.4.2 System Reliability Indicators.xml",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml"
+          },
+          "docs": "Anonymous download of \"2.1.4.2 System Reliability Indicators.xml\" from the OEB Open Data dataset \"Electricity Reporting & Record Keeping Requirements (RRR): Section 2.1.4.2 System Reliability Indicators\". No API key, no signup, no terms click-through. Published under the Open Government Licence - Ontario."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

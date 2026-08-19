@@ -1,0 +1,568 @@
+{
+  "item": [
+    {
+      "id": "91f235ca-7030-4400-a1dc-29c66964f557",
+      "name": "Records",
+      "description": {
+        "content": "Search and retrieve records (filings, decisions, orders, licences, correspondence) in the OEB case record.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "daa6b83a-90e1-48f3-825a-7bb085d4cf71",
+          "name": "Search the OEB regulatory document record",
+          "request": {
+            "name": "Search the OEB regulatory document record",
+            "description": {
+              "content": "Runs a Content Manager record search and returns matching records. With `format=json` the response is a Content Manager `TRIMServiceAPIModel` payload; without it the same query renders an HTML results page. Results carry the OEB's own regulatory fields — CaseNumber, SIDocumentType, Applicant, EnergyType, PrimaryApplicationType, DateIssued, fDateReceived.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Record"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search clause. Use `<term>=<value>` for comparison or `<term>:<value>` for word/contains matching. The complete set of 303 valid terms is published live at /Help/WDSearchClauseDefJS?trimType=Record and captured in vocabulary/ontario-energy-board-rds-search-clauses.yml."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Response projection. `json` returns application/json; omitted returns the HTML results page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Sort clause; a trailing `-` sorts descending. 87 of the 303 clauses are sortable (`CanSort: true` in the clause definitions). This is the parameter the OEB's own website links use."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "Number of records returned in this page. Values from 1 to 400 were observed in OEB-authored links."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "1-based index of the first record to return; the paging cursor for `pageSize`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ceabdd9-f935-4031-955d-3bc3726cf0f2",
+              "name": "Search executed. NOTE — a rejected or malformed clause also returns 200 with an empty `Results` array and the reason in plain English in `SearchTitle`, not an HTTP error status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Record"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "CaseNumber=EB-2021-0183"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "recRegisteredOn-"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "400"
+                    },
+                    {
+                      "key": "start",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary\": \"Two records from case EB-2021-0183\",\n  \"externalValue\": \"examples/ontario-energy-board-rds-record-search-response.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e49c41cc-c284-4b26-a7cd-c54c8eff9391",
+          "name": "Retrieve a single record by Content Manager URI",
+          "request": {
+            "name": "Retrieve a single record by Content Manager URI",
+            "description": {
+              "content": "Record detail by URI. Observed to fail for an anonymous caller — the server attempts to resolve `RecordContainer` and returns HTTP 500 carrying a `TrimException` in `ResponseStatus`. The document bytes are nevertheless reachable anonymously through the `/File/document` sub-resource below. Recorded because it was probed, not because it works.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Record",
+                ":uri"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "uri",
+                  "description": "(Required) Content Manager record URI, an opaque integer returned as `Uri` on every search hit."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96f90612-850b-4ec7-ad12-15dd6d5c24bf",
+              "name": "TrimException — \"Error retrieving data for property RecordContainer. Access denied.\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Record",
+                    ":uri"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "uri",
+                      "description": "(Required) Content Manager record URI, an opaque integer returned as `Uri` on every search hit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"externalValue\": \"examples/ontario-energy-board-rds-error-500-access-denied.json\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8bb22786-f181-4c41-bd76-0ce3738f4c74",
+          "name": "Download the document filed under a record",
+          "request": {
+            "name": "Download the document filed under a record",
+            "description": {
+              "content": "Returns the underlying filed document — overwhelmingly PDF, with MSG, DOC and XLS also present in the record (`RecordExtension` on each search hit tells you which). Anonymous, no key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Record",
+                ":uri",
+                "File",
+                "document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "uri",
+                  "description": "(Required) Content Manager record URI, an opaque integer returned as `Uri` on every search hit."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b678cba5-b210-4d03-a532-dda4a45c05aa",
+              "name": "The document bytes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Record",
+                    ":uri",
+                    "File",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "uri",
+                      "description": "(Required) Content Manager record URI, an opaque integer returned as `Uri` on every search hit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9d5615e3-0acc-4fe6-a71e-2b67e4b99e11",
+              "name": "No such record, or the record has no electronic document. Returns the WebDrawer HTML error page, not JSON.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Record",
+                    ":uri",
+                    "File",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "uri",
+                      "description": "(Required) Content Manager record URI, an opaque integer returned as `Uri` on every search hit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8b3f14ce-14c2-4fd6-902d-d8c302cb76b0",
+      "name": "Search Metadata",
+      "description": {
+        "content": "The machine-readable query vocabulary the RDS search form itself loads.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2927735f-1d7b-485b-814c-297f577f9ff8",
+          "name": "The full query vocabulary accepted by the q parameter",
+          "request": {
+            "name": "The full query vocabulary accepted by the q parameter",
+            "description": {
+              "content": "Returns a JavaScript document declaring `var searchClauses = [...]` — 303 clause definitions with InternalName, Name, MethodGroup, ObjectTypeParameter, ParameterFormat, CanSort and Caption. This is the only machine-readable description of the RDS query language that exists; the RDS search form loads it to build its own dropdowns. Parsed into vocabulary/ontario-energy-board-rds-search-clauses.yml.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Help",
+                "WDSearchClauseDefJS"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "trimType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/javascript"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7508779-590e-4eca-bbdc-ed778d214b77",
+              "name": "JavaScript source declaring the searchClauses array.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Help",
+                    "WDSearchClauseDefJS"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "trimType",
+                      "value": "Record"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/javascript"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/javascript"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5c525b6-38a8-4cf6-abc2-6ca48d99a3cb",
+          "name": "Labels for the search clause groups and special date values",
+          "request": {
+            "name": "Labels for the search clause groups and special date values",
+            "description": {
+              "content": "Returns a JavaScript document declaring `var enums = {...}` with the display labels for each clause group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "EnumItemJS"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Enums",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated enum names."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/javascript"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a655cd1-fc89-4bbd-b6cd-f5c48fe8f77f",
+              "name": "JavaScript source declaring the enums object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "EnumItemJS"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Enums",
+                      "value": "SearchClauseGroup,SpecialDates"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/javascript"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/javascript"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.rds.oeb.ca/CMWebDrawer",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "612ec9d8-26ea-4c17-b73b-6ef975dbbd46",
+    "name": "OEB Regulatory Document Search (RDS)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A machine-readable description of the query surface the Ontario Energy Board's Regulatory Document Search (RDS) actually serves at https://www.rds.oeb.ca/CMWebDrawer.\n\nIMPORTANT — PROVENANCE. The OEB does **not** publish this definition. The OEB publishes no API reference, no base-URI statement, no query-syntax documentation, no OpenAPI, no rate-limit policy and no terms for this interface. RDS runs on Micro Focus / OpenText Content Manager WebDrawer, and the JSON projection described here is default behaviour of that product, reached by adding `format=json` to the same parameterised `Record` URLs the OEB itself links to from www.oeb.ca (the licensed-companies list alone links hundreds of them). This document was **generated by API Evangelist from live anonymous probes on 2026-07-27** — every path, parameter, status code, media type and schema below was observed, and each operation carries an `x-evidence` block naming the exact URL probed and what came back. Nothing here is inferred from documentation, because there is none. Treat it as an accurate map of an undocumented, unsupported surface that the OEB may change or withdraw without notice — not as an offered API contract.\n\nAuthentication: none. Every request below was made anonymously with no key, no token, no cookie and no signup.\n\nContact Support:\n Name: Ontario Energy Board",
+      "type": "text/plain"
+    }
+  }
+}

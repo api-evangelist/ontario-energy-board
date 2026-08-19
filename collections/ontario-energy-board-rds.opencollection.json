@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OEB Regulatory Document Search (RDS)",
+    "version": "2026-07-27"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search the OEB regulatory document record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.rds.oeb.ca/CMWebDrawer/Record",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search clause. Use `<term>=<value>` for comparison or `<term>:<value>` for word/contains matching. The complete set of 303 valid terms is published live at /Help/WDSearchClauseDefJS?trimType=Record and captured in vocabulary/ontario-energy-board-rds-search-clauses.yml."
+              },
+              {
+                "name": "format",
+                "value": "json",
+                "type": "query",
+                "description": "Response projection. `json` returns application/json; omitted returns the HTML results page."
+              },
+              {
+                "name": "sortBy",
+                "value": "recRegisteredOn-",
+                "type": "query",
+                "description": "Sort clause; a trailing `-` sorts descending. 87 of the 303 clauses are sortable (`CanSort: true` in the clause definitions). This is the parameter the OEB's own website links use."
+              },
+              {
+                "name": "pageSize",
+                "value": "400",
+                "type": "query",
+                "description": "Number of records returned in this page. Values from 1 to 400 were observed in OEB-authored links."
+              },
+              {
+                "name": "start",
+                "value": "2",
+                "type": "query",
+                "description": "1-based index of the first record to return; the paging cursor for `pageSize`."
+              }
+            ]
+          },
+          "docs": "Runs a Content Manager record search and returns matching records. With `format=json` the response is a Content Manager `TRIMServiceAPIModel` payload; without it the same query renders an HTML results page. Results carry the OEB's own regulatory fields — CaseNumber, SIDocumentType, Applicant, EnergyType, PrimaryApplicationType, DateIssued, fDateReceived."
+        },
+        {
+          "info": {
+            "name": "Retrieve a single record by Content Manager URI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.rds.oeb.ca/CMWebDrawer/Record/:uri",
+            "params": [
+              {
+                "name": "uri",
+                "value": "891285",
+                "type": "path",
+                "description": "Content Manager record URI, an opaque integer returned as `Uri` on every search hit."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Record detail by URI. Observed to fail for an anonymous caller — the server attempts to resolve `RecordContainer` and returns HTTP 500 carrying a `TrimException` in `ResponseStatus`. The document bytes are nevertheless reachable anonymously through the `/File/document` sub-resource below. Recorded because it was probed, not because it works."
+        },
+        {
+          "info": {
+            "name": "Download the document filed under a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.rds.oeb.ca/CMWebDrawer/Record/:uri/File/document",
+            "params": [
+              {
+                "name": "uri",
+                "value": "891285",
+                "type": "path",
+                "description": "Content Manager record URI, an opaque integer returned as `Uri` on every search hit."
+              }
+            ]
+          },
+          "docs": "Returns the underlying filed document — overwhelmingly PDF, with MSG, DOC and XLS also present in the record (`RecordExtension` on each search hit tells you which). Anonymous, no key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "The full query vocabulary accepted by the q parameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.rds.oeb.ca/CMWebDrawer/Help/WDSearchClauseDefJS",
+            "params": [
+              {
+                "name": "trimType",
+                "value": "Record",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a JavaScript document declaring `var searchClauses = [...]` — 303 clause definitions with InternalName, Name, MethodGroup, ObjectTypeParameter, ParameterFormat, CanSort and Caption. This is the only machine-readable description of the RDS query language that exists; the RDS search form loads it to build its own dropdowns. Parsed into vocabulary/ontario-energy-board-rds-search-clauses.yml."
+        },
+        {
+          "info": {
+            "name": "Labels for the search clause groups and special date values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.rds.oeb.ca/CMWebDrawer/EnumItemJS",
+            "params": [
+              {
+                "name": "Enums",
+                "value": "SearchClauseGroup,SpecialDates",
+                "type": "query",
+                "description": "Comma-separated enum names."
+              }
+            ]
+          },
+          "docs": "Returns a JavaScript document declaring `var enums = {...}` with the display labels for each clause group."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
