@@ -44,38 +44,16 @@ created: '2026-07-27'
 modified: '2026-07-27'
 specificationVersion: '0.23'
 apis:
-- aid: ontario-energy-board:oeb-open-data
-  name: OEB Open Data
-  description: The Ontario Energy Board's Open Data programme, launched September 2022 under
-    Ontario's Digital and Data Directive (2021) and expanded in October 2023 ("Open Data 2.0")
-    and August 2024. A crawl of both pages of the programme index on 2026-07-27 found 40 datasets
-    linking 198 individual files (the earlier round recorded 18 datasets), all directly downloadable, anonymous, key-free
-    files — no registration, no application, no rate limit and no terms click-through — under
-    the Open Government Licence – Ontario. The largest share is XML — the daily-refreshed register
-    of every open application before the Board, three monthly/quarterly rate files that back
-    the OEB's own bill calculator, twelve annual electricity distributor performance scorecard
-    files (2013-2024), ten annual consumer complaint files, and thirteen Reporting and Record-keeping
-    Requirements (RRR) series covering system reliability, service quality, major event response,
-    billing accuracy, LEAP low-income assistance, customers and connections, labour, capital,
-    supply and delivery, demand and revenue, utility characteristics and regulated return on
-    equity, each published as separate current, 2015-2021, 2023 and 2024 files. Distributor
-    service-territory boundaries ship as GIS ZIP archives for electricity and natural gas. This
-    is not a query API — there is no base path, no parameters, no pagination and no machine-readable
-    contract of any kind. It is a set of stable, versioned, anonymously fetchable files with
-    a published guide for importing the XML into Excel. Verified live on 2026-07-27, every URL
-    below returning HTTP 200.
+- aid: ontario-energy-board:ontario-energy-board-applications-before-the-oeb-api
+  name: Ontario Energy Board Applications before the OEB API
+  description: 'OEB Open Data dataset landing page: https://www.oeb.ca/open-data/applications-oeb'
   humanURL: https://www.oeb.ca/open-data
+  baseURL: https://www.oeb.ca
   tags:
-  - Open Data
-  - Energy
-  - Electricity
-  - Gas
-  - Rates
-  - Utility Performance
-  - Regulatory
-  - XML
-  - GIS
+  - Applications before the OEB
   properties:
+  - type: OpenAPI
+    url: openapi/ontario-energy-board-applications-before-the-oeb-api-openapi.yml
   - type: Documentation
     url: https://www.oeb.ca/open-data
   - type: GettingStarted
@@ -123,39 +101,46 @@ apis:
   - type: Documentation
     url: https://www.oeb.ca/open-data/electricity-distribution-rates-databases
   - type: Documentation
-    url: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
   - type: Dataset
-    url: https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+    url: >-
+      https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
   - type: Documentation
-    url: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
   - type: Documentation
-    url: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
   - type: Documentation
-    url: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
   - type: Documentation
-    url: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
   - type: Documentation
-    url: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
   - type: Documentation
-    url: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
   - type: Documentation
-    url: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
   - type: Documentation
-    url: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
   - type: Documentation
-    url: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
   - type: Documentation
-    url: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
   - type: Documentation
-    url: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
-  - type: OpenAPI
-    url: openapi/ontario-energy-board-open-data-openapi.yml
-  - type: Overlay
-    url: overlays/ontario-energy-board-open-data-overlay.yaml
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
   - type: DataModel
     url: data-model/ontario-energy-board-data-model.yml
-  - type: AgentSkill
-    url: skills/ontario-energy-board-pull-open-data.md
   - type: Documentation
     url: https://www.oeb.ca/open-data/licensed-market-participants
   - type: Dataset
@@ -166,43 +151,13 @@ apis:
     url: https://www.oeb.ca/open-data/intervenor-cost-awards
   - type: Documentation
     url: https://www.oeb.ca/ontarios-energy-sector/open-data?page=1
-  baseURL: https://www.oeb.ca
-- aid: ontario-energy-board:oeb-regulatory-document-search
-  name: OEB Regulatory Document Search (RDS)
-  description: The OEB's public regulatory document search, serving every filing, decision,
-    order, licence, code amendment and piece of correspondence in the Board's case record. It
-    runs on Micro Focus / OpenText Content Manager WebDrawer, and the OEB links directly to
-    parameterised query URLs of the form /CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
-    from its own website — the licensed-companies list alone links hundreds of them. Fetched
-    anonymously on 2026-07-27, this surface also honours a `format=json` parameter and returns
-    application/json — a Content Manager ServiceAPIModel payload with Results, TotalResults,
-    Count, HasMoreItems and typed Fields including CaseNumber, SIDocumentType, Applicant, EnergyType,
-    PrimaryApplicationType and DateIssued — while /CMWebDrawer/Record/{uri}/File/document returns
-    the underlying PDF. IMPORTANT — the OEB publishes no API reference, no base-URI statement,
-    no query-syntax documentation, no OpenAPI and no terms for this interface; the JSON output
-    is default behaviour of the underlying WebDrawer product, not a product the OEB documents
-    or supports. It is recorded here because it was verified live and anonymous, not because
-    it is an offered API. No key, no signup, no rate-limit policy published.
-  humanURL: https://www.oeb.ca/rds
-  baseURL: https://www.rds.oeb.ca/CMWebDrawer
-  tags:
-  - Regulatory
-  - Document Search
-  - Filings
-  - Decisions
-  - Licences
-  - Undocumented
-  properties:
   - type: Documentation
     url: https://www.oeb.ca/rds
   - type: Reference
-    url: https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+    url: >-
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
   - type: Documentation
     url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
-  - type: OpenAPI
-    url: openapi/ontario-energy-board-rds-openapi.yml
-  - type: Overlay
-    url: overlays/ontario-energy-board-rds-overlay.yaml
   - type: JSONSchema
     url: json-schema/ontario-energy-board-rds-record-search-response.json
   - type: Examples
@@ -213,11 +168,1409 @@ apis:
     url: errors/ontario-energy-board-problem-types.yml
   - type: Authentication
     url: authentication/ontario-energy-board-authentication.yml
-  - type: AgentSkill
-    url: skills/ontario-energy-board-track-case-filings.md
-  - type: AgentSkill
-    url: skills/ontario-energy-board-verify-green-button-mandate.md
+- aid: >-
+    ontario-energy-board:ontario-energy-board-current-electricity-rates-general-service-50-kw-rate-class-api
+  name: Ontario Energy Board Current Electricity Rates (General Service < 50 kW Rate Class) API
+  description: >-
+    OEB Open Data dataset landing page: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
+  humanURL: https://www.oeb.ca/open-data
+  baseURL: https://www.oeb.ca
+  tags:
+  - Current Electricity Rates (General Service < 50 kW Rate Class)
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/ontario-energy-board-current-electricity-rates-general-service-50-kw-rate-class-api-openapi.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data
+  - type: GettingStarted
+    url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+  - type: ContentLicense
+    url: https://www.ontario.ca/page/open-government-licence-ontario
+  - type: Reference
+    url: https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEBltr-Transition-to-Open-Data-20220929.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-Letter-Open-Data-2.0-20231006.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-letter-open-data-20240827.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/applications-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData_GS.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/GasBillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/complaints_data_2022.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distribution-rates-databases
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+  - type: Dataset
+    url: >-
+      https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
+  - type: DataModel
+    url: data-model/ontario-energy-board-data-model.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/licensed-market-participants
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_Licences_report_File.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/intervenor-cost-awards
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/open-data?page=1
+  - type: Documentation
+    url: https://www.oeb.ca/rds
+  - type: Reference
+    url: >-
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
+  - type: JSONSchema
+    url: json-schema/ontario-energy-board-rds-record-search-response.json
+  - type: Examples
+    url: examples/ontario-energy-board-rds-record-search-response.json
+  - type: Vocabulary
+    url: vocabulary/ontario-energy-board-rds-search-clauses.yml
+  - type: ErrorCatalog
+    url: errors/ontario-energy-board-problem-types.yml
+  - type: Authentication
+    url: authentication/ontario-energy-board-authentication.yml
+- aid: >-
+    ontario-energy-board:ontario-energy-board-current-electricity-rates-residential-rate-class-api
+  name: Ontario Energy Board Current Electricity Rates (Residential Rate Class) API
+  description: >-
+    OEB Open Data dataset landing page: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
+  humanURL: https://www.oeb.ca/open-data
+  baseURL: https://www.oeb.ca
+  tags:
+  - Current Electricity Rates (Residential Rate Class)
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/ontario-energy-board-current-electricity-rates-residential-rate-class-api-openapi.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data
+  - type: GettingStarted
+    url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+  - type: ContentLicense
+    url: https://www.ontario.ca/page/open-government-licence-ontario
+  - type: Reference
+    url: https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEBltr-Transition-to-Open-Data-20220929.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-Letter-Open-Data-2.0-20231006.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-letter-open-data-20240827.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/applications-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData_GS.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/GasBillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/complaints_data_2022.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distribution-rates-databases
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+  - type: Dataset
+    url: >-
+      https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
+  - type: DataModel
+    url: data-model/ontario-energy-board-data-model.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/licensed-market-participants
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_Licences_report_File.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/intervenor-cost-awards
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/open-data?page=1
+  - type: Documentation
+    url: https://www.oeb.ca/rds
+  - type: Reference
+    url: >-
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
+  - type: JSONSchema
+    url: json-schema/ontario-energy-board-rds-record-search-response.json
+  - type: Examples
+    url: examples/ontario-energy-board-rds-record-search-response.json
+  - type: Vocabulary
+    url: vocabulary/ontario-energy-board-rds-search-clauses.yml
+  - type: ErrorCatalog
+    url: errors/ontario-energy-board-problem-types.yml
+  - type: Authentication
+    url: authentication/ontario-energy-board-authentication.yml
+- aid: >-
+    ontario-energy-board:ontario-energy-board-current-natural-gas-rates-residential-rate-classes-api
+  name: Ontario Energy Board Current Natural Gas Rates (Residential Rate Classes) API
+  description: >-
+    OEB Open Data dataset landing page: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
+  humanURL: https://www.oeb.ca/open-data
+  baseURL: https://www.oeb.ca
+  tags:
+  - Current Natural Gas Rates (Residential Rate Classes)
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/ontario-energy-board-current-natural-gas-rates-residential-rate-classes-api-openapi.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data
+  - type: GettingStarted
+    url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+  - type: ContentLicense
+    url: https://www.ontario.ca/page/open-government-licence-ontario
+  - type: Reference
+    url: https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEBltr-Transition-to-Open-Data-20220929.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-Letter-Open-Data-2.0-20231006.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-letter-open-data-20240827.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/applications-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData_GS.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/GasBillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/complaints_data_2022.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distribution-rates-databases
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+  - type: Dataset
+    url: >-
+      https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
+  - type: DataModel
+    url: data-model/ontario-energy-board-data-model.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/licensed-market-participants
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_Licences_report_File.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/intervenor-cost-awards
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/open-data?page=1
+  - type: Documentation
+    url: https://www.oeb.ca/rds
+  - type: Reference
+    url: >-
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
+  - type: JSONSchema
+    url: json-schema/ontario-energy-board-rds-record-search-response.json
+  - type: Examples
+    url: examples/ontario-energy-board-rds-record-search-response.json
+  - type: Vocabulary
+    url: vocabulary/ontario-energy-board-rds-search-clauses.yml
+  - type: ErrorCatalog
+    url: errors/ontario-energy-board-problem-types.yml
+  - type: Authentication
+    url: authentication/ontario-energy-board-authentication.yml
+- aid: >-
+    ontario-energy-board:ontario-energy-board-electricity-and-natural-gas-distributors-service-areas-api
+  name: Ontario Energy Board Electricity and Natural Gas Distributors - Service Areas API
+  description: >-
+    OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
+  humanURL: https://www.oeb.ca/open-data
+  baseURL: https://www.oeb.ca
+  tags:
+  - Electricity and Natural Gas Distributors - Service Areas
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/ontario-energy-board-electricity-and-natural-gas-distributors-service-areas-api-openapi.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data
+  - type: GettingStarted
+    url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+  - type: ContentLicense
+    url: https://www.ontario.ca/page/open-government-licence-ontario
+  - type: Reference
+    url: https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEBltr-Transition-to-Open-Data-20220929.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-Letter-Open-Data-2.0-20231006.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-letter-open-data-20240827.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/applications-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData_GS.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/GasBillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/complaints_data_2022.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distribution-rates-databases
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+  - type: Dataset
+    url: >-
+      https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
+  - type: DataModel
+    url: data-model/ontario-energy-board-data-model.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/licensed-market-participants
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_Licences_report_File.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/intervenor-cost-awards
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/open-data?page=1
+  - type: Documentation
+    url: https://www.oeb.ca/rds
+  - type: Reference
+    url: >-
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
+  - type: JSONSchema
+    url: json-schema/ontario-energy-board-rds-record-search-response.json
+  - type: Examples
+    url: examples/ontario-energy-board-rds-record-search-response.json
+  - type: Vocabulary
+    url: vocabulary/ontario-energy-board-rds-search-clauses.yml
+  - type: ErrorCatalog
+    url: errors/ontario-energy-board-problem-types.yml
+  - type: Authentication
+    url: authentication/ontario-energy-board-authentication.yml
+- aid: >-
+    ontario-energy-board:ontario-energy-board-electricity-distributor-complaints-received-by-the-oeb-api
+  name: Ontario Energy Board Electricity Distributor Complaints Received by the OEB API
+  description: >-
+    OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
+  humanURL: https://www.oeb.ca/open-data
+  baseURL: https://www.oeb.ca
+  tags:
+  - Electricity Distributor Complaints Received by the OEB
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/ontario-energy-board-electricity-distributor-complaints-received-by-the-oeb-api-openapi.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data
+  - type: GettingStarted
+    url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+  - type: ContentLicense
+    url: https://www.ontario.ca/page/open-government-licence-ontario
+  - type: Reference
+    url: https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEBltr-Transition-to-Open-Data-20220929.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-Letter-Open-Data-2.0-20231006.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-letter-open-data-20240827.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/applications-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData_GS.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/GasBillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/complaints_data_2022.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distribution-rates-databases
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+  - type: Dataset
+    url: >-
+      https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
+  - type: DataModel
+    url: data-model/ontario-energy-board-data-model.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/licensed-market-participants
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_Licences_report_File.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/intervenor-cost-awards
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/open-data?page=1
+  - type: Documentation
+    url: https://www.oeb.ca/rds
+  - type: Reference
+    url: >-
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
+  - type: JSONSchema
+    url: json-schema/ontario-energy-board-rds-record-search-response.json
+  - type: Examples
+    url: examples/ontario-energy-board-rds-record-search-response.json
+  - type: Vocabulary
+    url: vocabulary/ontario-energy-board-rds-search-clauses.yml
+  - type: ErrorCatalog
+    url: errors/ontario-energy-board-problem-types.yml
+  - type: Authentication
+    url: authentication/ontario-energy-board-authentication.yml
+- aid: >-
+    ontario-energy-board:ontario-energy-board-electricity-distributor-performance-scorecard-api
+  name: Ontario Energy Board Electricity Distributor Performance – Scorecard API
+  description: >-
+    OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
+  humanURL: https://www.oeb.ca/open-data
+  baseURL: https://www.oeb.ca
+  tags:
+  - Electricity Distributor Performance – Scorecard
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/ontario-energy-board-electricity-distributor-performance-scorecard-api-openapi.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data
+  - type: GettingStarted
+    url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+  - type: ContentLicense
+    url: https://www.ontario.ca/page/open-government-licence-ontario
+  - type: Reference
+    url: https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEBltr-Transition-to-Open-Data-20220929.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-Letter-Open-Data-2.0-20231006.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-letter-open-data-20240827.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/applications-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData_GS.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/GasBillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/complaints_data_2022.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distribution-rates-databases
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+  - type: Dataset
+    url: >-
+      https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
+  - type: DataModel
+    url: data-model/ontario-energy-board-data-model.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/licensed-market-participants
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_Licences_report_File.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/intervenor-cost-awards
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/open-data?page=1
+  - type: Documentation
+    url: https://www.oeb.ca/rds
+  - type: Reference
+    url: >-
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
+  - type: JSONSchema
+    url: json-schema/ontario-energy-board-rds-record-search-response.json
+  - type: Examples
+    url: examples/ontario-energy-board-rds-record-search-response.json
+  - type: Vocabulary
+    url: vocabulary/ontario-energy-board-rds-search-clauses.yml
+  - type: ErrorCatalog
+    url: errors/ontario-energy-board-problem-types.yml
+  - type: Authentication
+    url: authentication/ontario-energy-board-authentication.yml
+- aid: >-
+    ontario-energy-board:ontario-energy-board-electricity-reporting-record-keeping-requirements-rrr-section-api
+  name: >-
+    Ontario Energy Board Electricity Reporting & Record Keeping Requirements (RRR): Section ... API
+  description: >-
+    OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+  humanURL: https://www.oeb.ca/open-data
+  baseURL: https://www.oeb.ca
+  tags:
+  - 'Electricity Reporting & Record Keeping Requirements (RRR): Section ...'
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/ontario-energy-board-electricity-reporting-record-keeping-requirements-rrr-section-api-openapi.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data
+  - type: GettingStarted
+    url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+  - type: ContentLicense
+    url: https://www.ontario.ca/page/open-government-licence-ontario
+  - type: Reference
+    url: https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEBltr-Transition-to-Open-Data-20220929.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-Letter-Open-Data-2.0-20231006.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-letter-open-data-20240827.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/applications-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData_GS.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/GasBillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/complaints_data_2022.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distribution-rates-databases
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+  - type: Dataset
+    url: >-
+      https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
+  - type: DataModel
+    url: data-model/ontario-energy-board-data-model.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/licensed-market-participants
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_Licences_report_File.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/intervenor-cost-awards
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/open-data?page=1
+  - type: Documentation
+    url: https://www.oeb.ca/rds
+  - type: Reference
+    url: >-
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
+  - type: JSONSchema
+    url: json-schema/ontario-energy-board-rds-record-search-response.json
+  - type: Examples
+    url: examples/ontario-energy-board-rds-record-search-response.json
+  - type: Vocabulary
+    url: vocabulary/ontario-energy-board-rds-search-clauses.yml
+  - type: ErrorCatalog
+    url: errors/ontario-energy-board-problem-types.yml
+  - type: Authentication
+    url: authentication/ontario-energy-board-authentication.yml
+- aid: >-
+    ontario-energy-board:ontario-energy-board-historical-regulated-price-plan-electricity-rates-api
+  name: Ontario Energy Board Historical Regulated Price Plan Electricity Rates API
+  description: >-
+    OEB Open Data dataset landing page: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
+  humanURL: https://www.oeb.ca/open-data
+  baseURL: https://www.oeb.ca
+  tags:
+  - Historical Regulated Price Plan Electricity Rates
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/ontario-energy-board-historical-regulated-price-plan-electricity-rates-api-openapi.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data
+  - type: GettingStarted
+    url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+  - type: ContentLicense
+    url: https://www.ontario.ca/page/open-government-licence-ontario
+  - type: Reference
+    url: https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEBltr-Transition-to-Open-Data-20220929.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-Letter-Open-Data-2.0-20231006.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-letter-open-data-20240827.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/applications-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData_GS.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/GasBillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/complaints_data_2022.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distribution-rates-databases
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+  - type: Dataset
+    url: >-
+      https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
+  - type: DataModel
+    url: data-model/ontario-energy-board-data-model.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/licensed-market-participants
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_Licences_report_File.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/intervenor-cost-awards
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/open-data?page=1
+  - type: Documentation
+    url: https://www.oeb.ca/rds
+  - type: Reference
+    url: >-
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
+  - type: JSONSchema
+    url: json-schema/ontario-energy-board-rds-record-search-response.json
+  - type: Examples
+    url: examples/ontario-energy-board-rds-record-search-response.json
+  - type: Vocabulary
+    url: vocabulary/ontario-energy-board-rds-search-clauses.yml
+  - type: ErrorCatalog
+    url: errors/ontario-energy-board-problem-types.yml
+  - type: Authentication
+    url: authentication/ontario-energy-board-authentication.yml
+- aid: ontario-energy-board:ontario-energy-board-licensed-market-participants-api
+  name: Ontario Energy Board Licensed Market Participants API
+  description: >-
+    OEB Open Data dataset landing page: https://www.oeb.ca/open-data/licensed-market-participants
+  humanURL: https://www.oeb.ca/open-data
+  baseURL: https://www.oeb.ca
+  tags:
+  - Licensed Market Participants
+  properties:
+  - type: OpenAPI
+    url: openapi/ontario-energy-board-licensed-market-participants-api-openapi.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data
+  - type: GettingStarted
+    url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+  - type: ContentLicense
+    url: https://www.ontario.ca/page/open-government-licence-ontario
+  - type: Reference
+    url: https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEBltr-Transition-to-Open-Data-20220929.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-Letter-Open-Data-2.0-20231006.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-letter-open-data-20240827.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/applications-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData_GS.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/GasBillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/complaints_data_2022.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distribution-rates-databases
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+  - type: Dataset
+    url: >-
+      https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
+  - type: DataModel
+    url: data-model/ontario-energy-board-data-model.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/licensed-market-participants
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_Licences_report_File.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/intervenor-cost-awards
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/open-data?page=1
+  - type: Documentation
+    url: https://www.oeb.ca/rds
+  - type: Reference
+    url: >-
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
+  - type: JSONSchema
+    url: json-schema/ontario-energy-board-rds-record-search-response.json
+  - type: Examples
+    url: examples/ontario-energy-board-rds-record-search-response.json
+  - type: Vocabulary
+    url: vocabulary/ontario-energy-board-rds-search-clauses.yml
+  - type: ErrorCatalog
+    url: errors/ontario-energy-board-problem-types.yml
+  - type: Authentication
+    url: authentication/ontario-energy-board-authentication.yml
+- aid: ontario-energy-board:ontario-energy-board-records-api
+  name: Ontario Energy Board Records API
+  description: >-
+    Search and retrieve records (filings, decisions, orders, licences, correspondence) in the OEB case
+    record.
+  humanURL: https://www.oeb.ca/open-data
+  baseURL: https://www.oeb.ca
+  tags:
+  - Records
+  properties:
+  - type: OpenAPI
+    url: openapi/ontario-energy-board-records-api-openapi.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data
+  - type: GettingStarted
+    url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+  - type: ContentLicense
+    url: https://www.ontario.ca/page/open-government-licence-ontario
+  - type: Reference
+    url: https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEBltr-Transition-to-Open-Data-20220929.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-Letter-Open-Data-2.0-20231006.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-letter-open-data-20240827.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/applications-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData_GS.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/GasBillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/complaints_data_2022.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distribution-rates-databases
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+  - type: Dataset
+    url: >-
+      https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
+  - type: DataModel
+    url: data-model/ontario-energy-board-data-model.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/licensed-market-participants
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_Licences_report_File.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/intervenor-cost-awards
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/open-data?page=1
+  - type: Documentation
+    url: https://www.oeb.ca/rds
+  - type: Reference
+    url: >-
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
+  - type: JSONSchema
+    url: json-schema/ontario-energy-board-rds-record-search-response.json
+  - type: Examples
+    url: examples/ontario-energy-board-rds-record-search-response.json
+  - type: Vocabulary
+    url: vocabulary/ontario-energy-board-rds-search-clauses.yml
+  - type: ErrorCatalog
+    url: errors/ontario-energy-board-problem-types.yml
+  - type: Authentication
+    url: authentication/ontario-energy-board-authentication.yml
+- aid: ontario-energy-board:ontario-energy-board-search-metadata-api
+  name: Ontario Energy Board Search Metadata API
+  description: The machine-readable query vocabulary the RDS search form itself loads.
+  humanURL: https://www.oeb.ca/open-data
+  baseURL: https://www.oeb.ca
+  tags:
+  - Search Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/ontario-energy-board-search-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data
+  - type: GettingStarted
+    url: https://www.oeb.ca/sites/default/files/Open-Data-Guide-XML-Excel-20221215.pdf
+  - type: ContentLicense
+    url: https://www.ontario.ca/page/open-government-licence-ontario
+  - type: Reference
+    url: https://www.ontario.ca/page/ontarios-digital-and-data-directive-2021
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEBltr-Transition-to-Open-Data-20220929.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-Letter-Open-Data-2.0-20231006.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/sites/default/files/OEB-letter-open-data-20240827.pdf
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/applications-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_open_appl_Cases_v2_reportFile.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/BillData_GS.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
+  - type: Dataset
+    url: https://www.oeb.ca/_html/calculator/data/GasBillData.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-electricity-map-20260429.zip
+  - type: Dataset
+    url: https://www.oeb.ca/documents/opendata/open-data-naturalgas-map-20260225.zip
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/scorecard_data_2024.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
+  - type: Dataset
+    url: https://www.oeb.ca/_html/performance/data/complaints_data_2022.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/electricity-distribution-rates-databases
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
+  - type: Dataset
+    url: >-
+      https://www.oeb.ca/documents/opendata/rrr/2.1.4.2%20System%20Reliability%20Indicators.xml
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2141-reporting-service
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-214210-major-event-response
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2119-billing-accuracy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2116-low-income-energy
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-212-market-monitoring
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2151-labour
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2152-capital
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2153-supply-and-delivery
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2154-demand-and-revenue
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2155-utility
+  - type: Documentation
+    url: >-
+      https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2156-regulated-return
+  - type: DataModel
+    url: data-model/ontario-energy-board-data-model.yml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/licensed-market-participants
+  - type: Dataset
+    url: https://www.oeb.ca/_html/xml/all_Licences_report_File.xml
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
+  - type: Documentation
+    url: https://www.oeb.ca/open-data/intervenor-cost-awards
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/open-data?page=1
+  - type: Documentation
+    url: https://www.oeb.ca/rds
+  - type: Reference
+    url: >-
+      https://www.rds.oeb.ca/CMWebDrawer/Record?q=CaseNumber=EB-2021-0183&sortBy=recRegisteredOn-&pageSize=400
+  - type: Documentation
+    url: https://www.oeb.ca/ontarios-energy-sector/list-licensed-companies
+  - type: JSONSchema
+    url: json-schema/ontario-energy-board-rds-record-search-response.json
+  - type: Examples
+    url: examples/ontario-energy-board-rds-record-search-response.json
+  - type: Vocabulary
+    url: vocabulary/ontario-energy-board-rds-search-clauses.yml
+  - type: ErrorCatalog
+    url: errors/ontario-energy-board-problem-types.yml
+  - type: Authentication
+    url: authentication/ontario-energy-board-authentication.yml
 common:
+- type: Overlay
+  url: overlays/ontario-energy-board-open-data-overlay.yaml
+- type: AgentSkill
+  url: skills/ontario-energy-board-pull-open-data.md
+- type: Overlay
+  url: overlays/ontario-energy-board-rds-overlay.yaml
+- type: AgentSkill
+  url: skills/ontario-energy-board-track-case-filings.md
+- type: AgentSkill
+  url: skills/ontario-energy-board-verify-green-button-mandate.md
 - type: MCPServer
   url: mcp/ontario-energy-board-mcp.yml
 - type: DomainSecurity
