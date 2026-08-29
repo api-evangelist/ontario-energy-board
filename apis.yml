@@ -26,6 +26,17 @@ description: The Ontario Energy Board (OEB) is the independent regulator of Onta
   implementation status register naming 54 confirmed distributors and 6 extensions. There is
   no developer portal, no OpenAPI, no API key and no signup — just files, plus an undocumented
   but live JSON output on the regulatory document search.
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 image: https://www.oeb.ca/themes/de_theme/logo.svg
 tags:
 - Energy
