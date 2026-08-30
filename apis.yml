@@ -186,7 +186,8 @@ apis:
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
   humanURL: https://www.oeb.ca/open-data
   baseURL: https://www.oeb.ca
-  tags:
+  tags: []
+  tags_raw:
   - Current Electricity Rates (General Service < 50 kW Rate Class)
   properties:
   - type: OpenAPI
@@ -440,7 +441,8 @@ apis:
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
   humanURL: https://www.oeb.ca/open-data
   baseURL: https://www.oeb.ca
-  tags:
+  tags: []
+  tags_raw:
   - Current Natural Gas Rates (Residential Rate Classes)
   properties:
   - type: OpenAPI
@@ -567,7 +569,8 @@ apis:
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
   humanURL: https://www.oeb.ca/open-data
   baseURL: https://www.oeb.ca
-  tags:
+  tags: []
+  tags_raw:
   - Electricity and Natural Gas Distributors - Service Areas
   properties:
   - type: OpenAPI
@@ -694,7 +697,8 @@ apis:
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
   humanURL: https://www.oeb.ca/open-data
   baseURL: https://www.oeb.ca
-  tags:
+  tags: []
+  tags_raw:
   - Electricity Distributor Complaints Received by the OEB
   properties:
   - type: OpenAPI
@@ -949,7 +953,8 @@ apis:
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
   humanURL: https://www.oeb.ca/open-data
   baseURL: https://www.oeb.ca
-  tags:
+  tags: []
+  tags_raw:
   - 'Electricity Reporting & Record Keeping Requirements (RRR): Section ...'
   properties:
   - type: OpenAPI
