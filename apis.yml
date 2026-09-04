@@ -37,6 +37,19 @@ deliveryModel:
   - openapi
   generated: '2026-08-28'
   method: derived
+accessModel:
+  pricing: unknown
+  onboarding: open
+  trial: false
+  try_now: false
+  public: true
+  label: Open access
+  confidence: low
+  source:
+  - authentication
+  - security
+  generated: '2026-09-02'
+  method: derived
 image: https://www.oeb.ca/themes/de_theme/logo.svg
 tags:
 - Energy
@@ -1587,8 +1600,9 @@ common:
   url: skills/ontario-energy-board-track-case-filings.md
 - type: AgentSkill
   url: skills/ontario-energy-board-verify-green-button-mandate.md
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/ontario-energy-board-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: DomainSecurity
   url: security/ontario-energy-board-domain-security.yml
 - type: Website

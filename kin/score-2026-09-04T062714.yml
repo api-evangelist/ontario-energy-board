@@ -1,29 +1,32 @@
-# Kin Score artifact — ontario-energy-board — 2026-08-03T161012
+# Kin Score artifact — ontario-energy-board — 2026-09-04T062714
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: ontario-energy-board
-  schema_version: 0.9
-  scored_at: '2026-08-03'
-  run_ts: 2026-08-03T161012
-  composite: 40.1
-  band: thin
+  schema_version: 0.18.2
+  scored_at: '2026-09-04'
+  run_ts: 2026-09-04T062714
+  composite: 47.1
+  band: developing
   facets:
-    discoverability: 87.0
-    contract_quality: 60.5
-    governance: 31.3
+    discoverability: 63.0
+    contract_quality: 57.0
+    governance: 33.3
     operational_transparency: 15.8
-    developer_ergonomics: 42.9
-    commercial_clarity: 10.5
+    developer_ergonomics: 58.9
+    commercial_clarity: 28.6
+    contract_governance: 33.3
+    access_clarity: 28.6
   agent_readiness:
-    score: 33.1
+    score: 25.2
     band: agent-aware
     dimensions:
       spec_presence: true
       agentic_access: false
+      reversibility_documented: na
       mcp_server: false
-      auth_clarity: true
-      idempotency: false
+      auth_clarity: bearer
+      idempotency: na
       error_semantics: documented
       openapi_examples: partial
       rate_limit_signal: false
@@ -32,7 +35,11 @@ kin_score:
       well_known_catalog: false
       consent_identity: false
       agent_card: false
-      dry_run_mode: false
+      dry_run_mode: na
+      delegated_identity: false
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
   regulatory:
     applies: true
     regime: Energy & Utilities
@@ -44,7 +51,7 @@ kin_score:
     skills: derived
     conformance: first-party
     contracts:
-      total: 2
+      total: 12
       derived: 0
       coverage: 0.0
       callable: 100.0
