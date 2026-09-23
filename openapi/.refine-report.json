@@ -1,0 +1,44 @@
+{
+  "provider": "ontario-energy-board",
+  "sources": [
+    "_original/ontario-energy-board-open-data-openapi.yml",
+    "_original/ontario-energy-board-rds-openapi.yml"
+  ],
+  "outputs": [
+    "ontario-energy-board-applications-before-the-oeb-api-openapi.yml",
+    "ontario-energy-board-current-electricity-rates-general-service-50-kw-rate-class-api-openapi.yml",
+    "ontario-energy-board-current-electricity-rates-residential-rate-class-api-openapi.yml",
+    "ontario-energy-board-current-natural-gas-rates-residential-rate-classes-api-openapi.yml",
+    "ontario-energy-board-electricity-distributor-complaints-received-by-the-oeb-api-openapi.yml",
+    "ontario-energy-board-electricity-distributor-performance-scorecard-api-openapi.yml",
+    "ontario-energy-board-electricity-reporting-record-keeping-requirements-rrr-section-api-openapi.yml",
+    "ontario-energy-board-electricity-and-natural-gas-distributors-service-areas-api-openapi.yml",
+    "ontario-energy-board-historical-regulated-price-plan-electricity-rates-api-openapi.yml",
+    "ontario-energy-board-licensed-market-participants-api-openapi.yml",
+    "ontario-energy-board-records-api-openapi.yml",
+    "ontario-energy-board-search-metadata-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ontario-energy-board-open-data-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ontario-energy-board-rds-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "ontario-energy-board-applications-before-the-oeb-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ontario-energy-board-current-electricity-rates-general-service-50-kw-rate-class-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ontario-energy-board-current-electricity-rates-residential-rate-class-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ontario-energy-board-current-natural-gas-rates-residential-rate-classes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ontario-energy-board-electricity-and-natural-gas-distributors-service-areas-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ontario-energy-board-electricity-distributor-complaints-received-by-the-oeb-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ontario-energy-board-electricity-distributor-performance-scorecard-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ontario-energy-board-electricity-reporting-record-keeping-requirements-rrr-section-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ontario-energy-board-historical-regulated-price-plan-electricity-rates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ontario-energy-board-licensed-market-participants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ontario-energy-board-records-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ontario-energy-board-search-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}
