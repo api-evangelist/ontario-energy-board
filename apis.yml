@@ -72,7 +72,6 @@ apis:
   name: Ontario Energy Board Applications before the OEB API
   description: 'OEB Open Data dataset landing page: https://www.oeb.ca/open-data/applications-oeb'
   humanURL: https://www.oeb.ca/open-data
-  baseURL: https://www.oeb.ca
   tags:
   - Applications before the OEB
   properties:
@@ -198,7 +197,6 @@ apis:
   description: >-
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/current-electricity-rates-general-service-50-kw-rate-class
   humanURL: https://www.oeb.ca/open-data
-  baseURL: https://www.oeb.ca
   tags: []
   tags_raw:
   - Current Electricity Rates (General Service < 50 kW Rate Class)
@@ -326,7 +324,6 @@ apis:
   description: >-
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/current-electricity-rates-residential-rate-class
   humanURL: https://www.oeb.ca/open-data
-  baseURL: https://www.oeb.ca
   tags:
   - Current Electricity Rates (Residential Rate Class)
   properties:
@@ -453,7 +450,6 @@ apis:
   description: >-
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/current-natural-gas-rates-residential-rate-classes
   humanURL: https://www.oeb.ca/open-data
-  baseURL: https://www.oeb.ca
   tags: []
   tags_raw:
   - Current Natural Gas Rates (Residential Rate Classes)
@@ -581,7 +577,6 @@ apis:
   description: >-
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-and-natural-gas-distributors-service-areas
   humanURL: https://www.oeb.ca/open-data
-  baseURL: https://www.oeb.ca
   tags: []
   tags_raw:
   - Electricity and Natural Gas Distributors - Service Areas
@@ -709,7 +704,6 @@ apis:
   description: >-
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-distributor-complaints-received-oeb
   humanURL: https://www.oeb.ca/open-data
-  baseURL: https://www.oeb.ca
   tags: []
   tags_raw:
   - Electricity Distributor Complaints Received by the OEB
@@ -837,7 +831,6 @@ apis:
   description: >-
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-distributor-performance-scorecard
   humanURL: https://www.oeb.ca/open-data
-  baseURL: https://www.oeb.ca
   tags:
   - Electricity Distributor Performance – Scorecard
   properties:
@@ -965,7 +958,6 @@ apis:
   description: >-
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/electricity-reporting-record-keeping-requirements-rrr-section-2142-system-reliability
   humanURL: https://www.oeb.ca/open-data
-  baseURL: https://www.oeb.ca
   tags: []
   tags_raw:
   - 'Electricity Reporting & Record Keeping Requirements (RRR): Section ...'
@@ -1093,7 +1085,6 @@ apis:
   description: >-
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/historical-regulated-price-plan-electricity-rates
   humanURL: https://www.oeb.ca/open-data
-  baseURL: https://www.oeb.ca
   tags:
   - Historical Regulated Price Plan Electricity Rates
   properties:
@@ -1219,7 +1210,6 @@ apis:
   description: >-
     OEB Open Data dataset landing page: https://www.oeb.ca/open-data/licensed-market-participants
   humanURL: https://www.oeb.ca/open-data
-  baseURL: https://www.oeb.ca
   tags:
   - Licensed Market Participants
   properties:
@@ -1345,7 +1335,7 @@ apis:
     Search and retrieve records (filings, decisions, orders, licences, correspondence) in the OEB case
     record.
   humanURL: https://www.oeb.ca/open-data
-  baseURL: https://www.oeb.ca
+  baseURL: https://www.rds.oeb.ca/CMWebDrawer
   tags:
   - Records
   properties:
@@ -1469,7 +1459,7 @@ apis:
   name: Ontario Energy Board Search Metadata API
   description: The machine-readable query vocabulary the RDS search form itself loads.
   humanURL: https://www.oeb.ca/open-data
-  baseURL: https://www.oeb.ca
+  baseURL: https://www.rds.oeb.ca/CMWebDrawer
   tags:
   - Search Metadata
   properties:

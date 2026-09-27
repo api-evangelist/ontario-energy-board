@@ -193,107 +193,16 @@ paths:
           status: 404
           content_type: text/html
 components:
+  parameters:
+    RecordUri:
+      name: uri
+      in: path
+      required: true
+      description: Content Manager record URI, an opaque integer returned as `Uri` on every search hit.
+      schema:
+        type: integer
+      example: 891285
   schemas:
-    TrimDateTime:
-      type: object
-      description: 'Content Manager date. `IsClear: true` with DateTime 0001-01-01T00:00:00.0000000Z means the date is unset — treat it as null, not as the year 1.'
-      properties:
-        __type:
-          type: string
-          example: HP.HPTRIM.ServiceModel.TrimDateTime, TRIMServiceAPIModel
-        IsClear:
-          type: boolean
-        IsTimeClear:
-          type: boolean
-        DateTime:
-          type: string
-          format: date-time
-        StringValue:
-          type: string
-          description: Localised rendering, e.g. "2025-03-04 at 5:06 PM".
-    Record:
-      type: object
-      description: One record — a filing, decision, order, licence or piece of correspondence.
-      properties:
-        Uri:
-          type: integer
-          description: Opaque record identifier; the key for /Record/{uri}/File/document.
-        TrimType:
-          type: string
-          example: Record
-        RecordTitle:
-          $ref: '#/components/schemas/TrimStringProperty'
-        RecordExtension:
-          $ref: '#/components/schemas/TrimStringProperty'
-        RecordDateModified:
-          $ref: '#/components/schemas/TrimDateTime'
-        Fields:
-          $ref: '#/components/schemas/RecordFields'
-      required:
-      - Uri
-      - TrimType
-    RecordSearchResponse:
-      type: object
-      description: Content Manager ServiceAPIModel search payload, as observed on 2026-07-27.
-      properties:
-        Results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Record'
-        PropertiesAndFields:
-          type: object
-          description: Empty object in every observed response.
-        TotalResults:
-          type: integer
-          description: Total records matching the clause, irrespective of pageSize.
-        CountStringEx:
-          type: string
-          description: Human-readable count, e.g. "40 records".
-        MinimumCount:
-          type: integer
-        Count:
-          type: integer
-        HasMoreItems:
-          type: boolean
-        SearchTitle:
-          type: string
-          description: Human-readable description of the executed search — and, when the clause is invalid, the plain-English error message. Read this even on HTTP 200.
-        HitHighlightString:
-          type: string
-        TrimType:
-          type: string
-          example: Record
-        ResponseStatus:
-          $ref: '#/components/schemas/ResponseStatus'
-      required:
-      - Results
-      - TotalResults
-      - TrimType
-      - ResponseStatus
-    TrimStringProperty:
-      type: object
-      properties:
-        __type:
-          type: string
-          example: HP.HPTRIM.ServiceModel.TrimStringProperty, TRIMServiceAPIModel
-        Value:
-          type: string
-      required:
-      - Value
-    LocationRef:
-      type: object
-      description: Reference to a Content Manager Location (a party — applicant, intervenor, the OEB itself).
-      properties:
-        __type:
-          type: string
-          example: HP.HPTRIM.ServiceModel.LocationRef, TRIMServiceAPIModel
-        LocationFormattedName:
-          $ref: '#/components/schemas/TrimStringProperty'
-        TrimType:
-          type: string
-          example: Location
-        Uri:
-          type: integer
     ResponseStatus:
       type: object
       description: Empty object on success. On failure it carries the Content Manager exception — this is the error envelope, and it is NOT RFC 9457 problem+json.
@@ -342,15 +251,106 @@ components:
           allOf:
           - $ref: '#/components/schemas/TrimDateTime'
           description: Date received by the OEB.
-  parameters:
-    RecordUri:
-      name: uri
-      in: path
-      required: true
-      description: Content Manager record URI, an opaque integer returned as `Uri` on every search hit.
-      schema:
-        type: integer
-      example: 891285
+    TrimStringProperty:
+      type: object
+      properties:
+        __type:
+          type: string
+          example: HP.HPTRIM.ServiceModel.TrimStringProperty, TRIMServiceAPIModel
+        Value:
+          type: string
+      required:
+      - Value
+    RecordSearchResponse:
+      type: object
+      description: Content Manager ServiceAPIModel search payload, as observed on 2026-07-27.
+      properties:
+        Results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+        PropertiesAndFields:
+          type: object
+          description: Empty object in every observed response.
+        TotalResults:
+          type: integer
+          description: Total records matching the clause, irrespective of pageSize.
+        CountStringEx:
+          type: string
+          description: Human-readable count, e.g. "40 records".
+        MinimumCount:
+          type: integer
+        Count:
+          type: integer
+        HasMoreItems:
+          type: boolean
+        SearchTitle:
+          type: string
+          description: Human-readable description of the executed search — and, when the clause is invalid, the plain-English error message. Read this even on HTTP 200.
+        HitHighlightString:
+          type: string
+        TrimType:
+          type: string
+          example: Record
+        ResponseStatus:
+          $ref: '#/components/schemas/ResponseStatus'
+      required:
+      - Results
+      - TotalResults
+      - TrimType
+      - ResponseStatus
+    TrimDateTime:
+      type: object
+      description: 'Content Manager date. `IsClear: true` with DateTime 0001-01-01T00:00:00.0000000Z means the date is unset — treat it as null, not as the year 1.'
+      properties:
+        __type:
+          type: string
+          example: HP.HPTRIM.ServiceModel.TrimDateTime, TRIMServiceAPIModel
+        IsClear:
+          type: boolean
+        IsTimeClear:
+          type: boolean
+        DateTime:
+          type: string
+          format: date-time
+        StringValue:
+          type: string
+          description: Localised rendering, e.g. "2025-03-04 at 5:06 PM".
+    Record:
+      type: object
+      description: One record — a filing, decision, order, licence or piece of correspondence.
+      properties:
+        Uri:
+          type: integer
+          description: Opaque record identifier; the key for /Record/{uri}/File/document.
+        TrimType:
+          type: string
+          example: Record
+        RecordTitle:
+          $ref: '#/components/schemas/TrimStringProperty'
+        RecordExtension:
+          $ref: '#/components/schemas/TrimStringProperty'
+        RecordDateModified:
+          $ref: '#/components/schemas/TrimDateTime'
+        Fields:
+          $ref: '#/components/schemas/RecordFields'
+      required:
+      - Uri
+      - TrimType
+    LocationRef:
+      type: object
+      description: Reference to a Content Manager Location (a party — applicant, intervenor, the OEB itself).
+      properties:
+        __type:
+          type: string
+          example: HP.HPTRIM.ServiceModel.LocationRef, TRIMServiceAPIModel
+        LocationFormattedName:
+          $ref: '#/components/schemas/TrimStringProperty'
+        TrimType:
+          type: string
+          example: Location
+        Uri:
+          type: integer
 externalDocs:
   description: OEB Regulatory Document Search (human entry point)
   url: https://www.oeb.ca/rds
