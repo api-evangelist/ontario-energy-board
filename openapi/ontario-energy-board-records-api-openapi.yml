@@ -193,16 +193,28 @@ paths:
           status: 404
           content_type: text/html
 components:
-  parameters:
-    RecordUri:
-      name: uri
-      in: path
-      required: true
-      description: Content Manager record URI, an opaque integer returned as `Uri` on every search hit.
-      schema:
-        type: integer
-      example: 891285
   schemas:
+    Record:
+      type: object
+      description: One record — a filing, decision, order, licence or piece of correspondence.
+      properties:
+        Uri:
+          type: integer
+          description: Opaque record identifier; the key for /Record/{uri}/File/document.
+        TrimType:
+          type: string
+          example: Record
+        RecordTitle:
+          $ref: '#/components/schemas/TrimStringProperty'
+        RecordExtension:
+          $ref: '#/components/schemas/TrimStringProperty'
+        RecordDateModified:
+          $ref: '#/components/schemas/TrimDateTime'
+        Fields:
+          $ref: '#/components/schemas/RecordFields'
+      required:
+      - Uri
+      - TrimType
     ResponseStatus:
       type: object
       description: Empty object on success. On failure it carries the Content Manager exception — this is the error envelope, and it is NOT RFC 9457 problem+json.
@@ -223,6 +235,16 @@ components:
             TrimErrorCode:
               type: string
               example: '22760'
+    TrimStringProperty:
+      type: object
+      properties:
+        __type:
+          type: string
+          example: HP.HPTRIM.ServiceModel.TrimStringProperty, TRIMServiceAPIModel
+        Value:
+          type: string
+      required:
+      - Value
     RecordFields:
       type: object
       description: The OEB's own user-defined regulatory fields. Which fields appear depends on the record; the set below was returned by every observed search hit.
@@ -251,16 +273,23 @@ components:
           allOf:
           - $ref: '#/components/schemas/TrimDateTime'
           description: Date received by the OEB.
-    TrimStringProperty:
+    TrimDateTime:
       type: object
+      description: 'Content Manager date. `IsClear: true` with DateTime 0001-01-01T00:00:00.0000000Z means the date is unset — treat it as null, not as the year 1.'
       properties:
         __type:
           type: string
-          example: HP.HPTRIM.ServiceModel.TrimStringProperty, TRIMServiceAPIModel
-        Value:
+          example: HP.HPTRIM.ServiceModel.TrimDateTime, TRIMServiceAPIModel
+        IsClear:
+          type: boolean
+        IsTimeClear:
+          type: boolean
+        DateTime:
           type: string
-      required:
-      - Value
+          format: date-time
+        StringValue:
+          type: string
+          description: Localised rendering, e.g. "2025-03-04 at 5:06 PM".
     RecordSearchResponse:
       type: object
       description: Content Manager ServiceAPIModel search payload, as observed on 2026-07-27.
@@ -299,44 +328,6 @@ components:
       - TotalResults
       - TrimType
       - ResponseStatus
-    TrimDateTime:
-      type: object
-      description: 'Content Manager date. `IsClear: true` with DateTime 0001-01-01T00:00:00.0000000Z means the date is unset — treat it as null, not as the year 1.'
-      properties:
-        __type:
-          type: string
-          example: HP.HPTRIM.ServiceModel.TrimDateTime, TRIMServiceAPIModel
-        IsClear:
-          type: boolean
-        IsTimeClear:
-          type: boolean
-        DateTime:
-          type: string
-          format: date-time
-        StringValue:
-          type: string
-          description: Localised rendering, e.g. "2025-03-04 at 5:06 PM".
-    Record:
-      type: object
-      description: One record — a filing, decision, order, licence or piece of correspondence.
-      properties:
-        Uri:
-          type: integer
-          description: Opaque record identifier; the key for /Record/{uri}/File/document.
-        TrimType:
-          type: string
-          example: Record
-        RecordTitle:
-          $ref: '#/components/schemas/TrimStringProperty'
-        RecordExtension:
-          $ref: '#/components/schemas/TrimStringProperty'
-        RecordDateModified:
-          $ref: '#/components/schemas/TrimDateTime'
-        Fields:
-          $ref: '#/components/schemas/RecordFields'
-      required:
-      - Uri
-      - TrimType
     LocationRef:
       type: object
       description: Reference to a Content Manager Location (a party — applicant, intervenor, the OEB itself).
@@ -351,6 +342,15 @@ components:
           example: Location
         Uri:
           type: integer
+  parameters:
+    RecordUri:
+      name: uri
+      in: path
+      required: true
+      description: Content Manager record URI, an opaque integer returned as `Uri` on every search hit.
+      schema:
+        type: integer
+      example: 891285
 externalDocs:
   description: OEB Regulatory Document Search (human entry point)
   url: https://www.oeb.ca/rds
