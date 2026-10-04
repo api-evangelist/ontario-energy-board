@@ -194,6 +194,50 @@ paths:
           content_type: text/html
 components:
   schemas:
+    LocationRef:
+      type: object
+      description: Reference to a Content Manager Location (a party — applicant, intervenor, the OEB itself).
+      properties:
+        __type:
+          type: string
+          example: HP.HPTRIM.ServiceModel.LocationRef, TRIMServiceAPIModel
+        LocationFormattedName:
+          $ref: '#/components/schemas/TrimStringProperty'
+        TrimType:
+          type: string
+          example: Location
+        Uri:
+          type: integer
+    TrimStringProperty:
+      type: object
+      properties:
+        __type:
+          type: string
+          example: HP.HPTRIM.ServiceModel.TrimStringProperty, TRIMServiceAPIModel
+        Value:
+          type: string
+      required:
+      - Value
+    ResponseStatus:
+      type: object
+      description: Empty object on success. On failure it carries the Content Manager exception — this is the error envelope, and it is NOT RFC 9457 problem+json.
+      properties:
+        ErrorCode:
+          type: string
+          example: TrimException
+        Message:
+          type: string
+          example: Error retrieving data for property RecordContainer. Access denied.
+        Errors:
+          type: array
+          items:
+            type: object
+        Meta:
+          type: object
+          properties:
+            TrimErrorCode:
+              type: string
+              example: '22760'
     Record:
       type: object
       description: One record — a filing, decision, order, licence or piece of correspondence.
@@ -215,64 +259,6 @@ components:
       required:
       - Uri
       - TrimType
-    ResponseStatus:
-      type: object
-      description: Empty object on success. On failure it carries the Content Manager exception — this is the error envelope, and it is NOT RFC 9457 problem+json.
-      properties:
-        ErrorCode:
-          type: string
-          example: TrimException
-        Message:
-          type: string
-          example: Error retrieving data for property RecordContainer. Access denied.
-        Errors:
-          type: array
-          items:
-            type: object
-        Meta:
-          type: object
-          properties:
-            TrimErrorCode:
-              type: string
-              example: '22760'
-    TrimStringProperty:
-      type: object
-      properties:
-        __type:
-          type: string
-          example: HP.HPTRIM.ServiceModel.TrimStringProperty, TRIMServiceAPIModel
-        Value:
-          type: string
-      required:
-      - Value
-    RecordFields:
-      type: object
-      description: The OEB's own user-defined regulatory fields. Which fields appear depends on the record; the set below was returned by every observed search hit.
-      properties:
-        CaseNumber:
-          allOf:
-          - $ref: '#/components/schemas/TrimStringProperty'
-          description: OEB case number, e.g. EB-2021-0183.
-        SIDocumentType:
-          allOf:
-          - $ref: '#/components/schemas/TrimStringProperty'
-          description: Document type, e.g. "Decision and Order on Cost Awards", "Correspondence".
-        Applicant:
-          $ref: '#/components/schemas/LocationRef'
-        EnergyType:
-          allOf:
-          - $ref: '#/components/schemas/TrimStringProperty'
-          description: Electricity or Natural Gas.
-        PrimaryApplicationType:
-          allOf:
-          - $ref: '#/components/schemas/TrimStringProperty'
-          description: e.g. Initiatives, Rates, Licensing.
-        DateIssued:
-          $ref: '#/components/schemas/TrimDateTime'
-        fDateReceived:
-          allOf:
-          - $ref: '#/components/schemas/TrimDateTime'
-          description: Date received by the OEB.
     TrimDateTime:
       type: object
       description: 'Content Manager date. `IsClear: true` with DateTime 0001-01-01T00:00:00.0000000Z means the date is unset — treat it as null, not as the year 1.'
@@ -328,20 +314,34 @@ components:
       - TotalResults
       - TrimType
       - ResponseStatus
-    LocationRef:
+    RecordFields:
       type: object
-      description: Reference to a Content Manager Location (a party — applicant, intervenor, the OEB itself).
+      description: The OEB's own user-defined regulatory fields. Which fields appear depends on the record; the set below was returned by every observed search hit.
       properties:
-        __type:
-          type: string
-          example: HP.HPTRIM.ServiceModel.LocationRef, TRIMServiceAPIModel
-        LocationFormattedName:
-          $ref: '#/components/schemas/TrimStringProperty'
-        TrimType:
-          type: string
-          example: Location
-        Uri:
-          type: integer
+        CaseNumber:
+          allOf:
+          - $ref: '#/components/schemas/TrimStringProperty'
+          description: OEB case number, e.g. EB-2021-0183.
+        SIDocumentType:
+          allOf:
+          - $ref: '#/components/schemas/TrimStringProperty'
+          description: Document type, e.g. "Decision and Order on Cost Awards", "Correspondence".
+        Applicant:
+          $ref: '#/components/schemas/LocationRef'
+        EnergyType:
+          allOf:
+          - $ref: '#/components/schemas/TrimStringProperty'
+          description: Electricity or Natural Gas.
+        PrimaryApplicationType:
+          allOf:
+          - $ref: '#/components/schemas/TrimStringProperty'
+          description: e.g. Initiatives, Rates, Licensing.
+        DateIssued:
+          $ref: '#/components/schemas/TrimDateTime'
+        fDateReceived:
+          allOf:
+          - $ref: '#/components/schemas/TrimDateTime'
+          description: Date received by the OEB.
   parameters:
     RecordUri:
       name: uri
